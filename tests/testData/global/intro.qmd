@@ -1,0 +1,7 @@
+---
+title: "Global intro"
+format: html
+editor: visual
+---
+
+## Global Intro

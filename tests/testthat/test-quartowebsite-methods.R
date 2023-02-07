@@ -37,3 +37,33 @@ test_that("removeTemplatePath works correctly", {
   y <- QuartoWebsite(templateSearchPath=list(".", "temp"))
   expect_equal(removeTemplatePath(y, "notInPath"), y)
 })
+
+test_that("locateTemplate fails elegantly with bad inputs", {
+  x <- QuartoWebsite()
+  
+  expect_error(locateTemplate(x, fileName=5), "Assertion on 'fileName' failed: Must be of type 'character', not 'double'.")
+  expect_error(locateTemplate(x, fileName="myTemplate.qmd", strict="YES"), "Assertion on 'strict' failed: Must be of type 'logical', not 'character'.")
+  expect_error(locateTemplate(x, fileName=c("badPath", "goodPath")), "Assertion on 'fileName' failed: Must have length 1.")
+  expect_error(locateTemplate(x, fileName="goodFile.qmd", strict=c(TRUE, FALSE)), "Assertion on 'strict' failed: Must have length 1.")
+})
+
+test_that("locateTemplate works", {
+  x <- QuartoWebsite(templateSearchPath=list("../testData/projectA", "../testData/global"))
+  y <- QuartoWebsite(templateSearchPath=list("../testData/projectB", "../testData/global"))
+  expect_equal(locateTemplate(x, fileName="intro.qmd"), "../testData/projectA/intro.qmd")
+  expect_equal(locateTemplate(y, fileName="intro.qmd"), "../testData/global/intro.qmd")
+  
+  x <- QuartoWebsite(templateSearchPath=list("../testData/projectA/study1", "../testData/projectA", "../testData/global"))
+  y <- QuartoWebsite(templateSearchPath=list("../testData/projectB/study1", "../testData/projectB", "../testData/global"))
+  expect_equal(locateTemplate(x, fileName="intro.qmd"), "../testData/projectA/study1/intro.qmd")
+  expect_equal(locateTemplate(y, fileName="intro.qmd"), "../testData/global/intro.qmd")
+  
+  x <- QuartoWebsite(templateSearchPath=list("../testData/projectA/study2", "../testData/projectA", "../testData/global"))
+  y <- QuartoWebsite(templateSearchPath=list("../testData/projectB/study1", "../testData/projectB", "../testData/global"))
+  expect_equal(locateTemplate(x, fileName="intro.qmd"), "../testData/projectA/intro.qmd")
+  expect_equal(locateTemplate(y, fileName="intro.qmd"), "../testData/global/intro.qmd")
+  
+  expect_equal(locateTemplate(x, fileName="../testData/custom_intro.qmd"), "../testData/custom_intro.qmd")
+  expect_error(locateTemplate(x, fileName="../testData/bad_custom_intro.qmd"), "Assertion on 'foundFile' failed: File does not exist: '../testData/bad_custom_intro.qmd'")
+  
+})

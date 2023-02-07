@@ -167,3 +167,62 @@ setMethod(
   }
 )
 
+# locateTemplate ----
+
+## generic ----
+
+#' Search the `templateSearchPath` for the First Matching Template File
+#' 
+#' @param x a QuartoWebsite object
+#' @param fileName the (base) name of the file to be searched for along the
+#' `templateSearchPath` defined by `x`.
+#' @param ... passed to class methods
+#' @section Usage Notes:
+#' If `basename(fileName) == fileName` then `x@templateSearchPath` is searched, in order, for 
+#' a file with the given name.  The first match is returned.  Otherwise, 
+#' the absolute path to the given file is returned.  This process allows (say) global,
+#' project and study level templates to be obtained.
+#' @docType methods
+#' @export
+setGeneric("locateTemplate", function(x, fileName=NA, ...) standardGeneric("locateTemplate"))
+
+## QuartoWebsite
+
+#' Search the `templateSearchPath` for the First Matching Template File
+#' @param strict Boolean.  Default: TRUE.  Check that the file found (a) exists 
+#' (b) is readable and (c) has one of the `allowedExtensions`
+#' @param allowedExtensions Default: `"qmd"`.  A vector of permitted extensions.  
+#' Ignored if `strict` is `FALSE`
+#' @describeIn locateTemplate  
+#' @aliases locateTemplate-QuartoWebsite
+#' @export
+setMethod(
+  "locateTemplate", 
+  "QuartoWebsite",
+  function(x, fileName, strict=TRUE, allowedExtensions=c("qmd")) {
+    # Validate
+    checkmate::assertCharacter(fileName)
+    checkmate::assertLogical(strict)
+    checkmate::assertCharacter(allowedExtensions)
+    checkmate::assertScalar(fileName)
+    checkmate::assertScalar(strict)
+    foundFile <- NULL
+    # Check for simple base name
+    if (fileName == basename(fileName)) {
+      for (dir in x@templateSearchPath) {
+        foundFile <- file.path(dir, fileName)
+        if (checkmate::testFileExists(foundFile)) break
+        foundFile <- NULL
+      }
+    } else {
+      #Cater for relative paths
+      foundFile <- path.expand(fileName)
+    }
+    if (is.null(foundFile)) stop(paste0("Unable to locate ", fileName))
+    if (strict) {
+      checkmate::assertFileExists(foundFile, access="r", extension=allowedExtensions)
+    }
+    foundFile
+  }
+)
+    
