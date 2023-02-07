@@ -1,5 +1,5 @@
 Package: autoquarto
-Title: What the Package Does (One Line, Title Case)
+Title: Tools to help programmatic compilation of Quarto books
 Version: 0.0.0.9000
 Authors@R: 
     person("John", "Kirkpatrick", , "john.kirkpatrick@roche.com", role = c("aut", "cre"),
@@ -10,6 +10,20 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Imports: 
-    lifecycle
+    checkmate,
+    lifecycle,
+    methods
 Suggests: 
-    covr
+    covr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Collate: 
+    'autoquarto-package.R'
+    'checkmate.R'
+    'quartowebsite-class.R'
+    'quartobook-class.R'
+    'quartobook-methods.R'
+    'quartobook-validation.R'
+    'quartowebsite-methods.R'
+    'quartowebsite-validation.R'
+    'zzzz.R'
