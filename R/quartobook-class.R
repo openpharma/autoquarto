@@ -22,6 +22,7 @@ setMethod(
   "QuartoBook",
   function(.Object, ...) {
     .Object <- methods::callNextMethod(.Object, ...)
+    .Object@type <- "book"
     .Object
   }
 )

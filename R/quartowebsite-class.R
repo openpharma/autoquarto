@@ -11,12 +11,14 @@ setClass(
   slots=c(
     templateSearchPath = "list",
     variables = "list",
-    chapters = "list"
+    chapters = "list",
+    type = "character"
   ),
   prototype = list(
     templateSearchPath = list("."),
     variables = list(),
-    chapters = list()
+    chapters = list(),
+    type = NA_character_
   )
 )
 
@@ -38,6 +40,7 @@ setMethod(
     .Object@templateSearchPath <- templateSearchPath
     .Object@variables <- variables
     .Object@chapters <- chapters
+    .Object@type <- "website"
     .Object
   }
 )

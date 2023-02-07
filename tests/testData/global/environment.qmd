@@ -1,0 +1,11 @@
+---
+title: " "
+format: html
+editor: visual
+---
+
+## Environment
+
+```{r}
+sessionInfo()
+```

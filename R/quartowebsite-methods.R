@@ -225,4 +225,94 @@ setMethod(
     foundFile
   }
 )
-    
+
+# publish ----
+
+## generic ----
+
+#' Publish a Quarto object
+#' 
+#' @param x a QuartoWebsite object
+#' @param outFile the name of the file containing the published Quarto object
+#' @param ... passed to class methods
+#' @docType methods
+#' @export
+setGeneric("publish", function(x, outFile, ...) standardGeneric("publish"))
+
+## QuartoWebsite
+
+#' Publish a QuartoWebsite object
+#' @describeIn publish  
+#' @aliases publish-QuartoWebsite
+#' @param workDir Default: `NULL`.  The temporary work folder used to generate the report.  
+#' If `NULL` a temporary work folder with a random name, is used.
+#' @param logFile Default: NA.  The name of the log file that documents the publishing process.
+#' If `NA`, the name is based on `basename(outFile)`, with the start date/time appended and
+#' located in the folder returned by `here::here()` at the time the function was called.
+#' If `NULL`, no log file is produced.  
+#' @param tidyUp Boolean.  Should the workDir be deleted on successful publication?
+#' @export
+setMethod(
+  "publish", 
+  "QuartoWebsite",
+  function(x, outFile, workDir=NULL, tidyUp=FALSE, logFile=NA) {
+    # Validate
+    if (!is.null(workDir)) {
+      checkmate::assertCharacter(workDir, len=1)
+      checkmate::assertDirectoryExists(workDir, access="rwx")
+    }
+    checkmate::assertPathForOutput(outFile)
+    checkmate::assertLogical(tidyUp)
+    # Prepare
+    if (is.na(logFile)) {
+      logFile <- file.path(
+                   here::here(),
+                   paste0(
+                     tools::file_path_sans_ext(basename(outFile)), 
+                     "_", 
+                     format(lubridate::now(), "%Y_%m%b_%d_%H%M%S"),
+                     ".log"
+                    )
+                  )
+      print(paste0("logFile is ", logFile))
+    }
+    if (!is.null(logFile)) {
+      futile.logger::flog.layout("~t ~l [~n:~f]: ~m")
+      futile.logger::flog.appender(futile.logger::appender.file(logFile))
+    }
+    # Execute
+    if (is.null(workDir)) {
+      workDir <- tempdir()
+      futile.logger::flog.info(paste0("Using `", workDir, "' as a working folder"))
+      checkmate::assertDirectoryExists(workDir, access="rwx")
+    }
+    futile.logger::flog.info("Writing _quarto.yml")
+    y <- ymlthis::yml(author=FALSE, date=FALSE) %>% 
+      ymlthis::yml_toplevel(list("project"=list("type"=x@type)))
+    typeList <- list()
+    typeList[[x@type]] <- list(
+      "title"="What is the title?", 
+      "author"="Who Is The Author", 
+      "date"="`r format(Sys.Date())` at `r format(Sys.Time())` on `r Sys.info[['nodename']]`"
+    )
+    y <- y %>% ymlthis::yml_toplevel(typeList)
+    chapterList <- lapply(x@chapters, function(c) locateTemplate(x, c))
+    y <- y %>% ymlthis::yml_toplevel(list("chapters"=chapterList))
+  #   chapters:
+  #     - index.qmd
+  #   - intro.qmd
+  #   - summary.qmd
+  #   - references.qmd
+  #   
+  #   bibliography: references.bib
+  #   
+  #   format:
+  #     html:
+  #     theme: cosmo
+  #   pdf:
+  #     documentclass: scrreport
+  #   epub:
+  #     cover-image: cover.png
+    y
+  }
+)
