@@ -287,9 +287,20 @@ setMethod(
       futile.logger::flog.info(paste0("Using `", workDir, "' as a working folder"))
       checkmate::assertDirectoryExists(workDir, access="rwx")
     }
+    # Define output file
+    qYML <- quartoYML(x) 
+    bk <- qYML %>% 
+            yml_pluck(x@type) %>% 
+            yml_replace("output-file"=tools::file_path_sans_ext(basename(outFile)))
+    qYML <- qYML %>% yml_replace("book"=bk)
+    # Define output folder
+    proj <- qYML %>%
+      yml_pluck("project") %>%
+      yml_replace("output-dir"=R.utils::getAbsolutePath(dirname(outFile)))
+    qYML <- qYML %>% yml_replace("project"=proj)
+    # Write _quarto.yml
     futile.logger::flog.info("Writing _quarto.yml")
-    quartoYML(x) %>% 
-      ymlthis::use_yml_file(R.utils::getAbsolutePath(file.path(workDir, "_quarto.yml")))
+    qYML %>% ymlthis::use_yml_file(R.utils::getAbsolutePath(file.path(workDir, "_quarto.yml")))
     futile.logger::flog.debug("_quarto.yml is:")
     invisible(
       lapply(
@@ -315,28 +326,6 @@ setMethod(
   }
 )
 
-#' @describeIn publish 
-#' @aliases publish-QuartoBook
-#' @export
-setMethod(
-  "publish",
-  "QuartoBook",
-  function(x, outFile, workDir=NULL, tidyUp=FALSE, logFile=NA) {
-    futile.logger::flog.info("Entry - QuartoBook")
-    y <- callNextMethod(x, outFile, workDir, tidyUp)
-    proj <- y %>% 
-              yml_pluck("project") %>% 
-              yml_replace("output-dir"=R.utils::getAbsolutePath(dirname(outFile)))
-    y <- y %>% yml_replace("project"=proj)
-    
-    bk <- y %>% 
-            yml_pluck("book") %>% 
-            yml_replace("output-file"=tools::file_path_sans_ext(basename(outFile)))
-    y <- y %>% yml_replace("book"=bk)
-    futile.logger::flog.info("Exit - QuartoBook")
-    y
-  }
-)
 
 # quartoYML ----
 
@@ -371,7 +360,7 @@ setMethod(
     )
     y <- y %>% ymlthis::yml_toplevel(typeList)
     y <- y %>% 
-         ymlthis::yml_toplevel(list("format"=list("html"=list("theme"="cosmo"))))
+         ymlthis::yml_toplevel(list("format"=list("html"=list("theme"="cosmo"), "pdf"="default")))
     #   
     #   bibliography: references.bib
     #   
