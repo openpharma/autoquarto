@@ -1,0 +1,28 @@
+INFO [2023-02-09 14:46:51] Writing _quarto.yml
+DEBUG [2023-02-09 14:46:56] _quarto.yml is:
+DEBUG [2023-02-09 14:46:56] project:
+DEBUG [2023-02-09 14:46:56]   type: book
+DEBUG [2023-02-09 14:46:56] book:
+DEBUG [2023-02-09 14:46:56]   title: What is the title?
+DEBUG [2023-02-09 14:46:56]   author: Who Is The Author
+DEBUG [2023-02-09 14:46:56]   date: '`r format(Sys.Date())` at `r format(Sys.Time())` on `r Sys.info[[''nodename'']]`'
+DEBUG [2023-02-09 14:46:56]   chapters:
+DEBUG [2023-02-09 14:46:56]   - index.qmd
+DEBUG [2023-02-09 14:46:56]   - intro.qmd
+DEBUG [2023-02-09 14:46:56]   - body.qmd
+DEBUG [2023-02-09 14:46:57]   - conclusion.qmd
+DEBUG [2023-02-09 14:46:57]   - environment.qmd
+DEBUG [2023-02-09 14:46:57] format:
+DEBUG [2023-02-09 14:46:57]   html:
+DEBUG [2023-02-09 14:46:57]     theme: cosmo
+DEBUG [2023-02-09 14:46:57] 
+INFO [2023-02-09 14:46:57] Copying chapter files...
+DEBUG [2023-02-09 14:46:57] Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/global/index.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+DEBUG [2023-02-09 14:46:57] Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/projectA/intro.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+DEBUG [2023-02-09 14:46:57] Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/global/body.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+DEBUG [2023-02-09 14:46:57] Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/projectA/study1/conclusion.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+DEBUG [2023-02-09 14:46:57] Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/global/environment.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+INFO [2023-02-09 14:46:57] Rendering report...
+INFO [2023-02-09 14:47:03] Done
+INFO [2023-02-09 14:49:25] Entry
+INFO [2023-02-09 14:49:25] Entry

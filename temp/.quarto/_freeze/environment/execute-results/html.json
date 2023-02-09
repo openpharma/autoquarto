@@ -1,0 +1,14 @@
+{
+  "hash": "ea8433f14464b299ead631d9606e65a0",
+  "result": {
+    "markdown": "---\ntitle: \"Environment\"\nformat: html\neditor: visual\n---\n\n\n## Environment\n\n\n::: {.cell}\n\n```{.r .cell-code}\nsessionInfo()\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nR version 4.2.1 (2022-06-23)\nPlatform: x86_64-pc-linux-gnu (64-bit)\nRunning under: Ubuntu 20.04.5 LTS\n\nMatrix products: default\nBLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3\nLAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3\n\nlocale:\n [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              \n [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    \n [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   \n [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 \n [9] LC_ADDRESS=C               LC_TELEPHONE=C            \n[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       \n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nloaded via a namespace (and not attached):\n [1] digest_0.6.30     jsonlite_1.8.2    magrittr_2.0.3    evaluate_0.17    \n [5] rlang_1.0.6       stringi_1.7.8     cli_3.4.1         rstudioapi_0.14  \n [9] rmarkdown_2.17    tools_4.2.1       stringr_1.4.1     htmlwidgets_1.5.4\n[13] xfun_0.34         yaml_2.3.6        fastmap_1.1.0     compiler_4.2.1   \n[17] htmltools_0.5.3   knitr_1.40       \n```\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

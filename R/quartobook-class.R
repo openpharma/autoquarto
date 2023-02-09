@@ -4,7 +4,7 @@
 #' @export
 setClass(
   "QuartoBook",
-  contains = "QuartoWebsite"
+  contains = "QuartoObject"
 )
 
 #' Constructor for the `QuartoBook` class

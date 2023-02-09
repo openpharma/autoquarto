@@ -1,0 +1,28 @@
+2023-02-09 14:56:08 INFO [autoquarto:publish]: Writing _quarto.yml
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]: _quarto.yml is:
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]: project:
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]:   type: book
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]: book:
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]:   title: What is the title?
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]:   author: Who Is The Author
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]:   date: '`r format(Sys.Date())` at `r format(Sys.Time())` on `r Sys.info[[''nodename'']]`'
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]:   chapters:
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]:   - index.qmd
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]:   - intro.qmd
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]:   - body.qmd
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]:   - conclusion.qmd
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]:   - environment.qmd
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]: format:
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]:   html:
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]:     theme: cosmo
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]: 
+2023-02-09 14:56:14 INFO [autoquarto:publish]: Copying chapter files...
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]: Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/global/index.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]: Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/projectA/intro.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]: Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/global/body.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+2023-02-09 14:56:14 DEBUG [autoquarto:publish]: Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/projectA/study1/conclusion.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+2023-02-09 14:56:15 DEBUG [autoquarto:publish]: Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/global/environment.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+2023-02-09 14:56:15 INFO [autoquarto:publish]: Rendering report...
+2023-02-09 14:56:21 INFO [autoquarto:publish]: Done
+2023-02-09 14:56:21 INFO [autoquarto:publish]: Exit - QuartoObject
+2023-02-09 14:56:21 INFO [autoquarto:publish]: Exit - QuartoBook

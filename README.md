@@ -18,6 +18,13 @@ You can install the development version of autoquarto from
 devtools::install_github("openpharma/autoquarto")
 ```
 
+## Notes
+
+Your report must include an index.qmd file. This is a limitation of
+Quarto. See
+[here](https://github.com/quarto-dev/quarto-cli/discussions/4024) for
+more information.
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:

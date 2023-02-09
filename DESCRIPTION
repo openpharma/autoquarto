@@ -17,6 +17,7 @@ Imports:
     lubridate,
     magrittr,
     methods,
+    R.utils,
     tools,
     ymlthis
 Suggests: 
@@ -26,10 +27,12 @@ Config/testthat/edition: 3
 Collate: 
     'autoquarto-package.R'
     'checkmate.R'
+    'quartoobject-class.R'
     'quartowebsite-class.R'
     'quartobook-class.R'
     'quartobook-methods.R'
     'quartobook-validation.R'
+    'quartoobject-methods.R'
     'quartowebsite-methods.R'
     'quartowebsite-validation.R'
     'utils-pipe.R'
