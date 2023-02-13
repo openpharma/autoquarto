@@ -256,7 +256,7 @@ setMethod(
   "publish", 
   "QuartoObject",
   function(x, outFile, workDir=NULL, tidyUp=FALSE, logFile=NA) {
-    futile.logger::flog.info("Entry - QuartoObject")
+    futile.logger::flog.debug("Entry - QuartoObject")
     # Validate
     if (!is.null(workDir)) {
       checkmate::assertCharacter(workDir, len=1)
@@ -322,7 +322,7 @@ setMethod(
     futile.logger::flog.info("Rendering report...")
     quarto::quarto_render(workDir, as_job=FALSE)
     futile.logger::flog.info("Done")
-    futile.logger::flog.info("Exit - QuartoObject")
+    futile.logger::flog.debug("Exit - QuartoObject")
   }
 )
 

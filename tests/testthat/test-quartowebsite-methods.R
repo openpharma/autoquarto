@@ -48,22 +48,29 @@ test_that("locateTemplate fails elegantly with bad inputs", {
 })
 
 test_that("locateTemplate works", {
-  x <- QuartoWebsite(templateSearchPath=list("../testData/projectA", "../testData/global"))
-  y <- QuartoWebsite(templateSearchPath=list("../testData/projectB", "../testData/global"))
-  expect_equal(locateTemplate(x, fileName="intro.qmd"), "../testData/projectA/intro.qmd")
-  expect_equal(locateTemplate(y, fileName="intro.qmd"), "../testData/global/intro.qmd")
+  x <- QuartoWebsite(templateSearchPath=list(test_path("testData/projectA"), test_path("testData/global")))
+  y <- QuartoWebsite(templateSearchPath=list(test_path("testData/projectB"), test_path("testData/global")))
+  expect_equal(locateTemplate(x, fileName="intro.qmd"), R.utils::getAbsolutePath(test_path("testData/projectA/intro.qmd")))
+  expect_equal(locateTemplate(y, fileName="intro.qmd"), R.utils::getAbsolutePath(test_path("testData/global/intro.qmd")))
   
-  x <- QuartoWebsite(templateSearchPath=list("../testData/projectA/study1", "../testData/projectA", "../testData/global"))
-  y <- QuartoWebsite(templateSearchPath=list("../testData/projectB/study1", "../testData/projectB", "../testData/global"))
-  expect_equal(locateTemplate(x, fileName="intro.qmd"), "../testData/projectA/study1/intro.qmd")
-  expect_equal(locateTemplate(y, fileName="intro.qmd"), "../testData/global/intro.qmd")
+  x <- QuartoWebsite(templateSearchPath=list(test_path("testData/projectA/study1"), test_path("testData/projectA"), test_path("testData/global")))
+  y <- QuartoWebsite(templateSearchPath=list(test_path("testData/projectB/study1"), test_path("testData/projectB"), test_path("testData/global")))
+  expect_equal(locateTemplate(x, fileName="intro.qmd"), R.utils::getAbsolutePath(test_path("testData/projectA/intro.qmd")))
+  expect_equal(locateTemplate(y, fileName="intro.qmd"), R.utils::getAbsolutePath(test_path("testData/global/intro.qmd")))
   
-  x <- QuartoWebsite(templateSearchPath=list("../testData/projectA/study2", "../testData/projectA", "../testData/global"))
-  y <- QuartoWebsite(templateSearchPath=list("../testData/projectB/study1", "../testData/projectB", "../testData/global"))
-  expect_equal(locateTemplate(x, fileName="intro.qmd"), "../testData/projectA/intro.qmd")
-  expect_equal(locateTemplate(y, fileName="intro.qmd"), "../testData/global/intro.qmd")
+  x <- QuartoWebsite(templateSearchPath=list(test_path("testData/projectA/study2"), test_path("testData/projectA"), test_path("testData/global")))
+  y <- QuartoWebsite(templateSearchPath=list(test_path("testData/projectB/study1"), test_path("testData/projectB"), test_path("testData/global")))
+  expect_equal(locateTemplate(x, fileName="intro.qmd"), R.utils::getAbsolutePath(test_path("testData/projectA/intro.qmd")))
+  expect_equal(locateTemplate(y, fileName="intro.qmd"), R.utils::getAbsolutePath(test_path("testData/global/intro.qmd")))
   
-  expect_equal(locateTemplate(x, fileName="../testData/custom_intro.qmd"), "../testData/custom_intro.qmd")
-  expect_error(locateTemplate(x, fileName="../testData/bad_custom_intro.qmd"), "Assertion on 'foundFile' failed: File does not exist: '../testData/bad_custom_intro.qmd'")
-  
+  expect_equal(locateTemplate(x, fileName=test_path("testData/custom_intro.qmd")), R.utils::getAbsolutePath(test_path("testData/custom_intro.qmd")))
+  expect_error(
+    locateTemplate(x, fileName=test_path("testData/bad_custom_intro.qmd")), 
+    paste0(
+      "Assertion on 'foundFile' failed: File does not exist: '", 
+      R.utils::getAbsolutePath(test_path("testData/bad_custom_intro.qmd")),
+      "'"
+    )
+  )
+
 })

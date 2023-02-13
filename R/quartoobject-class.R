@@ -68,6 +68,7 @@ setMethod(
   "initialize",
   "QuartoBook",
   function(.Object, ...) {
+    print("In QuartoBook initialize")
     .Object <- methods::callNextMethod(.Object, ...)
     .Object@type <- "book"
     .Object
@@ -86,12 +87,12 @@ setMethod(
 setClass(
   "QuartoWebsite",
   contains="QuartoObject",
-  # slots=c(
-  #   templateSearchPath = "list",
-  #   variables = "list",
-  #   chapters = "list",
-  #   type = "character"
-  # ),
+  slots=c(
+    templateSearchPath = "list",
+    variables = "list",
+    chapters = "list",
+    type = "character"
+  ),
   prototype = list(
     templateSearchPath = list("."),
     variables = list(),
@@ -115,10 +116,10 @@ setMethod(
   "QuartoWebsite",
   function(.Object, templateSearchPath=list("."), variables=list(), chapters=list(), ...) {
     .Object <- methods::callNextMethod(.Object, ...)
-    # .Object@templateSearchPath <- templateSearchPath
-    # .Object@variables <- variables
-    # .Object@chapters <- chapters
-    # .Object@type <- "website"
+    .Object@templateSearchPath <- templateSearchPath
+    .Object@variables <- variables
+    .Object@chapters <- chapters
+    .Object@type <- "website"
     .Object
   }
 )
