@@ -4,13 +4,24 @@
 # autoquarto
 
 <!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/autoquarto)](https://CRAN.R-project.org/package=autoquarto)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![experimental](https://github.com/openpharma/autoquarto/actions/workflows/experimental.yaml/badge.svg)](https://github.com/openpharma/autoquarto/actions/workflows/experimental.yaml)
 <!-- badges: end -->
 
-The goal of autoquarto is to …
+The goal of autoquarto is to provide tools to allow the programmatic,
+incremental definition and publication of Quarto reports.
+
+`autoquarto` is very much a work in progress, and is being developed in
+parallel with the [`rbqmR`](https://openpharma.github.io/rbqmR/main/)
+package. As `rbqmR` evolves, so will `autoquarto`.
 
 ## Installation
 
-You can install the development version of autoquarto from
+You can install the development version of `autoquarto` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -18,45 +29,202 @@ You can install the development version of autoquarto from
 devtools::install_github("openpharma/autoquarto")
 ```
 
+`autoquarto` is not currently available on CRAN.
+
+## Usage
+
+The fundamental object used to do this is the S4 `QuartoObject` class,
+two subclasses of which, `QuartoBook` and `QuartoWebsite` are currently
+defined. Of these, testing has started only for `QuartoBook`.
+
+The `QuartoObject` class has 4 slots, named `templateSearchPath`,
+`variables`, `chapters` and `type`.
+
+- The `chapters` slot contains the names of the files that define the
+  chapters, or sections, of the report. Each file defines a single
+  chapter. If the chapter is of the form `<filename>.<extension>`, for
+  example `introduction.qmd`, the folders defined by
+  `templateSearchPath` are searched, in order, and the first matching
+  file is used. This process allows a hierarchy of templates to be used.
+  If the chapter file is provided as an absolute or relative path, then
+  the `templateSearchPath` is not used. The file used is file in the
+  precise location given.
+- The `templateSearchPath` slot lists the folders that are searched, in
+  order, to find the `chapter` files.
+- The `variables` slot will be used to pass parameters to chapter files
+  in a future version of `autoquarto`. It is not currently used.
+- The `type` slot defines the type of quarto object (eg `book` or
+  `website`) that is being built. The value is set, internally, by the
+  object’s constructor.
+
+### Using the `templateSearchPath` hierarchy
+
+Suppose a company provides global templates for components of reports at
+in a folder named `~/templates/gobal`. Some of these global templates
+are named `index.qmd`, `conclusion.qmd` and `environment.qmd`. A project
+team has created project specific templates named `conclusion.qmd`,
+`main_body.qmd` and `intro.qmd` in a folder named
+`~/templates/projectA/`. The project team is a running study named
+`study1` and has a provided study specific version of `intro.qmd` in
+`~/templates/projectA/study1`. By default, the global template should be
+used. However, if a project-level version of a template has been
+provided, then that should be used instead of the global version.
+Similarly, a study-level template should override both a global or
+project-level template.
+
+This situation can be handled by setting the `templateSearchPath` slot
+to
+
+    list("~/templates/projectA/study1", "~/templates/projectA/", "~/templates/gobal")
+
+If the `chapters` slot has the value
+
+    list(
+      "index.qmd", 
+      "intro.qmd", 
+      "main_body.qmd", 
+      "conclusion.qmd", 
+      "environment.qmd", 
+      "~/specialReports/appendix3.qmd"
+    )
+
+Then
+
+- `index.qmd` will be taken from `~/templates/gobal`
+- `intro.qmd` will be taken from `~/templates/projectA/study1`
+- `main_body.qmd` will be taken from `~/templates/projectA/`
+- `conclusion.qmd` will be taken from `~/templates/projectA/`
+- `environment.qmd` will be taken from `environment.qmd`
+- `~/specialReports/appendix3.qmd` will be used as is
+
+## Defining the `QuartoObject`
+
+`autoquarto` defines constructors for the `QuartoBook` and
+`QuartoWebsite` classes. The simplest use of the constructor is
+
+    myBook <- QuartoBook()
+
+The `templateSearchPath` and `chapter` slots can be set when calling the
+constructor
+
+    myBook <- QuartoBook(
+                templateSeachPath = list("~/templates/projectA/study1", "~/templates/projectA/", "~/templates/gobal"),
+                chapters=list("index.qmd", "body.qmd", "conclusion.qmd")
+              )
+
+After initial creation of the object, these entries can be added to each
+slot with the `addTemplateSearchPath` and `addChapter` methods.
+
+    myBook <- addTemplateSearchPath(x, "~/templates/gobal")
+    myBook <- addChapter("environment.qmd")
+
+All `QuartoObject` methods support piping. The two statments above are
+equivalent to
+
+    library(magrittr)
+
+    myBook <- myBook %>% 
+                addTemplateSearchPath(x, "~/templates/gobal") %>% 
+                addChapter("environment.qmd")
+
+By default, the `addXXXX`methods add new entries at the end of the
+current list, but the `.after` parameter can be used to insert the new
+entry at a different position in the list:
+
+    myBook <- myBook %>% addChapter("~/specialReports/appendix3.qmd", .after=2)
+
+Existing elements of the list can be deleted with the appropriate
+`removeXXXX` method. The following code returns `myBook` to its initial
+state:
+
+    myBook <- myBook %>% 
+                removeTemplateSearchPath(x, "~/templates/gobal") %>% 
+                removeChapter("environment.qmd") %>% 
+                removeChapter("~/specialReports/appendix3.qmd")
+
+## Publishing the `QuartoObject`
+
+Once the methods discussed above have added the necessary information to
+the `QuartoObject`, it can be published by calling the `publish` method.
+
+    publish(myBook)
+
+or
+
+    publish(
+      myBook,  
+      outFile="/home/kirkpatj/Packages/autoquarto/tests/testOutput/testReport.html", 
+    )
+
+or
+
+    publish(
+      myBook, 
+      outFile="/home/kirkpatj/Packages/autoquarto/tests/testOutput/testReport.html", 
+      workDir="/home/kirkpatj/Packages/autoquarto/temp"
+    )
+
+`publish`ing a `QuartoObject` also creates a log file (by default, in
+the same folder as `outFile`) describing what actions were taken by the
+`publish` method. The log file has the same base name as the `outFile`
+with a timestamp appended. For xample, in the examples above, the log
+file might be named `testReport_2023-02 Feb-10_143122.log`.
+
+The detail and format of the messages in the log file can be controlled
+using standard calls to `futile.logger` functions, for example;
+
+    futile.logger::flog.threshold(futile.logger::DEBUG)
+    futile.logger::flog.layout(futile.logger::layout.format("~t ~l ~n ~f: ~m"))
+    futile.logger::flog.appender(futile.logger::appender.console()) 
+
+and the content of a typical log file could be similar to
+
+    2023-02-10 14:36:08 INFO [autoquarto:publish]: Writing _quarto.yml
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]: _quarto.yml is:
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]: project:
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   type: book
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   output-dir: /home/kirkpatj/Packages/autoquarto/tests/testOutput
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]: book:
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   title: What is the title?
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   author: Who Is The Author
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   date: '2023-02-10 at 2023-02-10 14:50:36 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   chapters:
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   - index.qmd
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   - intro.qmd
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   - body.qmd
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   - conclusion.qmd
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   - environment.qmd
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   output-file: testReport
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]: format:
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   html:
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:     theme: cosmo
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   pdf: default
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]: 
+    2023-02-10 14:36:15 INFO [autoquarto:publish]: Copying chapter files...
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]: Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/global/index.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]: Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/projectA/intro.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]: Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/global/body.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]: Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/projectA/study1/conclusion.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]: Copying `/home/kirkpatj/Packages/autoquarto/tests/testData/global/environment.qmd` to `/home/kirkpatj/Packages/autoquarto/temp`...
+    2023-02-10 14:36:15 INFO [autoquarto:publish]: Rendering report...
+    2023-02-10 14:36:31 INFO [autoquarto:publish]: Done
+    2023-02-10 14:36:31 INFO [autoquarto:publish]: Exit - QuartoObject
+
 ## Notes
 
-Your report must include an index.qmd file. This is a limitation of
-Quarto. See
-[here](https://github.com/quarto-dev/quarto-cli/discussions/4024) for
-more information.
+- Your report must include an `index.qmd` file. This is a limitation of
+  Quarto. See
+  [here](https://github.com/quarto-dev/quarto-cli/discussions/4024) for
+  more information.
+- `output-file` affects only single-file destinations such as PDF. It is
+  ignored for multi-file destinations such as html. For multi-file
+  destinations, the project main file is always (eg) index.html.
 
-## Example
+## To do
 
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(autoquarto)
-## basic example code
-```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+- Support `param`eters
+- Provide support for Parts
+- Implement support for bibliographies
+- Implement support for book- and website-specific features
+- Improve test coverage
+- Provide getters (and setters) for all class clots

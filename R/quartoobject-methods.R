@@ -142,7 +142,7 @@ setGeneric("removeChapter", function(x, file=NA, pos=NA) standardGeneric("remove
 
 #' Remove a chapter from the chapter list
 #' @describeIn removeChapter  
-#' @aliases removeChapter-QuartoObject
+#' @aliases removeChapter-QuartoWebsite
 #' @export
 setMethod(
   "removeChapter", 
@@ -290,14 +290,14 @@ setMethod(
     # Define output file
     qYML <- quartoYML(x) 
     bk <- qYML %>% 
-            yml_pluck(x@type) %>% 
-            yml_replace("output-file"=tools::file_path_sans_ext(basename(outFile)))
-    qYML <- qYML %>% yml_replace("book"=bk)
+            ymlthis::yml_pluck(x@type) %>% 
+            ymlthis::yml_replace("output-file"=tools::file_path_sans_ext(basename(outFile)))
+    qYML <- qYML %>% ymlthis::yml_replace("book"=bk)
     # Define output folder
     proj <- qYML %>%
-      yml_pluck("project") %>%
-      yml_replace("output-dir"=R.utils::getAbsolutePath(dirname(outFile)))
-    qYML <- qYML %>% yml_replace("project"=proj)
+              ymlthis::yml_pluck("project") %>%
+              ymlthis::yml_replace("output-dir"=R.utils::getAbsolutePath(dirname(outFile)))
+    qYML <- qYML %>% ymlthis::yml_replace("project"=proj)
     # Write _quarto.yml
     futile.logger::flog.info("Writing _quarto.yml")
     qYML %>% ymlthis::use_yml_file(R.utils::getAbsolutePath(file.path(workDir, "_quarto.yml")))
@@ -355,7 +355,7 @@ setMethod(
     typeList[[x@type]] <- list(
       "title"="What is the title?", 
       "author"="Who Is The Author", 
-      "date"="`r format(Sys.Date())` at `r format(Sys.Time())` on `r Sys.info[['nodename']]`",
+      "date"="`r format(Sys.Date())` at `r format(Sys.Time())` on `r Sys.info()[['nodename']]`",
       "chapters"=x@chapters
     )
     y <- y %>% ymlthis::yml_toplevel(typeList)

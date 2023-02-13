@@ -8,3 +8,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
+^temp$
+^.*\.log$

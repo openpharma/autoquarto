@@ -4,7 +4,7 @@
 \name{removeChapter}
 \alias{removeChapter}
 \alias{removeChapter,QuartoWebsite-method}
-\alias{removeChapter-QuartoObject}
+\alias{removeChapter-QuartoWebsite}
 \title{Remove an Entry from the Chapter list}
 \usage{
 removeChapter(x, file = NA, pos = NA)
