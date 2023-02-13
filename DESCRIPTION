@@ -26,15 +26,8 @@ Suggests:
 Config/testthat/edition: 3
 Collate: 
     'autoquarto-package.R'
-    'checkmate.R'
-    'quartobook-class.R'
-    'quartobook-methods.R'
-    'quartobook-validation.R'
     'quartoobject-class.R'
     'quartoobject-methods.R'
-    'quartowebsite-class.R'
-    'quartowebsite-methods.R'
-    'quartowebsite-validation.R'
     'temp.R'
     'utils-pipe.R'
     'zzzz.R'

@@ -41,7 +41,7 @@ devtools::install_github("openpharma/autoquarto")
 ## Usage
 
 ```{r, echo=FALSE}
-# library(autoquarto)
+library(autoquarto)
 ```
 The fundamental object used to do this is the S4 `QuartoObject` class, two subclasses of which, `QuartoBook` and `QuartoWebsite` are currently defined.  Of these, testing has started only for `QuartoBook`.
 
