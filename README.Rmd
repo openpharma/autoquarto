@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/autoquarto)](https://CRAN.R-project.org/package=autoquarto)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![experimental](https://github.com/openpharma/autoquarto/actions/workflows/experimental.yaml/badge.svg)](https://github.com/openpharma/autoquarto/actions/workflows/experimental.yaml)
-<!-- badges: end -->
+[![Test Coverage](https://raw.githubusercontent.com/openpharma/autoquarto/_xml_coverage_reports/data/main/badge.svg)](https://github.com/openpharma/autoquarto/blob/_xml_coverage_reports/data/main/coverage.xml)<!-- badges: end -->
 
 The goal of autoquarto is to provide tools to allow the programmatic, incremental definition and publication of Quarto reports. 
 

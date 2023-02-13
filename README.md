@@ -10,7 +10,8 @@ status](https://www.r-pkg.org/badges/version/autoquarto)](https://CRAN.R-project
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![experimental](https://github.com/openpharma/autoquarto/actions/workflows/experimental.yaml/badge.svg)](https://github.com/openpharma/autoquarto/actions/workflows/experimental.yaml)
-<!-- badges: end -->
+[![Test
+Coverage](https://raw.githubusercontent.com/openpharma/autoquarto/_xml_coverage_reports/data/main/badge.svg)](https://github.com/openpharma/autoquarto/blob/_xml_coverage_reports/data/main/coverage.xml)<!-- badges: end -->
 
 The goal of autoquarto is to provide tools to allow the programmatic,
 incremental definition and publication of Quarto reports.
@@ -187,7 +188,7 @@ and the content of a typical log file could be similar to
     2023-02-10 14:36:15 DEBUG [autoquarto:publish]: book:
     2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   title: What is the title?
     2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   author: Who Is The Author
-    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   date: '2023-02-13 at 2023-02-13 10:25:37 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   date: '2023-02-13 at 2023-02-13 11:16:42 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
     2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   chapters:
     2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   - index.qmd
     2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   - intro.qmd
