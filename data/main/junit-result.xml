@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="checkmate" timestamp="2023-02-13T11:29:14Z" hostname="9061f46a6859" tests="1" skipped="0" failures="0" errors="0" time="0.096">
+    <testcase time="0.096" classname="checkmate" name="multiplication_works"/>
+  </testsuite>
+  <testsuite name="quartobook-class" timestamp="2023-02-13T11:29:14Z" hostname="9061f46a6859" tests="1" skipped="0" failures="0" errors="0" time="0.051">
+    <testcase time="0.0509999999999999" classname="quartobook_class" name="multiplication_works"/>
+  </testsuite>
+  <testsuite name="quartobook-methods" timestamp="2023-02-13T11:29:14Z" hostname="9061f46a6859" tests="1" skipped="0" failures="0" errors="0" time="0.032">
+    <testcase time="0.032" classname="quartobook_methods" name="multiplication_works"/>
+  </testsuite>
+  <testsuite name="quartowebsite-class" timestamp="2023-02-13T11:29:14Z" hostname="9061f46a6859" tests="1" skipped="0" failures="0" errors="0" time="0.009">
+    <testcase time="0.00900000000000001" classname="quartowebsite_class" name="multiplication_works"/>
+  </testsuite>
+  <testsuite name="quartowebsite-methods" timestamp="2023-02-13T11:29:14Z" hostname="9061f46a6859" tests="27" skipped="0" failures="0" errors="0" time="0.264">
+    <testcase time="0.042" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.002" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00599999999999989" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.01" classname="quartowebsite_methods" name="addTemplatePath_works_correctly"/>
+    <testcase time="0.004" classname="quartowebsite_methods" name="addTemplatePath_works_correctly"/>
+    <testcase time="0.013" classname="quartowebsite_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00900000000000001" classname="quartowebsite_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.01" classname="quartowebsite_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.014" classname="quartowebsite_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0509999999999999" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.00800000000000001" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.00700000000000001" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.00800000000000001" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.00700000000000001" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.00700000000000001" classname="quartowebsite_methods" name="locateTemplate_works"/>
+  </testsuite>
+</testsuites>
