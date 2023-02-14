@@ -9,4 +9,5 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^temp$
+^paramTest$
 ^.*\.log$

@@ -119,7 +119,7 @@ slot with the `addTemplateSearchPath` and `addChapter` methods.
     myBook <- addTemplateSearchPath(x, "~/templates/gobal")
     myBook <- addChapter("environment.qmd")
 
-All `QuartoObject` methods support piping. The two statments above are
+All `QuartoObject` methods support piping. The two statements above are
 equivalent to
 
     library(magrittr)
@@ -168,8 +168,8 @@ or
 `publish`ing a `QuartoObject` also creates a log file (by default, in
 the same folder as `outFile`) describing what actions were taken by the
 `publish` method. The log file has the same base name as the `outFile`
-with a timestamp appended. For xample, in the examples above, the log
-file might be named `testReport_2023-02 Feb-10_143122.log`.
+with a timestamp appended. For example, in the code above, the log file
+might be named `testReport_2023-02 Feb-10_143122.log`.
 
 The detail and format of the messages in the log file can be controlled
 using standard calls to `futile.logger` functions, for example;
@@ -188,7 +188,7 @@ and the content of a typical log file could be similar to
     2023-02-10 14:36:15 DEBUG [autoquarto:publish]: book:
     2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   title: What is the title?
     2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   author: Who Is The Author
-    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   date: '2023-02-13 at 2023-02-13 11:16:42 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
+    2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   date: '2023-02-14 at 2023-02-14 17:40:44 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
     2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   chapters:
     2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   - index.qmd
     2023-02-10 14:36:15 DEBUG [autoquarto:publish]:   - intro.qmd
@@ -210,6 +210,32 @@ and the content of a typical log file could be similar to
     2023-02-10 14:36:15 INFO [autoquarto:publish]: Rendering report...
     2023-02-10 14:36:31 INFO [autoquarto:publish]: Done
     2023-02-10 14:36:31 INFO [autoquarto:publish]: Exit - QuartoObject
+
+## Support for YAML parameters
+
+Unfortunately, Quarto support for YAML parameters in multi-file renders
+is currently not great. There is no way to create a “central” definition
+of YAML parameters. Instead, the YAML parameters must be repeated at the
+start of each and every chapter file.
+
+> See
+> [here](https://stackoverflow.com/questions/72992071/specifying-parameters-in-yml-file-for-quarto)
+> for more details.
+
+In addition, if a chapter file is passed a `params` list that contains
+one or more entries that does not exist in the file’s own YAML header,
+an error occurs.
+
+`autoquarto` handles this situation by using the `pre-render` parameter
+of `quarto_render` to create or modify each chapter file’s YAML header
+so that it includes all the parameters defined in the calling
+`QuartoObject`.
+
+Finally, another issue is that each chapter file is rendered in its own
+environment. This means that intermediate results derived in an earlier
+chapter are not available to the current chapter, unless the derivation
+is repeated or new parameters enabling the derived data to be imported
+are provided. This
 
 ## Notes
 

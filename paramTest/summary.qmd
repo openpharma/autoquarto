@@ -1,0 +1,32 @@
+---
+params:
+  data: NULL
+  yvar: NULL
+  xvar: NULL
+  groupvar: NULL
+  row_count: NULL
+---
+
+# Summary
+
+Here is a graph of `r params$yvar` against `r params$xvar`, grouped by `r params$groupvar`.
+
+```{r}
+#| label: lib-load
+#| echo: FALSE
+#| include: FALSE
+
+library(tidyverse)
+```
+
+```{r}
+#| label: data-intro
+#| echo: FALSE
+#| include: TRUE
+
+data <- get(params$data)
+
+data %>% 
+  ggplot() +
+    geom_point(aes_string(x=params$xvar, y=params$yvar, colour=params$groupvar))
+```

@@ -12,22 +12,28 @@ RoxygenNote: 7.2.1
 Imports: 
     checkmate,
     futile.logger,
-    here,
+    glue,
     lifecycle,
     lubridate,
     magrittr,
     methods,
-    R.utils,
-    tools,
+    purrr,
+    rlang,
+    rmarkdown,
+    withr,
     ymlthis
 Suggests: 
     covr,
-    testthat (>= 3.0.0)
+    R.utils,
+    spelling,
+    testthat (>= 3.0.0),
+    tools
 Config/testthat/edition: 3
 Collate: 
     'autoquarto-package.R'
     'quartoobject-class.R'
     'quartoobject-methods.R'
-    'temp.R'
     'utils-pipe.R'
+    'ymlthis.R'
     'zzzz.R'
+Language: en-GB

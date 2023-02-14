@@ -1,0 +1,17 @@
+---
+title: "Environment"
+format: html
+editor: visual
+---
+
+## Envrironment
+
+This is the environment in which the parameterised report was produced.
+
+```{r}
+#| label: load-packages
+#| include: false
+#| echo: FALSE
+
+sessionInfo()
+```

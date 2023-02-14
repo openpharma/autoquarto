@@ -1,0 +1,14 @@
+---
+title: "Sample parameterised report"
+format: html
+editor: visual
+---
+
+## Introduction
+
+This is the introduction to a parameterised report.
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+```

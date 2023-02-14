@@ -1,0 +1,15 @@
+---
+project:
+  type: book
+  output-dir: _book
+book:
+  title: An example of a parmeterised report in Quarto
+  author: test author
+  chapters:
+  - index.qmd
+  - body.qmd
+  - environment.qmd
+output:
+  html:
+    theme: cosmo
+---
