@@ -2,21 +2,31 @@
 % Please edit documentation in R/ymlthis.R
 \name{yml_book}
 \alias{yml_book}
-\title{Create a YAML book element}
+\title{Create a YAML book Element}
 \usage{
-yml_book(.yml, ...)
-}
-\arguments{
-\item{.yml}{a \code{yml} object created by \code{yml()}, \code{as_yml()}, or returned by
-a \verb{yml_*()} function}
-
-\item{...}{valid R code calling functions that return objects of class
-\code{rmarkdown_output_format}, such as the \verb{*_document()} functions in
-rmarkdown.}
+yml_book(
+  .yml = ymlthis::yml_empty(),
+  ...,
+  validNames = c("title", "author", "date", "chapters", "part", "appendices")
+)
 }
 \value{
 a \code{yml} object
 }
 \description{
-Create a YAML book element
+Create a YAML book Element
+}
+\examples{
+ymlthis::yml_empty() \%>\% 
+  yml_book(
+      title="mybook", 
+      author="Jane Doe",
+      date="5/9/2021",
+      chapters=list(
+        "index.qmd",
+        "intro.qmd",
+        "summary.qmd",
+        "references.qmd"
+      )
+  )
 }
