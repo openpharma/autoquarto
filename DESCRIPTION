@@ -20,11 +20,13 @@ Imports:
     purrr,
     rlang,
     rmarkdown,
+    shiny,
     withr,
     ymlthis
 Suggests: 
     covr,
     R.utils,
+    shinytest,
     spelling,
     testthat (>= 3.0.0),
     tools
