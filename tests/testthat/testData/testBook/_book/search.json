@@ -1,0 +1,9 @@
+[
+  {
+    "objectID": "intro.html#global-intro",
+    "href": "intro.html#global-intro",
+    "title": "2  Global intro",
+    "section": "2.1 Global Intro",
+    "text": "2.1 Global Intro\nThis report uses data taken from the mtcars data frame. This is what the first 10 rows of mtcars look like:\n\ndata <- get(params$dataName)\ndata %>%  head(params$rowCount) %>% kable()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmpg\ncyl\ndisp\nhp\ndrat\nwt\nqsec\nvs\nam\ngear\ncarb\n\n\n\n\nMazda RX4\n21.0\n6\n160.0\n110\n3.90\n2.620\n16.46\n0\n1\n4\n4\n\n\nMazda RX4 Wag\n21.0\n6\n160.0\n110\n3.90\n2.875\n17.02\n0\n1\n4\n4\n\n\nDatsun 710\n22.8\n4\n108.0\n93\n3.85\n2.320\n18.61\n1\n1\n4\n1\n\n\nHornet 4 Drive\n21.4\n6\n258.0\n110\n3.08\n3.215\n19.44\n1\n0\n3\n1\n\n\nHornet Sportabout\n18.7\n8\n360.0\n175\n3.15\n3.440\n17.02\n0\n0\n3\n2\n\n\nValiant\n18.1\n6\n225.0\n105\n2.76\n3.460\n20.22\n1\n0\n3\n1\n\n\nDuster 360\n14.3\n8\n360.0\n245\n3.21\n3.570\n15.84\n0\n0\n3\n4\n\n\nMerc 240D\n24.4\n4\n146.7\n62\n3.69\n3.190\n20.00\n1\n0\n4\n2\n\n\nMerc 230\n22.8\n4\n140.8\n95\n3.92\n3.150\n22.90\n1\n0\n4\n2\n\n\nMerc 280\n19.2\n6\n167.6\n123\n3.92\n3.440\n18.30\n1\n0\n4\n4\n\n\n\n\n\nHere’s a graph of wt against mpg grouped by cyl:\n\ndata %>%\n  ggplot() +\n    geom_point(\n      aes(\n        x=get(params$x), \n        y=get(params$y), \n        group=!! {{ params$g }}\n      )\n    ) +\n    labs(\n      title=params$plotTitle,\n      x=params$x,\n      y=params$y\n    ) +\n    theme_light()"
+  }
+]

@@ -11,6 +11,8 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Imports: 
     checkmate,
+    DiagrammeR,
+    DT,
     futile.logger,
     glue,
     lifecycle,
@@ -21,6 +23,7 @@ Imports:
     rlang,
     rmarkdown,
     shiny,
+    tools,
     withr,
     ymlthis
 Suggests: 
@@ -28,8 +31,7 @@ Suggests:
     R.utils,
     shinytest,
     spelling,
-    testthat (>= 3.0.0),
-    tools
+    testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Collate: 
     'autoquarto-package.R'

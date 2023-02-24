@@ -1,0 +1,9 @@
+---
+title: "Index"
+format: html
+editor: visual
+---
+
+## Global Index
+
+This is the global index file.

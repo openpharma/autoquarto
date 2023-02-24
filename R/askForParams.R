@@ -23,4 +23,4 @@ askForParams <- function(...) {
   shiny::runApp(appDir, display.mode = "normal")
 }
 
-# askForParams(path=normalizePath(testthat::test_path("testData", "global", "intro.qmd")))
+askForParams(path=normalizePath(testthat::test_path("testData", "testBook")))
