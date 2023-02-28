@@ -3,11 +3,12 @@ title: "Global intro"
 format: html
 editor: visual
 params:
-  dataName: mtcars
-  rowCount: 10
-  x: wt
-  y: mpg
-  g: cyl
+  dataName: NA
+  rowCount: NA
+  x: NA
+  Yes: NA
+  f: NA
+  g: NA
   plotTitle: This is a title for the plot
 ---
 
@@ -37,7 +38,7 @@ for (i in seq_along(params)) {
 
 ## Global Intro
 
-This report uses data taken from the `r params$dataName` data frame.  This is what the first `r params$rowCount` rows of  `r params$dataName` look like:
+This report uses data taken from the `r params$dataName` data frame. This is what the first `r params$rowCount` rows of `r params$dataName` look like:
 
 ```{r}
 data <- get(params$dataName)

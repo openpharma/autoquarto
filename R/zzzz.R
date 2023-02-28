@@ -1,1 +1,2 @@
 templatePath <- NULL
+.yml <- NULL

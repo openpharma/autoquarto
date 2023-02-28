@@ -12,19 +12,16 @@ RoxygenNote: 7.2.1
 Imports: 
     checkmate,
     DiagrammeR,
-    DT,
     futile.logger,
-    glue,
     lifecycle,
     lubridate,
     magrittr,
     methods,
-    purrr,
-    rlang,
+    rhandsontable,
     rmarkdown,
     shiny,
+    shinyjs,
     tools,
-    withr,
     ymlthis
 Suggests: 
     covr,
@@ -35,8 +32,10 @@ Suggests:
 Config/testthat/edition: 3
 Collate: 
     'autoquarto-package.R'
+    'helpers.R'
     'quartoobject-class.R'
     'quartoobject-methods.R'
+    'shiny.R'
     'utils-pipe.R'
     'ymlthis.R'
     'zzzz.R'

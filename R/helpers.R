@@ -2,7 +2,6 @@
 #' 
 #' @param path the path to be tested
 #' @returns `TRUE` if the path is a valid Quarto object, `FALSE` otherwise
-#' @examples 
 #' @export
 isQuartoObject <- function(path) {
   isQuartoDocument(path) | 
@@ -18,7 +17,6 @@ isQuartoObject <- function(path) {
 #'  - `_project.yml` contains a `project: type: book` entry
 #' @param path the path to be tested
 #' @returns `TRUE` if the path is a valid Quarto book, `FALSE` otherwise
-#' @examples 
 #' @export
 isQuartoBook <- function(path) {
   if (!is.character(path)) return(FALSE)
@@ -39,7 +37,6 @@ isQuartoBook <- function(path) {
 #'  - `_project.yml` contains a `project: type: website` entry
 #' @param path the path to be tested
 #' @returns `TRUE` if the path is a valid Quarto book, `FALSE` otherwise
-#' @examples 
 #' @export
 isQuartoWebsite <- function(path) {
   if (!is.character(path)) return(FALSE)
@@ -58,7 +55,6 @@ isQuartoWebsite <- function(path) {
 #'  - It is a readable file with extension "qmd"
 #' @param path the path to be tested
 #' @returns `TRUE` if the path is a valid Quarto document, `FALSE` otherwise
-#' @examples 
 #' @export
 isQuartoDocument <- function(path) {
   if (!is.character(path)) return(FALSE)

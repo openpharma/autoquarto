@@ -11,3 +11,5 @@
 ^temp$
 ^paramTest$
 ^.*\.log$
+^tests\testthat\testData\testBook\_book$
+^tests\testthat\testData\testBook\\.quarto$

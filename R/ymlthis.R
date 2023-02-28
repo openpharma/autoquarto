@@ -1,14 +1,21 @@
 #' Create a YAML project Element
 #' 
 #' @returns a `yml` object
+#' @param .yml the YAML object to amend
+#' @param validNames a vector of valid names for children of `.yml`
+#' @param ... other arguments defining the objects to be added as children of `.yml`
+#' @returns a `yml` object
 #' @export
-yml_project <- function (.project, ..., validNames=c("part")){
+yml_project <- function (.yml, ..., validNames=c("part")){
   checkmate::assertSubset(names(...), validNames)
   .yml %>% ymlthis::yml_toplevel(.yml, "project"=list(...))
 }
 
 #' Create a YAML book Element
 #' 
+#' @param .yml the YAML object to amend
+#' @param validNames a vector of valid names for children of `.yml`
+#' @param ... other arguments defining the objects to be added as children of `.yml`
 #' @returns a `yml` object
 #' @examples 
 #' ymlthis::yml_empty() %>% 

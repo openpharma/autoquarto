@@ -4,9 +4,18 @@
 \alias{yml_project}
 \title{Create a YAML project Element}
 \usage{
-yml_project(.project, ..., validNames = c("part"))
+yml_project(.yml, ..., validNames = c("part"))
+}
+\arguments{
+\item{.yml}{the YAML object to amend}
+
+\item{...}{other arguments defining the objects to be added as children of \code{.yml}}
+
+\item{validNames}{a vector of valid names for children of \code{.yml}}
 }
 \value{
+a \code{yml} object
+
 a \code{yml} object
 }
 \description{

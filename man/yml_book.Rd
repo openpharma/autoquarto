@@ -10,6 +10,13 @@ yml_book(
   validNames = c("title", "author", "date", "chapters", "part", "appendices")
 )
 }
+\arguments{
+\item{.yml}{the YAML object to amend}
+
+\item{...}{other arguments defining the objects to be added as children of \code{.yml}}
+
+\item{validNames}{a vector of valid names for children of \code{.yml}}
+}
 \value{
 a \code{yml} object
 }
