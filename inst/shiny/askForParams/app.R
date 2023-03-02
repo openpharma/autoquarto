@@ -16,6 +16,7 @@ server <- function(input, output) {
     v <- reactiveValues()
     for(n in names(.GlobalEnv$askForParamsInput)) {
       v[[n]] <- .GlobalEnv$askForParamsInput[[n]]
+      if (n == "path") path <- .GlobalEnv$askForParamsInput[[n]]
     }
     
     output$title <- renderUI({
@@ -24,8 +25,10 @@ server <- function(input, output) {
     
     output$path <- shiny::renderText({ v$path })
     
-    observe({
-      parameterEditorPanelServer("askForParams", v$path)
+    params <- parameterEditorPanelServer("askForParams", path)
+    
+    observeEvent(params(), {
+      print(params())
     })
 }
 

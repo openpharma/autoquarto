@@ -25,9 +25,10 @@ askForParams <- function(...) {
   
   .GlobalEnv$askForParamsInput <- list(...)
   shiny::runApp(appDir, display.mode = "normal")
+  rm(.GlobalEnv$askForParamsInput)
 }
 
-#askForParams(path=normalizePath(testthat::test_path("testData", "testBook")))
+# askForParams(path=normalizePath(testthat::test_path("testData", "testBook")))
 
 #' Provide a GUI to enable editing of the parameters in a YAML header
 #' 
@@ -56,7 +57,11 @@ parameterEditorPanelServer <- function(id, path) {
       shinyjs::useShinyjs()
       ns <- session$ns
 
-      v <- shiny::reactiveValues(path = path, pendingChanges = FALSE)
+      v <- shiny::reactiveValues(
+                    path = path, 
+                    pendingChanges = FALSE,
+                    rv=list(file=NA, params=NA, update=FALSE)
+                  )
       
       observeEvent(v$pendingChanges, {
         if (v$pendingChanges) {
@@ -106,15 +111,18 @@ parameterEditorPanelServer <- function(id, path) {
           x %>% ymlthis::draw_yml_tree()
           y <- lapply(names(x), function(z) x[[z]])
           names(y) <- names(x)
-          rmarkdown::yaml_front_matter
-          names(y)[which(names(y))] <- "y"
+          # Possible bug in rmarkdown::yaml_front_matter()
+          # https://github.com/vubiostat/r-yaml/issues/122
+          # https://stackoverflow.com/questions/75595253/
+          names(y)[which(names(y) == "TRUE")] <- "y"
+          names(y)[which(names(y) == "FALSE")] <- "n"
           v$currentParameters <- tibble::tibble(Parameter=names(y), Value=unlist(y))
           if (v$currentParameters %>%  nrow() == 0) return()
           v$currentParameters <- v$currentParameters %>% 
             dplyr::mutate(
               Mode="value", 
               IsNULL=FALSE, 
-              isNA=FALSE
+              IsNA=FALSE
             )
         } else {
           v$currentParameters <- NULL
@@ -159,7 +167,7 @@ parameterEditorPanelServer <- function(id, path) {
           rhandsontable::hot_col(
             col="Mode", 
             type = "dropdown", 
-            source = c("name", "value")
+            source = c("name", "value", "literal")
           ) %>% 
           rhandsontable::hot_col(
             col="Parameter", 
@@ -176,7 +184,7 @@ parameterEditorPanelServer <- function(id, path) {
       })
       
       # Update current parameter values
-      observeEvent(input$parameters$changes$changes, {
+      shiny::observeEvent(input$parameters$changes$changes, {
         # rhandsontable uses 0-based indices
         row = 1 + input$parameters$changes$changes[[1]][[1]]
         col = names(v$currentParameters)[1 + input$parameters$changes$changes[[1]][[2]]]
@@ -186,21 +194,18 @@ parameterEditorPanelServer <- function(id, path) {
         v$pendingChanges <- TRUE
       })
       
-      output$msg <- renderText({
+      output$msg <- shiny::renderText({
         if (v$pendingChanges) "Unsaved changes are pending"
       })
       
-      observeEvent(input$save, {
-        print("Saving...")
-        # p <- as.list(v$currentParameters %>% dplyr::pull(Value))
-        # names(p) <- v$currentParameters %>% dplyr::pull(Parameter)
-        # # print(p)
-        # x <- ymlthis::yml_empty() %>% ymlthis::yml_params(p)
-        # print(x)
-        # x %>% ymlthis::draw_yml_tree()
+      shiny::observeEvent(input$save, {
+        v$rv$file <- v$currentFile
+        v$rv$params <- parameterTibbleToYAML(v$currentParameters)
+        v$rv$update <- TRUE
+        v$pendingChanges <- FALSE
       })
       
-      return()
+      return(reactive({ v$rv }))
     }
   )
 }

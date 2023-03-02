@@ -6,34 +6,33 @@ params:
   dataName: NA
   rowCount: NA
   x: NA
-  Yes: NA
-  f: NA
+  y: NA
   g: NA
   plotTitle: This is a title for the plot
 ---
 
 ```{r}
 #| echo: FALSE
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(knitr)
-})
+# suppressPackageStartupMessages({
+#   library(tidyverse)
+#   library(knitr)
+# })
 ```
 
 The parameters passed to this report are:
 
 ```{r}
-for (i in seq_along(params)) {
-  print(
-    paste0(
-      names(params)[i], 
-      " - value: ", 
-      params[i], 
-      "; type: ", 
-      class(params[[i]])
-    )
-  )
-}
+# for (i in seq_along(params)) {
+#   print(
+#     paste0(
+#       names(params)[i], 
+#       " - value: ", 
+#       params[i], 
+#       "; type: ", 
+#       class(params[[i]])
+#     )
+#   )
+# }
 ```
 
 ## Global Intro
@@ -41,26 +40,26 @@ for (i in seq_along(params)) {
 This report uses data taken from the `r params$dataName` data frame. This is what the first `r params$rowCount` rows of `r params$dataName` look like:
 
 ```{r}
-data <- get(params$dataName)
-data %>%  head(params$rowCount) %>% kable()
+# data <- get(params$dataName)
+# data %>%  head(params$rowCount) %>% kable()
 ```
 
 Here's a graph of `r params$x` against `r params$y` grouped by `r params$g`:
 
 ```{r}
-data %>%
-  ggplot() +
-    geom_point(
-      aes(
-        x=get(params$xVar), 
-        y=get(params$yVar), 
-        group=!! {{ params$g }}
-      )
-    ) +
-    labs(
-      title=params$plotTitle,
-      x=params$x,
-      y=params$y
-    ) +
-    theme_light()
+# data %>%
+#   ggplot() +
+#     geom_point(
+#       aes(
+#         x=get(params$xVar), 
+#         y=get(params$yVar), 
+#         group=!! {{ params$g }}
+#       )
+#     ) +
+#     labs(
+#       title=params$plotTitle,
+#       x=params$x,
+#       y=params$y
+#     ) +
+#     theme_light()
 ```
