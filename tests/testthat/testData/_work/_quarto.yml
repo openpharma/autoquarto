@@ -1,0 +1,16 @@
+project:
+  type: book
+  output-dir: /home/kirkpatj/Packages/autoquarto
+book:
+  title: What is the title?
+  author: Who Is The Author
+  date: '`r format(Sys.Date())` at `r format(Sys.Time())` on `r Sys.info()[[''nodename'']]`'
+  chapters:
+  - index.qmd
+  - introParams.qmd
+  output-file: introParamsOutput
+format:
+  html:
+    theme: cosmo
+  pdf: default
+

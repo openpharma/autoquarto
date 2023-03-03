@@ -106,16 +106,7 @@ parameterEditorPanelServer <- function(id, path) {
         )
         if (!is.na(v$currentFile)) {
           fName <- file.path(v$path, v$currentFile)
-          # 2023-Feb ymlthis::yml_pluck errors when the value is an integer, so let's roll our own
-          x <- rmarkdown::yaml_front_matter(fName)[["params"]]
-          x %>% ymlthis::draw_yml_tree()
-          y <- lapply(names(x), function(z) x[[z]])
-          names(y) <- names(x)
-          # Possible bug in rmarkdown::yaml_front_matter()
-          # https://github.com/vubiostat/r-yaml/issues/122
-          # https://stackoverflow.com/questions/75595253/
-          names(y)[which(names(y) == "TRUE")] <- "y"
-          names(y)[which(names(y) == "FALSE")] <- "n"
+          y <- readYamlFrontMatter(fName, "params")
           v$currentParameters <- tibble::tibble(Parameter=names(y), Value=unlist(y))
           if (v$currentParameters %>%  nrow() == 0) return()
           v$currentParameters <- v$currentParameters %>% 

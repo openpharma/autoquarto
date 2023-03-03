@@ -244,6 +244,8 @@ setGeneric("publish", function(x, outFile, ...) standardGeneric("publish"))
 #' Publish a QuartoObject object
 #' @describeIn publish  
 #' @aliases publish-QuartoObject
+#' @param params Default `list()`.  A list containing the parameters to use when
+#' publishing the QuartoObject
 #' @param workDir Default: `NULL`.  The temporary work folder used to generate the report.  
 #' If `NULL` a temporary work folder with a random name, is used.
 #' @param logFile Default: NA.  The name of the log file that documents the publishing process.
@@ -255,12 +257,17 @@ setGeneric("publish", function(x, outFile, ...) standardGeneric("publish"))
 setMethod(
   "publish", 
   "QuartoObject",
-  function(x, outFile, workDir=NULL, tidyUp=FALSE, logFile=NA) {
+  function(x, outFile, params=list(), workDir=NULL, tidyUp=FALSE, logFile=NA) {
     futile.logger::flog.debug("Entry - QuartoObject")
     # Validate
     if (!is.null(workDir)) {
       checkmate::assertCharacter(workDir, len=1)
       checkmate::assertDirectoryExists(workDir, access="rwx")
+      workFiles <- list.files(workDir)
+      if (length(workFiles) > 0) {
+        futile.logger::flog.info(paste0("workDir [", workDir, "] is not empty.  Deleting current contents..."))
+        unlink(workFiles)
+      }
     }
     checkmate::assertPathForOutput(outFile)
     checkmate::assertLogical(tidyUp)
@@ -287,16 +294,32 @@ setMethod(
       futile.logger::flog.info(paste0("Using `", workDir, "' as a working folder"))
       checkmate::assertDirectoryExists(workDir, access="rwx")
     }
+    futile.logger::flog.info("Processing chapter files...")
+    invisible(
+      lapply(
+        x@chapters, 
+        function(c) {
+          futile.logger::flog.info(paste0("Processing ", c, "..."))
+          f <- locateTemplate(x, c)
+          futile.logger::flog.debug(paste0("Copying '", f, "' to '", workDir, "'..."))
+          file.copy(f, workDir)
+          futile.logger::flog.debug("Updating parameter YAML block...")
+          replaceYamlParams(file.path(workDir, basename(c)), params)
+          futile.logger::flog.debug("Done")
+        }
+      )
+    )
+    futile.logger::flog.info("Processing _quarto.yml...")
     # Define output file
     qYML <- quartoYML(x) 
     bk <- qYML %>% 
-            ymlthis::yml_pluck(x@type) %>% 
-            ymlthis::yml_replace("output-file"=tools::file_path_sans_ext(basename(outFile)))
+      ymlthis::yml_pluck(x@type) %>% 
+      ymlthis::yml_replace("output-file"=tools::file_path_sans_ext(basename(outFile)))
     qYML <- qYML %>% ymlthis::yml_replace("book"=bk)
     # Define output folder
     proj <- qYML %>%
-              ymlthis::yml_pluck("project") %>%
-              ymlthis::yml_replace("output-dir"=R.utils::getAbsolutePath(dirname(outFile)))
+      ymlthis::yml_pluck("project") %>%
+      ymlthis::yml_replace("output-dir"=R.utils::getAbsolutePath(dirname(outFile)))
     qYML <- qYML %>% ymlthis::yml_replace("project"=proj)
     # Write _quarto.yml
     futile.logger::flog.info("Writing _quarto.yml")
@@ -306,17 +329,6 @@ setMethod(
       lapply(
         readr::read_lines(R.utils::getAbsolutePath(file.path(workDir, "_quarto.yml"))), 
         futile.logger::flog.debug
-      )
-    )
-    futile.logger::flog.info("Copying chapter files...")
-    invisible(
-      lapply(
-        x@chapters, 
-        function(c) {
-          f <- locateTemplate(x, c)
-          futile.logger::flog.debug(paste0("Copying `", f, "` to `", workDir, "`..."))
-          file.copy(f, workDir)
-        }
       )
     )
     futile.logger::flog.info("Rendering report...")
@@ -356,7 +368,9 @@ setMethod(
       "title"="What is the title?", 
       "author"="Who Is The Author", 
       "date"="`r format(Sys.Date())` at `r format(Sys.Time())` on `r Sys.info()[['nodename']]`",
-      "chapters"=x@chapters
+      # Need basename to ensure that stabdalone templates (those not in the 
+      # templateSearchPath) are handled correctly
+      "chapters"=basename(unlist(x@chapters))
     )
     y <- y %>% ymlthis::yml_toplevel(typeList)
     y <- y %>% 

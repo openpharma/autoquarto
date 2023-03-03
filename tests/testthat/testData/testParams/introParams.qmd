@@ -1,14 +1,14 @@
 ---
-title: "Global intro"
+title: "Parameter Test"
 format: html
 editor: visual
 params:
-  dataName: mtcars
-  rowCount: 10
-  x: wt
-  y: mpg
-  g: cyl
-  plotTitle: This is a title for the plot
+  dataName: NA
+  rowCount: NA
+  x: NA
+  y: NA
+  g: NA
+  plotTitle: NA
 ---
 
 ```{r}
@@ -35,7 +35,7 @@ for (i in seq_along(params)) {
 }
 ```
 
-## Global Intro
+## Introduction
 
 This report uses data taken from the `r params$dataName` data frame. This is what the first `r params$rowCount` rows of `r params$dataName` look like:
 
@@ -51,8 +51,8 @@ data %>%
   ggplot() +
     geom_point(
       aes(
-        x=get(params$xVar),
-        y=get(params$yVar),
+        x=get(params$x),
+        y=get(params$y),
         group=!! {{ params$g }}
       )
     ) +
