@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="checkmate" timestamp="2023-03-06T09:51:19Z" hostname="76d4a34b17d7" tests="1" skipped="0" failures="0" errors="0" time="0.08">
+    <testcase time="0.08" classname="checkmate" name="multiplication_works"/>
+  </testsuite>
+  <testsuite name="helpers" timestamp="2023-03-06T09:51:19Z" hostname="76d4a34b17d7" tests="15" skipped="0" failures="0" errors="0" time="0.154">
+    <testcase time="0.046" classname="helpers" name="isQuartoBook_works"/>
+    <testcase time="0.016" classname="helpers" name="isQuartoBook_works"/>
+    <testcase time="0.0479999999999999" classname="helpers" name="isQuartoBook_works"/>
+    <testcase time="0.003" classname="helpers" name="isQuartoBook_works"/>
+    <testcase time="0.003" classname="helpers" name="isQuartoBook_works"/>
+    <testcase time="0.00600000000000001" classname="helpers" name="isQuartoDocument_works"/>
+    <testcase time="0.003" classname="helpers" name="isQuartoDocument_works"/>
+    <testcase time="0.003" classname="helpers" name="isQuartoDocument_works"/>
+    <testcase time="0.004" classname="helpers" name="isQuartoDocument_works"/>
+    <testcase time="0.003" classname="helpers" name="isQuartoDocument_works"/>
+    <testcase time="0.005" classname="helpers" name="isQuartoWebsite_works"/>
+    <testcase time="0.004" classname="helpers" name="isQuartoWebsite_works"/>
+    <testcase time="0.003" classname="helpers" name="isQuartoWebsite_works"/>
+    <testcase time="0.004" classname="helpers" name="isQuartoWebsite_works"/>
+    <testcase time="0.003" classname="helpers" name="isQuartoWebsite_works"/>
+  </testsuite>
+  <testsuite name="quartobook-class" timestamp="2023-03-06T09:51:19Z" hostname="76d4a34b17d7" tests="1" skipped="0" failures="0" errors="0" time="0.022">
+    <testcase time="0.022" classname="quartobook_class" name="multiplication_works"/>
+  </testsuite>
+  <testsuite name="quartobook-methods" timestamp="2023-03-06T09:51:19Z" hostname="76d4a34b17d7" tests="1" skipped="0" failures="0" errors="0" time="0.007">
+    <testcase time="0.00700000000000001" classname="quartobook_methods" name="multiplication_works"/>
+  </testsuite>
+  <testsuite name="quartowebsite-class" timestamp="2023-03-06T09:51:19Z" hostname="76d4a34b17d7" tests="1" skipped="0" failures="0" errors="0" time="0.008">
+    <testcase time="0.00800000000000001" classname="quartowebsite_class" name="multiplication_works"/>
+  </testsuite>
+  <testsuite name="quartowebsite-methods" timestamp="2023-03-06T09:51:19Z" hostname="76d4a34b17d7" tests="27" skipped="0" failures="0" errors="0" time="0.234">
+    <testcase time="0.0289999999999999" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.001" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00900000000000001" classname="quartowebsite_methods" name="addTemplatePath_works_correctly"/>
+    <testcase time="0.004" classname="quartowebsite_methods" name="addTemplatePath_works_correctly"/>
+    <testcase time="0.012" classname="quartowebsite_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000001" classname="quartowebsite_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.004" classname="quartowebsite_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00900000000000001" classname="quartowebsite_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.013" classname="quartowebsite_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0469999999999999" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.00800000000000001" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.00800000000000001" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.005" classname="quartowebsite_methods" name="locateTemplate_works"/>
+    <testcase time="0.00700000000000001" classname="quartowebsite_methods" name="locateTemplate_works"/>
+  </testsuite>
+  <testsuite name="ymlthis" timestamp="2023-03-06T09:51:19Z" hostname="76d4a34b17d7" tests="3" skipped="0" failures="0" errors="0" time="0.022">
+    <testcase time="0.011" classname="ymlthis" name="yml_book_works"/>
+    <testcase time="0.00700000000000001" classname="ymlthis" name="yml_book_works"/>
+    <testcase time="0.004" classname="ymlthis" name="yml_book_works"/>
+  </testsuite>
+</testsuites>
