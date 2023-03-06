@@ -1,11 +1,7 @@
 #' Base Class for All Quarto Objects
 #' 
-#' @slot templateSearchPath a `list` containing the paths to be searched for the 
-#' template files that define the `chapters` of this object.
 #' @slot variables a list containing the names (and values) of the variables required to
 #' create the book
-#' @slot chapters a list containing the names of the quarto documents that comprise the book
-#' @slot type the type of the object (currently book or website, depending on subclass)
 #' @export
 setClass(
   "QuartoObject",
@@ -101,8 +97,8 @@ QuartoBook <- function(templateSearchPath=list("."), variables=list(), chapters=
 setMethod(
   "initialize",
   "QuartoBook",
-  function(.Object, ...) {
-    .Object <- methods::callNextMethod(.Object, ...)
+  function(.Object, templateSearchPath=list("."), variables=list(), chapters=list(), ...) {
+    .Object <- methods::callNextMethod(.Object, templateSearchPath, variables, chapters, ...)
     .Object@type <- "book"
     .Object
   }
@@ -110,7 +106,6 @@ setMethod(
 
 #' An Object Representing a Quarto Website
 #' 
-#' @inheritParams QuartoCompoundObject
 #' @include quartoobject-class.R
 #' @export
 setClass(
@@ -130,7 +125,7 @@ setMethod(
   "initialize", 
   "QuartoWebsite",
   function(.Object, templateSearchPath=list("."), variables=list(), chapters=list(), ...) {
-    .Object <- methods::callNextMethod(.Object, ...)
+    .Object <- methods::callNextMethod(.Object, templateSearchPath, variables, chapters, ...)
     .Object@type <- "website"
     .Object
   }
@@ -139,7 +134,6 @@ setMethod(
 
 #' An Object Representing a Quarto Document
 #' 
-#' @inheritParams QuartoObject
 #' @include quartoobject-class.R
 #' @export
 setClass(

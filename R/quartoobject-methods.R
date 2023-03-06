@@ -239,13 +239,13 @@ setMethod(
 #' @export
 setGeneric("publish", function(x, outFile, ...) standardGeneric("publish"))
 
-## QuartoObject
+## QuartoCompoundObject
 
-#' Publish a QuartoObject object
+#' Publish a QuartoCompoundObject object
 #' @describeIn publish  
-#' @aliases publish-QuartoObject
+#' @aliases publish-QuartoCompoundObject
 #' @param params Default `list()`.  A list containing the parameters to use when
-#' publishing the QuartoObject
+#' publishing the QuartoCompoundObject
 #' @param workDir Default: `NULL`.  The temporary work folder used to generate the report.  
 #' If `NULL` a temporary work folder with a random name, is used.
 #' @param logFile Default: NA.  The name of the log file that documents the publishing process.
@@ -256,48 +256,18 @@ setGeneric("publish", function(x, outFile, ...) standardGeneric("publish"))
 #' @export
 setMethod(
   "publish", 
-  "QuartoObject",
-  function(x, outFile, params=list(), workDir=NULL, tidyUp=FALSE, logFile=NA) {
-    futile.logger::flog.debug("Entry - QuartoObject")
+  "QuartoCompoundObject",
+  function(x, outFile, params=list(), workDir=NULL, tidyUp=TRUE, logFile=NA) {
+    futile.logger::flog.debug("Entry - QuartoCompoundObject")
     # Validate
-    if (!is.null(workDir)) {
-      checkmate::assertCharacter(workDir, len=1)
-      checkmate::assertDirectoryExists(workDir, access="rwx")
-      workFiles <- list.files(workDir)
-      if (length(workFiles) > 0) {
-        futile.logger::flog.info(paste0("workDir [", workDir, "] is not empty.  Deleting current contents..."))
-        unlink(workFiles)
-      }
-    }
     checkmate::assertPathForOutput(outFile)
     checkmate::assertLogical(tidyUp)
-    # Prepare
-    if (is.na(logFile)) {
-      logFile <- file.path(
-                   here::here(),
-                   paste0(
-                     tools::file_path_sans_ext(basename(outFile)), 
-                     "_", 
-                     format(lubridate::now(), "%Y_%m%b_%d_%H%M%S"),
-                     ".log"
-                    )
-                  )
-      print(paste0("logFile is ", logFile))
-    }
-    if (!is.null(logFile)) {
-      futile.logger::flog.layout(futile.logger::layout.format("~t ~l [~n:~f]: ~m"))
-      futile.logger::flog.appender(futile.logger::appender.file(logFile))
-    }
+    workDir <- .prepareToPublish(workDir, outFile, logFile, tidyUp)
     # Execute
-    if (is.null(workDir)) {
-      workDir <- tempdir()
-      futile.logger::flog.info(paste0("Using `", workDir, "' as a working folder"))
-      checkmate::assertDirectoryExists(workDir, access="rwx")
-    }
     futile.logger::flog.info("Processing chapter files...")
     invisible(
       lapply(
-        x@chapters, 
+        x@chapters,
         function(c) {
           futile.logger::flog.info(paste0("Processing ", c, "..."))
           f <- locateTemplate(x, c)
@@ -309,32 +279,34 @@ setMethod(
         }
       )
     )
-    futile.logger::flog.info("Processing _quarto.yml...")
-    # Define output file
-    qYML <- quartoYML(x) 
-    bk <- qYML %>% 
-      ymlthis::yml_pluck(x@type) %>% 
-      ymlthis::yml_replace("output-file"=tools::file_path_sans_ext(basename(outFile)))
-    qYML <- qYML %>% ymlthis::yml_replace("book"=bk)
-    # Define output folder
-    proj <- qYML %>%
-      ymlthis::yml_pluck("project") %>%
-      ymlthis::yml_replace("output-dir"=R.utils::getAbsolutePath(dirname(outFile)))
-    qYML <- qYML %>% ymlthis::yml_replace("project"=proj)
-    # Write _quarto.yml
-    futile.logger::flog.info("Writing _quarto.yml")
-    qYML %>% ymlthis::use_yml_file(R.utils::getAbsolutePath(file.path(workDir, "_quarto.yml")))
-    futile.logger::flog.debug("_quarto.yml is:")
-    invisible(
-      lapply(
-        readr::read_lines(R.utils::getAbsolutePath(file.path(workDir, "_quarto.yml"))), 
-        futile.logger::flog.debug
-      )
-    )
-    futile.logger::flog.info("Rendering report...")
-    quarto::quarto_render(workDir, as_job=FALSE)
-    futile.logger::flog.info("Done")
-    futile.logger::flog.debug("Exit - QuartoObject")
+    .processProjectYAML(x, workDir, outFile, params)
+    .renderQuartoCompoundObject(workDir)
+  }
+)
+## QuartoDocument
+
+#' Publish a QuartoDocument object
+#' @describeIn publish  
+#' @aliases publish-QuartoDocument
+#' @param params Default `list()`.  A list containing the parameters to use when
+#' publishing the QuartoDocument
+#' @param workDir Default: `NULL`.  The temporary work folder used to generate the report.  
+#' If `NULL` a temporary work folder with a random name, is used.
+#' @param logFile Default: NA.  The name of the log file that documents the publishing process.
+#' If `NA`, the name is based on `basename(outFile)`, with the start date/time appended and
+#' located in the folder returned by `here::here()` at the time the function was called.
+#' If `NULL`, no log file is produced.  
+#' @param tidyUp Boolean.  Should the workDir be deleted on successful publication?
+#' @export
+setMethod(
+  "publish", 
+  "QuartoDocument",
+  function(x, outFile, params=list(), workDir=NULL, tidyUp=FALSE, logFile=NA) {
+    futile.logger::flog.debug("Entry - QuartoCompoundObject")
+    # Validate
+    checkmate::assertPathForOutput(outFile)
+    checkmate::assertLogical(tidyUp)
+    stop("publish() has not yet been implemented for QuartoDocuments")
   }
 )
 

@@ -12,7 +12,6 @@
 #' @section Usage Notes:
 #' Currently, the only parameter supported, and which is required, is `path`. 
 #' This should define the path to the Quarto document, website or book
-#' @example askForParams(path=testthat::test_path("testData", "global", "intro.qmd"))
 #' @export
 askForParams <- function(...) {
   # Validate
@@ -63,14 +62,13 @@ parameterEditorPanelServer <- function(id, path) {
                     rv=list(file=NA, params=NA, update=FALSE)
                   )
       
-      observeEvent(v$pendingChanges, {
+      shiny::observeEvent(v$pendingChanges, {
         if (v$pendingChanges) {
           shinyjs::enable("save")
         } else {
           shinyjs::disable("save")
         }
       })
-      
       
       output$fileSelection <- shiny::renderUI({
         if (isQuartoBook(v$path)) {

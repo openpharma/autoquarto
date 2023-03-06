@@ -8,7 +8,6 @@ book:
   chapters:
   - index.qmd
   - introParams.qmd
-  output-file: introParamsOutput
 format:
   html:
     theme: cosmo

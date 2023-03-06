@@ -6,11 +6,15 @@ eg
 eters
 getters
 ing
+IsNA
+IsNULL
 magrittr
 Parameterised
+params
 qmd
 rmarkdown
 subclasses
+tibble
 workDir
 yml
 YAML

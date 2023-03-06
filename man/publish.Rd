@@ -3,15 +3,26 @@
 \docType{methods}
 \name{publish}
 \alias{publish}
-\alias{publish,QuartoObject-method}
-\alias{publish-QuartoObject}
+\alias{publish,QuartoCompoundObject-method}
+\alias{publish-QuartoCompoundObject}
+\alias{publish,QuartoDocument-method}
+\alias{publish-QuartoDocument}
 \alias{quartoYML,QuartoObject-method}
 \alias{quartoYML-QuartoObject}
 \title{Publish a Quarto object}
 \usage{
 publish(x, outFile, ...)
 
-\S4method{publish}{QuartoObject}(
+\S4method{publish}{QuartoCompoundObject}(
+  x,
+  outFile,
+  params = list(),
+  workDir = NULL,
+  tidyUp = FALSE,
+  logFile = NA
+)
+
+\S4method{publish}{QuartoDocument}(
   x,
   outFile,
   params = list(),
@@ -30,7 +41,7 @@ publish(x, outFile, ...)
 \item{...}{passed to class methods}
 
 \item{params}{Default \code{list()}.  A list containing the parameters to use when
-publishing the QuartoObject}
+publishing the QuartoDocument}
 
 \item{workDir}{Default: \code{NULL}.  The temporary work folder used to generate the report.
 If \code{NULL} a temporary work folder with a random name, is used.}
@@ -45,13 +56,17 @@ If \code{NULL}, no log file is produced.}
 \description{
 Publish a Quarto object
 
-Publish a QuartoObject object
+Publish a QuartoCompoundObject object
+
+Publish a QuartoDocument object
 
 Obtain the _quarto.yml Component of the Quarto Object
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{publish(QuartoObject)}: 
+\item \code{publish(QuartoCompoundObject)}: 
+
+\item \code{publish(QuartoDocument)}: 
 
 \item \code{quartoYML(QuartoObject)}: 
 
