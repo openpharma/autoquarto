@@ -7,15 +7,3 @@
 \description{
 An Object Representing a Quarto Website
 }
-\section{Slots}{
-
-\describe{
-\item{\code{templateSearchPath}}{a \code{list} containing the paths to be searched for the
-template files that define the \code{chapters} of this object.}
-
-\item{\code{variables}}{a list containing the names (and values) of the variables required to
-create the book}
-
-\item{\code{chapters}}{a list containing the names of the quarto documents that comprise the book}
-}}
-

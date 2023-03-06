@@ -196,7 +196,7 @@ parameterEditorPanelServer <- function(id, path) {
         v$pendingChanges <- FALSE
       })
       
-      return(reactive({ v$rv }))
+      return(shiny::reactive({ v$rv }))
     }
   )
 }
