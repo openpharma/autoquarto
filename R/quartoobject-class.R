@@ -68,7 +68,6 @@ setMethod(
   "initialize",
   "QuartoBook",
   function(.Object, ...) {
-    print("In QuartoBook initialize")
     .Object <- methods::callNextMethod(.Object, ...)
     .Object@type <- "book"
     .Object

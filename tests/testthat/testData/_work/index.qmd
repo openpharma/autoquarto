@@ -1,0 +1,16 @@
+---
+title: Index
+format: html
+editor: visual
+params:
+  dataName: mtcars
+  rowCount: 10.0
+  x: wt
+  'y': mpg
+  g: cyl
+  plotTitle: This is a title for the plot
+
+---
+
+This is the global index file.
+

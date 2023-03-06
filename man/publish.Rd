@@ -11,7 +11,14 @@
 \usage{
 publish(x, outFile, ...)
 
-\S4method{publish}{QuartoObject}(x, outFile, workDir = NULL, tidyUp = FALSE, logFile = NA)
+\S4method{publish}{QuartoObject}(
+  x,
+  outFile,
+  params = list(),
+  workDir = NULL,
+  tidyUp = FALSE,
+  logFile = NA
+)
 
 \S4method{quartoYML}{QuartoObject}(x)
 }
@@ -21,6 +28,9 @@ publish(x, outFile, ...)
 \item{outFile}{the name of the file containing the published Quarto object}
 
 \item{...}{passed to class methods}
+
+\item{params}{Default \code{list()}.  A list containing the parameters to use when
+publishing the QuartoObject}
 
 \item{workDir}{Default: \code{NULL}.  The temporary work folder used to generate the report.
 If \code{NULL} a temporary work folder with a random name, is used.}

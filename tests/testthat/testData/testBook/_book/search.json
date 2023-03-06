@@ -1,0 +1,9 @@
+[
+  {
+    "objectID": "intro.html#global-intro",
+    "href": "intro.html#global-intro",
+    "title": "2  Global intro",
+    "section": "2.1 Global Intro",
+    "text": "2.1 Global Intro\nThis report uses data taken from the mtcars data frame. This is what the first 10 rows of mtcars look like:\n\n# data <- get(params$dataName)\n# data %>%  head(params$rowCount) %>% kable()\n\nHere’s a graph of wt against mpg grouped by cyl:\n\n# data %>%\n#   ggplot() +\n#     geom_point(\n#       aes(\n#         x=get(params$xVar), \n#         y=get(params$yVar), \n#         group=!! {{ params$g }}\n#       )\n#     ) +\n#     labs(\n#       title=params$plotTitle,\n#       x=params$x,\n#       y=params$y\n#     ) +\n#     theme_light()"
+  }
+]

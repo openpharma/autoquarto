@@ -1,0 +1,28 @@
+---
+title: "Body"
+format: html
+editor: visual
+---
+
+## Quarto
+
+This is the body of a parameterised report.
+
+this report is based on the XXXXXX data frame.
+
+### Source data
+
+Here is a listing of its first 20 records.
+
+### A plot
+
+Here is a plot of XXXX against YYYY.  Colours indicate different values of ZZZZ.
+
+```{r}
+#| echo: FALSE
+#| label: data-plot
+palmerpenguins %>% 
+  ggplot(aes(x=flipper_length_mm, y=bill_length_mm, colour=species)) +
+    geom_point() +
+    theme_light()
+```

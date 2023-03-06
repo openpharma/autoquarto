@@ -1,0 +1,18 @@
+project:
+  type: book
+
+book:
+  title: "mybook"
+  author: "Jane Doe"
+  date: "8/18/2021"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - body.qmd
+    - environment.qmd
+
+# bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo

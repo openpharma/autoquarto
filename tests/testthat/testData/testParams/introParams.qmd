@@ -1,0 +1,65 @@
+---
+title: "Parameter Test"
+format: html
+editor: visual
+params:
+  dataName: NA
+  rowCount: NA
+  x: NA
+  y: NA
+  g: NA
+  plotTitle: NA
+---
+
+```{r}
+#| echo: FALSE
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(knitr)
+})
+```
+
+The parameters passed to this report are:
+
+```{r}
+for (i in seq_along(params)) {
+  print(
+    paste0(
+      names(params)[i],
+      " - value: ",
+      params[i],
+      "; type: ",
+      class(params[[i]])
+    )
+  )
+}
+```
+
+## Introduction
+
+This report uses data taken from the `r params$dataName` data frame. This is what the first `r params$rowCount` rows of `r params$dataName` look like:
+
+```{r}
+data <- get(params$dataName)
+data %>%  head(params$rowCount) %>% kable()
+```
+
+Here's a graph of `r params$x` against `r params$y` grouped by `r params$g`:
+
+```{r}
+data %>%
+  ggplot() +
+    geom_point(
+      aes(
+        x=get(params$x),
+        y=get(params$y),
+        group=get(params$g)
+      )
+    ) +
+    labs(
+      title=params$plotTitle,
+      x=params$x,
+      y=params$y
+    ) +
+    theme_light()
+```
