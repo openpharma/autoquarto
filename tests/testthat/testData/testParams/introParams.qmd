@@ -53,7 +53,7 @@ data %>%
       aes(
         x=get(params$x),
         y=get(params$y),
-        group=!! {{ params$g }}
+        group=get(params$g)
       )
     ) +
     labs(
