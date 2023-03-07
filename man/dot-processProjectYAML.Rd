@@ -4,14 +4,16 @@
 \alias{.processProjectYAML}
 \title{Process a project YAML}
 \usage{
-.processProjectYAML(x, workDir, outFile)
+.processProjectYAML(x, workDir, outFile, params)
 }
 \arguments{
 \item{x}{The QuartoObject that defines the project YAML}
 
 \item{workDir}{The working directory}
 
-\item{outFile}{The path to the ouytput file}
+\item{outFile}{The path to the output file}
+
+\item{params}{A list of parameters to write to the project YAML}
 }
 \description{
 Process a project YAML

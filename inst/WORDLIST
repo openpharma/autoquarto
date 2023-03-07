@@ -12,9 +12,12 @@ magrittr
 Parameterised
 params
 qmd
+QuartoCompoundObject
+QuartoDocument
 rmarkdown
 subclasses
 tibble
 workDir
 yml
 YAML
+yaml

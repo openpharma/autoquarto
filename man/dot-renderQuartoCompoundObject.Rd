@@ -2,13 +2,13 @@
 % Please edit documentation in R/helpers-publish.R
 \name{.renderQuartoCompoundObject}
 \alias{.renderQuartoCompoundObject}
-\title{Render a CompoundQuartoObject}
+\title{Render a QuartoCompoundObject}
 \usage{
 .renderQuartoCompoundObject(workDir)
 }
 \arguments{
-\item{The}{working directory containing the _quarto.yaml file}
+\item{workDir}{The working directory containing the _quarto.yaml file}
 }
 \description{
-Render a CompoundQuartoObject
+Render a QuartoCompoundObject
 }

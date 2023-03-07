@@ -18,7 +18,7 @@ publish(x, outFile, ...)
   outFile,
   params = list(),
   workDir = NULL,
-  tidyUp = FALSE,
+  tidyUp = TRUE,
   logFile = NA
 )
 
@@ -71,3 +71,19 @@ Obtain the _quarto.yml Component of the Quarto Object
 \item \code{quartoYML(QuartoObject)}: 
 
 }}
+\examples{
+\dontrun{
+publish(
+  QuartoBook(
+    templateSearchPath=list(testthat::test_path("testData", "global")),
+    chapters=list(
+      "index.qmd",
+      testthat::test_path("testData", "testParams", "introParams.qmd")
+    )
+  ), 
+  outFile="testParamsOutput", 
+  workDir=testthat::test_path("testData", "_work"),
+  params=params
+)
+}
+}

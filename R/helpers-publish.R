@@ -4,9 +4,8 @@
 #' @param workDir The working folder
 #' @param outFile The name of the output file
 #' @param logFile The requested log file 
-#' @param tidyUp delete the contents of workDir when done?
 #' @returns The path to the working directory
-.prepareToPublish <- function(workDir, outFile, logFile, tidyUp) {
+.prepareToPublish <- function(workDir, outFile, logFile) {
   if (!is.null(workDir)) {
     checkmate::assertCharacter(workDir, len=1)
     checkmate::assertDirectoryExists(workDir, access="rwx")
@@ -30,14 +29,10 @@
     # futile.logger::flog.info(paste0("Using `", workDir, "' as a working folder"))
     checkmate::assertDirectoryExists(workDir, access="rwx")
   }
-  workFiles <- list.files(workDir)
+  workFiles <- list.files(workDir, full.names=TRUE)
   if (length(workFiles) > 0) {
-    if (tidyUp) {
-      futile.logger::flog.info(paste0("workDir [", workDir, "] is not empty.  Deleting current contents..."))
-    } else {
-      futile.logger::flog.warn(paste0("workDir [", workDir, "] is not empty and tidyUp is FALSE.  Results *may* be unpredicatble"))
-    }
-    unlink(workFiles)
+    futile.logger::flog.info(paste0("workDir [", workDir, "] is not empty.  Deleting current contents..."))
+    file.remove(workFiles)
   }
   workDir
 }
@@ -75,9 +70,9 @@
   )
 }
 
-#' Render a CompoundQuartoObject
+#' Render a QuartoCompoundObject
 #' 
-#' @param The working directory containing the _quarto.yaml file
+#' @param workDir The working directory containing the _quarto.yaml file
 .renderQuartoCompoundObject <- function(workDir) {
   futile.logger::flog.info("Rendering report...")
   quarto::quarto_render(workDir, as_job=FALSE)

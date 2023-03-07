@@ -139,21 +139,28 @@ setMethod(
 setClass(
   "QuartoDocument",
   contains="QuartoObject",
+  slots=c(
+    fileName = "character"
+  ),
+  prototype = list(
+    fileName = NA_character_
+  )
 )
 
 #' Constructor for the `QuartoDocument` class
 #' 
 #' @inheritParams QuartoObject
 #' @export
-QuartoDocument <- function(variables=list()) {
-  methods::new("QuartoDocument", variables)
+QuartoDocument <- function(fileName, variables=list()) {
+  methods::new("QuartoDocument", fileName, variables)
 }
 
 setMethod(
   "initialize", 
   "QuartoDocument",
-  function(.Object,variables=list(), ...) {
+  function(.Object, fileName, variables=list(), ...) {
     .Object <- methods::callNextMethod(.Object, ...)
+    .Object@fileName <- fileName
     .Object
   }
 )

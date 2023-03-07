@@ -253,6 +253,21 @@ setGeneric("publish", function(x, outFile, ...) standardGeneric("publish"))
 #' located in the folder returned by `here::here()` at the time the function was called.
 #' If `NULL`, no log file is produced.  
 #' @param tidyUp Boolean.  Should the workDir be deleted on successful publication?
+#' @examples
+#' \dontrun{
+#' publish(
+#'   QuartoBook(
+#'     templateSearchPath=list(testthat::test_path("testData", "global")),
+#'     chapters=list(
+#'       "index.qmd",
+#'       testthat::test_path("testData", "testParams", "introParams.qmd")
+#'     )
+#'   ), 
+#'   outFile="testParamsOutput", 
+#'   workDir=testthat::test_path("testData", "_work"),
+#'   params=params
+#' )
+#' }
 #' @export
 setMethod(
   "publish", 
@@ -262,7 +277,7 @@ setMethod(
     # Validate
     checkmate::assertPathForOutput(outFile)
     checkmate::assertLogical(tidyUp)
-    workDir <- .prepareToPublish(workDir, outFile, logFile, tidyUp)
+    workDir <- .prepareToPublish(workDir, outFile, logFile)
     # Execute
     futile.logger::flog.info("Processing chapter files...")
     invisible(
@@ -281,6 +296,16 @@ setMethod(
     )
     .processProjectYAML(x, workDir, outFile, params)
     .renderQuartoCompoundObject(workDir)
+    if (tidyUp) {
+      futile.logger::flog.info(paste0("Cleaning ", workDir, "..."))
+      workFiles <- list.files(workDir, full.names=TRUE)
+      if (length(workFiles) > 0) {
+        x <- file.remove(workFiles)
+        futile.logger::flog.info("Done")
+      }
+    } else {
+      futile.logger::flog.info("Nothing to do")
+    }
   }
 )
 ## QuartoDocument
@@ -297,19 +322,41 @@ setMethod(
 #' located in the folder returned by `here::here()` at the time the function was called.
 #' If `NULL`, no log file is produced.  
 #' @param tidyUp Boolean.  Should the workDir be deleted on successful publication?
+#' @param ... pased to `quarto::quarto_render`
+#' @examples 
+#' \dontrun{
+#' publish(
+#'   QuartoDocument(testthat::test_path("testData", "testParams", "introParams.qmd")), 
+#'   outFile="testParamsOutputDocument", 
+#'   workDir=testthat::test_path("testData", "_work"),
+#'   params=list(
+#'     dataName="mtcars",
+#'     rowCount=10,
+#'     x="wt",
+#'     y="mpg",
+#'     g="cyl",
+#'     plotTitle="A title for the plot"
+#'   )
+#' )
+#' }
 #' @export
 setMethod(
   "publish", 
   "QuartoDocument",
-  function(x, outFile, params=list(), workDir=NULL, tidyUp=FALSE, logFile=NA) {
-    futile.logger::flog.debug("Entry - QuartoCompoundObject")
+  function(x, outFile, params=list(), workDir=NULL, tidyUp=FALSE, logFile=NA, ...) {
+    futile.logger::flog.debug("Entry - QuartoDocument")
     # Validate
     checkmate::assertPathForOutput(outFile)
     checkmate::assertLogical(tidyUp)
-    stop("publish() has not yet been implemented for QuartoDocuments")
+    workDir <- .prepareToPublish(workDir, outFile, logFile)
+    futile.logger::flog.debug(paste0("Copying '", x@fileName, "' to '", workDir, "'..."))
+    file.copy(x@fileName, workDir)
+    futile.logger::flog.debug("Updating parameter YAML block...")
+    replaceYamlParams(file.path(workDir, basename(x@fileName)), params)
+    quarto::quarto_render(file.path(workDir, basename(x@fileName)), output_file=outFile)
+    futile.logger::flog.debug("Done")
   }
 )
-
 
 # quartoYML ----
 
