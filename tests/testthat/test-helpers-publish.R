@@ -42,7 +42,7 @@ test_that(".prepareToPublish works", {
   )
   expect_equal(.prepareToPublish(tempdir(), "outFile", NA), tempdir())
   con <- file(file.path(tempdir(), "temp.txt"))
-  writeLines(c("Hello","World"), con)
+  writeLines(c("Hello", "World"), con)
   close.connection(con)
   expect_message(.prepareToPublish(tempdir(), "outFile", file.path(tempdir(), "myLogFile.log")))
 })
