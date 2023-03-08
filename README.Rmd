@@ -49,16 +49,16 @@ The fundamental class used by `autoquarto` is the S4 `QuartoObject` class, toget
 ```{r, echo=FALSE}
 ymlthis::as_yml(
   list(
-    "QuartoObject"=list(
-      "QuartoDocument", 
-      "QuartoCompoundDocument"=list(
-        "QuartoBook", 
+    "QuartoObject" = list(
+      "QuartoDocument",
+      "QuartoCompoundDocument" = list(
+        "QuartoBook",
         "QuartoWebsite"
       )
     )
   )
-) %>% 
-ymlthis::draw_yml_tree()
+) %>%
+  ymlthis::draw_yml_tree()
 ```
 
 The `QuartoObject` class has a single slot, `variables`.  `QuartoCompoundObject` introduces three more slots, named `templateSearchPath`, `chapters` and `type`, whereas the `QuartoDocument` class introduces a single new slot, `fileName`.
@@ -265,7 +265,7 @@ Finally, another issue is that each chapter file is rendered in its own environm
 Passing data frames and other complex R objects to a Quarto file as YAML parameters needs a little thought.  There are two ways of doing it.  First, as in the examples above, the name of object can be passed as a parameter to the file.  For example:
 
 ```{r}
-myData <- tibble(x=1:2, z=LETTERS[x])
+myData <- tibble(x = 1:2, z = LETTERS[x])
 ```
 ```
 ---
@@ -282,7 +282,7 @@ df <- get(params$df)
 Alternatively, you can convert the data frame to a list, and then to YAML:
 
 ```{r}
-ymlthis::yml_empty()%>% ymlthis::yml_params(df=ymlthis::as_yml(myData))
+ymlthis::yml_empty() %>% ymlthis::yml_params(df = ymlthis::as_yml(myData))
 ```
 
 In this case, the data frame can be accessed directly within the template file, (though it may need to be cast back into a data frame for some functions to work as expected).  

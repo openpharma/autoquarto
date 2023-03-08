@@ -3,23 +3,23 @@
 ## generic ----
 
 #' Add an Entry to the Template Search Path list
-#' 
+#'
 #' @param x a QuartoObject object
 #' @param path the path to be added
 #' @param mustExist Boolean must the specified path exist?
 #' @param .after At what position should the new path be added?  The default value, `NA`, adds the new path at the end of the existing list
 #' @docType methods
 #' @export
-setGeneric("addTemplatePath", function(x, path, mustExist=FALSE, .after=NA) standardGeneric("addTemplatePath"))
+setGeneric("addTemplatePath", function(x, path, mustExist = FALSE, .after = NA) standardGeneric("addTemplatePath"))
 
 ## QuartoObject
 
 #' Add a path to the template search path
-#' @describeIn addTemplatePath  
+#' @describeIn addTemplatePath
 #' @aliases addTemplatePath-QuartoObject
 #' @export
 setMethod(
-  "addTemplatePath", 
+  "addTemplatePath",
   "QuartoObject",
   function(x, path, mustExist, .after) {
     checkmate::assertCharacter(path)
@@ -28,9 +28,9 @@ setMethod(
       checkmate::assertDirectoryExists(path)
     }
     if (all(is.na(.after))) {
-      .after = length(x@templateSearchPath)
+      .after <- length(x@templateSearchPath)
     } else {
-      checkmate::assertNumber(.after, lower=1, upper=length(x@templateSearchPath))
+      checkmate::assertNumber(.after, lower = 1, upper = length(x@templateSearchPath))
     }
     x@templateSearchPath <- append(x@templateSearchPath, path, .after)
     x
@@ -43,7 +43,7 @@ setMethod(
 ## generic ----
 
 #' Remove an Entry from the Template Search Path list
-#' 
+#'
 #' @param x a QuartoObject object
 #' @param path the path to be removed
 #' @param pos the position of the path to be removed
@@ -51,16 +51,16 @@ setMethod(
 #' Either `path` or `pos` must be provided, but not both
 #' @docType methods
 #' @export
-setGeneric("removeTemplatePath", function(x, path=NA, pos=NA) standardGeneric("removeTemplatePath"))
+setGeneric("removeTemplatePath", function(x, path = NA, pos = NA) standardGeneric("removeTemplatePath"))
 
 ## QuartoObject
 
 #' Remove a path from the template search path
-#' @describeIn removeTemplatePath  
+#' @describeIn removeTemplatePath
 #' @aliases removeTemplatePath-QuartoWebsite
 #' @export
 setMethod(
-  "removeTemplatePath", 
+  "removeTemplatePath",
   "QuartoObject",
   function(x, path, pos) {
     if (!is.na(path) & !is.na(pos)) stop("Only one of `path` and `pos` should be given")
@@ -75,7 +75,7 @@ setMethod(
       }
     }
     if (!is.na(pos)) {
-      checkmate::assertNumber(pos, lower=1, upper=length(x@templateSearchPath))
+      checkmate::assertNumber(pos, lower = 1, upper = length(x@templateSearchPath))
       x@templateSearchPath <- as.list(x@templateSearchPath[[-pos]])
     }
     x
@@ -87,36 +87,36 @@ setMethod(
 ## generic ----
 
 #' Add an Entry from the Chapter list
-#' 
+#'
 #' @param x a QuartoObject object
 #' @param file the file to be added.  See Usage Notes below.
 #' @param .after At what position should the new file be added?  The default value, `NA`, adds the new file at the end of the existing list
 #' @section Usage Notes:
 #' The locations that are searched to locate `file` at the time the `QuartoObject`
-#' is `publish`ed depend on the way in which `file` is defined.  If `file` is a path, 
-#' whether relative or absolute, then only that location is searched.  If the file 
-#' is specified using only a base name, then the elements of `templateSearchPath` 
-#' are searched, in order, to locate a file with that base name.  Only the first 
+#' is `publish`ed depend on the way in which `file` is defined.  If `file` is a path,
+#' whether relative or absolute, then only that location is searched.  If the file
+#' is specified using only a base name, then the elements of `templateSearchPath`
+#' are searched, in order, to locate a file with that base name.  Only the first
 #' match is returned.
 #' @docType methods
 #' @export
-setGeneric("addChapter", function(x, file, .after=NA) standardGeneric("addChapter"))
+setGeneric("addChapter", function(x, file, .after = NA) standardGeneric("addChapter"))
 
 ## QuartoObject
 
 #' Add a path to the template search path
-#' @describeIn addChapter  
+#' @describeIn addChapter
 #' @aliases addChapter-QuartoObject
 #' @export
 setMethod(
-  "addChapter", 
+  "addChapter",
   "QuartoObject",
   function(x, file, .after) {
     checkmate::assertCharacter(file)
     if (all(is.na(.after))) {
-      .after = length(x@chapters)
+      .after <- length(x@chapters)
     } else {
-      checkmate::assertNumber(.after, lower=1, upper=length(x@chapters))
+      checkmate::assertNumber(.after, lower = 1, upper = length(x@chapters))
     }
     x@chapters <- append(x@chapters, file, .after)
     x
@@ -128,7 +128,7 @@ setMethod(
 ## generic ----
 
 #' Remove an Entry from the Chapter list
-#' 
+#'
 #' @param x a QuartoObject object
 #' @param file the file to be removed
 #' @param pos the position of the file to be removed
@@ -136,16 +136,16 @@ setMethod(
 #' Either `path` or `pos` must be provided, but not both
 #' @docType methods
 #' @export
-setGeneric("removeChapter", function(x, file=NA, pos=NA) standardGeneric("removeChapter"))
+setGeneric("removeChapter", function(x, file = NA, pos = NA) standardGeneric("removeChapter"))
 
 ## QuartoObject
 
 #' Remove a chapter from the chapter list
-#' @describeIn removeChapter  
+#' @describeIn removeChapter
 #' @aliases removeChapter-QuartoWebsite
 #' @export
 setMethod(
-  "removeChapter", 
+  "removeChapter",
   "QuartoWebsite",
   function(x, file, pos) {
     if (!is.na(file) & !is.na(pos)) stop("Only one of `path` and `pos` should be given")
@@ -160,7 +160,7 @@ setMethod(
       }
     }
     if (!is.na(pos)) {
-      checkmate::assertNumber(pos, lower=1, upper=length(x@chapters))
+      checkmate::assertNumber(pos, lower = 1, upper = length(x@chapters))
       x@chapters <- as.list(x@chapters[[-pos]])
     }
     x
@@ -172,34 +172,34 @@ setMethod(
 ## generic ----
 
 #' Search the `templateSearchPath` for the First Matching Template File
-#' 
+#'
 #' @param x a QuartoObject object
 #' @param fileName the (base) name of the file to be searched for along the
 #' `templateSearchPath` defined by `x`.
 #' @param ... passed to class methods
 #' @section Usage Notes:
-#' If `basename(fileName) == fileName` then `x@templateSearchPath` is searched, in order, for 
-#' a file with the given name.  The first match is returned.  Otherwise, 
+#' If `basename(fileName) == fileName` then `x@templateSearchPath` is searched, in order, for
+#' a file with the given name.  The first match is returned.  Otherwise,
 #' the absolute path to the given file is returned.  This process allows (say) global,
 #' project and study level templates to be obtained.
 #' @docType methods
 #' @export
-setGeneric("locateTemplate", function(x, fileName=NA, ...) standardGeneric("locateTemplate"))
+setGeneric("locateTemplate", function(x, fileName = NA, ...) standardGeneric("locateTemplate"))
 
 ## QuartoObject
 
 #' Search the `templateSearchPath` for the First Matching Template File
-#' @param strict Boolean.  Default: TRUE.  Check that the file found (a) exists 
+#' @param strict Boolean.  Default: TRUE.  Check that the file found (a) exists
 #' (b) is readable and (c) has one of the `allowedExtensions`
-#' @param allowedExtensions Default: `"qmd"`.  A vector of permitted extensions.  
+#' @param allowedExtensions Default: `"qmd"`.  A vector of permitted extensions.
 #' Ignored if `strict` is `FALSE`
-#' @describeIn locateTemplate  
+#' @describeIn locateTemplate
 #' @aliases locateTemplate-QuartoObject
 #' @export
 setMethod(
-  "locateTemplate", 
+  "locateTemplate",
   "QuartoObject",
-  function(x, fileName, strict=TRUE, allowedExtensions=c("qmd")) {
+  function(x, fileName, strict = TRUE, allowedExtensions = c("qmd")) {
     # Validate
     checkmate::assertCharacter(fileName)
     checkmate::assertLogical(strict)
@@ -215,12 +215,12 @@ setMethod(
         foundFile <- NULL
       }
     } else {
-      #Cater for relative paths
+      # Cater for relative paths
       foundFile <- R.utils::getAbsolutePath(fileName)
     }
     if (is.null(foundFile)) stop(paste0("Unable to locate ", fileName))
     if (strict) {
-      checkmate::assertFileExists(foundFile, access="r", extension=allowedExtensions)
+      checkmate::assertFileExists(foundFile, access = "r", extension = allowedExtensions)
     }
     foundFile
   }
@@ -231,7 +231,7 @@ setMethod(
 ## generic ----
 
 #' Publish a Quarto object
-#' 
+#'
 #' @param x a QuartoObject object
 #' @param outFile the name of the file containing the published Quarto object
 #' @param ... passed to class methods
@@ -242,37 +242,37 @@ setGeneric("publish", function(x, outFile, ...) standardGeneric("publish"))
 ## QuartoCompoundObject
 
 #' Publish a QuartoCompoundObject object
-#' @describeIn publish  
+#' @describeIn publish
 #' @aliases publish-QuartoCompoundObject
 #' @param params Default `list()`.  A list containing the parameters to use when
 #' publishing the QuartoCompoundObject
-#' @param workDir Default: `NULL`.  The temporary work folder used to generate the report.  
+#' @param workDir Default: `NULL`.  The temporary work folder used to generate the report.
 #' If `NULL` a temporary work folder with a random name, is used.
 #' @param logFile Default: NA.  The name of the log file that documents the publishing process.
 #' If `NA`, the name is based on `basename(outFile)`, with the start date/time appended and
 #' located in the folder returned by `here::here()` at the time the function was called.
-#' If `NULL`, no log file is produced.  
+#' If `NULL`, no log file is produced.
 #' @param tidyUp Boolean.  Should the workDir be deleted on successful publication?
 #' @examples
 #' \dontrun{
 #' publish(
 #'   QuartoBook(
-#'     templateSearchPath=list(testthat::test_path("testData", "global")),
-#'     chapters=list(
+#'     templateSearchPath = list(testthat::test_path("testData", "global")),
+#'     chapters = list(
 #'       "index.qmd",
 #'       testthat::test_path("testData", "testParams", "introParams.qmd")
 #'     )
-#'   ), 
-#'   outFile="testParamsOutput", 
-#'   workDir=testthat::test_path("testData", "_work"),
-#'   params=params
+#'   ),
+#'   outFile = "testParamsOutput",
+#'   workDir = testthat::test_path("testData", "_work"),
+#'   params = params
 #' )
 #' }
 #' @export
 setMethod(
-  "publish", 
+  "publish",
   "QuartoCompoundObject",
-  function(x, outFile, params=list(), workDir=NULL, tidyUp=TRUE, logFile=NA) {
+  function(x, outFile, params = list(), workDir = NULL, tidyUp = TRUE, logFile = NA) {
     futile.logger::flog.debug("Entry - QuartoCompoundObject")
     # Validate
     checkmate::assertPathForOutput(outFile)
@@ -298,7 +298,7 @@ setMethod(
     .renderQuartoCompoundObject(workDir)
     if (tidyUp) {
       futile.logger::flog.info(paste0("Cleaning ", workDir, "..."))
-      workFiles <- list.files(workDir, full.names=TRUE)
+      workFiles <- list.files(workDir, full.names = TRUE)
       if (length(workFiles) > 0) {
         x <- file.remove(workFiles)
         futile.logger::flog.info("Done")
@@ -311,39 +311,39 @@ setMethod(
 ## QuartoDocument
 
 #' Publish a QuartoDocument object
-#' @describeIn publish  
+#' @describeIn publish
 #' @aliases publish-QuartoDocument
 #' @param params Default `list()`.  A list containing the parameters to use when
 #' publishing the QuartoDocument
-#' @param workDir Default: `NULL`.  The temporary work folder used to generate the report.  
+#' @param workDir Default: `NULL`.  The temporary work folder used to generate the report.
 #' If `NULL` a temporary work folder with a random name, is used.
 #' @param logFile Default: NA.  The name of the log file that documents the publishing process.
 #' If `NA`, the name is based on `basename(outFile)`, with the start date/time appended and
 #' located in the folder returned by `here::here()` at the time the function was called.
-#' If `NULL`, no log file is produced.  
+#' If `NULL`, no log file is produced.
 #' @param tidyUp Boolean.  Should the workDir be deleted on successful publication?
 #' @param ... pased to `quarto::quarto_render`
-#' @examples 
+#' @examples
 #' \dontrun{
 #' publish(
-#'   QuartoDocument(testthat::test_path("testData", "testParams", "introParams.qmd")), 
-#'   outFile="testParamsOutputDocument", 
-#'   workDir=testthat::test_path("testData", "_work"),
-#'   params=list(
-#'     dataName="mtcars",
-#'     rowCount=10,
-#'     x="wt",
-#'     y="mpg",
-#'     g="cyl",
-#'     plotTitle="A title for the plot"
+#'   QuartoDocument(testthat::test_path("testData", "testParams", "introParams.qmd")),
+#'   outFile = "testParamsOutputDocument",
+#'   workDir = testthat::test_path("testData", "_work"),
+#'   params = list(
+#'     dataName = "mtcars",
+#'     rowCount = 10,
+#'     x = "wt",
+#'     y = "mpg",
+#'     g = "cyl",
+#'     plotTitle = "A title for the plot"
 #'   )
 #' )
 #' }
 #' @export
 setMethod(
-  "publish", 
+  "publish",
   "QuartoDocument",
-  function(x, outFile, params=list(), workDir=NULL, tidyUp=FALSE, logFile=NA, ...) {
+  function(x, outFile, params = list(), workDir = NULL, tidyUp = FALSE, logFile = NA, ...) {
     futile.logger::flog.debug("Entry - QuartoDocument")
     # Validate
     checkmate::assertPathForOutput(outFile)
@@ -353,7 +353,7 @@ setMethod(
     file.copy(x@fileName, workDir)
     futile.logger::flog.debug("Updating parameter YAML block...")
     replaceYamlParams(file.path(workDir, basename(x@fileName)), params)
-    quarto::quarto_render(file.path(workDir, basename(x@fileName)), output_file=outFile)
+    quarto::quarto_render(file.path(workDir, basename(x@fileName)), output_file = outFile)
     futile.logger::flog.debug("Done")
   }
 )
@@ -363,7 +363,7 @@ setMethod(
 ## generic ----
 
 #' Obtain the _quarto.yml Component of the Quarto Object
-#' 
+#'
 #' @param x a QuartoObject object
 #' @param ... passed to class methods
 #' @docType methods
@@ -373,30 +373,30 @@ setGeneric("quartoYML", function(x, ...) standardGeneric("quartoYML"))
 ## QuartoObject
 
 #' Obtain the _quarto.yml Component of the Quarto Object
-#' @describeIn publish  
+#' @describeIn publish
 #' @aliases quartoYML-QuartoObject
 #' @export
 setMethod(
-  "quartoYML", 
+  "quartoYML",
   "QuartoObject",
   function(x) {
-    y <- ymlthis::yml(author=FALSE, date=FALSE) %>% 
-      ymlthis::yml_toplevel(list("project"=list("type"=x@type)))
+    y <- ymlthis::yml(author = FALSE, date = FALSE) %>%
+      ymlthis::yml_toplevel(list("project" = list("type" = x@type)))
     typeList <- list()
     typeList[[x@type]] <- list(
-      "title"="What is the title?", 
-      "author"="Who Is The Author", 
-      "date"="`r format(Sys.Date())` at `r format(Sys.Time())` on `r Sys.info()[['nodename']]`",
-      # Need basename to ensure that stabdalone templates (those not in the 
+      "title" = "What is the title?",
+      "author" = "Who Is The Author",
+      "date" = "`r format(Sys.Date())` at `r format(Sys.Time())` on `r Sys.info()[['nodename']]`",
+      # Need basename to ensure that stabdalone templates (those not in the
       # templateSearchPath) are handled correctly
-      "chapters"=basename(unlist(x@chapters))
+      "chapters" = basename(unlist(x@chapters))
     )
     y <- y %>% ymlthis::yml_toplevel(typeList)
-    y <- y %>% 
-         ymlthis::yml_toplevel(list("format"=list("html"=list("theme"="cosmo"), "pdf"="default")))
-    #   
+    y <- y %>%
+      ymlthis::yml_toplevel(list("format" = list("html" = list("theme" = "cosmo"), "pdf" = "default")))
+    #
     #   bibliography: references.bib
-    #   
+    #
     y
   }
 )
