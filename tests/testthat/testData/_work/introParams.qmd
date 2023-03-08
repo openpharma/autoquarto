@@ -42,7 +42,9 @@ This report uses data taken from the `r params$dataName` data frame. This is wha
 
 ```{r}
 data <- get(params$dataName)
-data %>%  head(params$rowCount) %>% kable()
+data %>%
+  head(params$rowCount) %>%
+  kable()
 ```
 
 Here's a graph of `r params$x` against `r params$y` grouped by `r params$g`:
@@ -50,17 +52,17 @@ Here's a graph of `r params$x` against `r params$y` grouped by `r params$g`:
 ```{r}
 data %>%
   ggplot() +
-    geom_point(
-      aes(
-        x=get(params$x),
-        y=get(params$y),
-        group=get(params$g)
-      )
-    ) +
-    labs(
-      title=params$plotTitle,
-      x=params$x,
-      y=params$y
-    ) +
-    theme_light()
+  geom_point(
+    aes(
+      x = get(params$x),
+      y = get(params$y),
+      group = get(params$g)
+    )
+  ) +
+  labs(
+    title = params$plotTitle,
+    x = params$x,
+    y = params$y
+  ) +
+  theme_light()
 ```

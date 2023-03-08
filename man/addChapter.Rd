@@ -3,13 +3,9 @@
 \docType{methods}
 \name{addChapter}
 \alias{addChapter}
-\alias{addChapter,QuartoObject-method}
-\alias{addChapter-QuartoObject}
 \title{Add an Entry from the Chapter list}
 \usage{
 addChapter(x, file, .after = NA)
-
-\S4method{addChapter}{QuartoObject}(x, file, .after = NA)
 }
 \arguments{
 \item{x}{a QuartoObject object}
@@ -20,14 +16,7 @@ addChapter(x, file, .after = NA)
 }
 \description{
 Add an Entry from the Chapter list
-
-Add a path to the template search path
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{addChapter(QuartoObject)}: 
-
-}}
 \section{Usage Notes}{
 
 The locations that are searched to locate \code{file} at the time the \code{QuartoObject}

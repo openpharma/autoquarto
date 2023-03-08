@@ -3,103 +3,17 @@
 \docType{methods}
 \name{publish}
 \alias{publish}
-\alias{publish,QuartoCompoundObject-method}
-\alias{publish-QuartoCompoundObject}
-\alias{publish,QuartoDocument-method}
-\alias{publish-QuartoDocument}
-\alias{quartoYML,QuartoObject-method}
-\alias{quartoYML-QuartoObject}
 \title{Publish a Quarto object}
 \usage{
 publish(x, outFile, ...)
-
-\S4method{publish}{QuartoCompoundObject}(
-  x,
-  outFile,
-  params = list(),
-  workDir = NULL,
-  tidyUp = TRUE,
-  logFile = NA
-)
-
-\S4method{publish}{QuartoDocument}(
-  x,
-  outFile,
-  params = list(),
-  workDir = NULL,
-  tidyUp = FALSE,
-  logFile = NA,
-  ...
-)
-
-\S4method{quartoYML}{QuartoObject}(x)
 }
 \arguments{
 \item{x}{a QuartoObject object}
 
 \item{outFile}{the name of the file containing the published Quarto object}
 
-\item{...}{passed to \code{quarto::quarto_render}}
-
-\item{params}{Default \code{list()}.  A list containing the parameters to use when
-publishing the QuartoDocument}
-
-\item{workDir}{Default: \code{NULL}.  The temporary work folder used to generate the report.
-If \code{NULL} a temporary work folder with a random name, is used.}
-
-\item{tidyUp}{Boolean.  Should the workDir be deleted on successful publication?}
-
-\item{logFile}{Default: NA.  The name of the log file that documents the publishing process.
-If \code{NA}, the name is based on \code{basename(outFile)}, with the start date/time appended and
-located in the folder returned by \code{here::here()} at the time the function was called.
-If \code{NULL}, no log file is produced.}
+\item{...}{passed to class methods}
 }
 \description{
 Publish a Quarto object
-
-Publish a QuartoCompoundObject object
-
-Publish a QuartoDocument object
-
-Obtain the _quarto.yml Component of the Quarto Object
-}
-\section{Methods (by class)}{
-\itemize{
-\item \code{publish(QuartoCompoundObject)}: 
-
-\item \code{publish(QuartoDocument)}: 
-
-\item \code{quartoYML(QuartoObject)}: 
-
-}}
-\examples{
-\dontrun{
-publish(
-  QuartoBook(
-    templateSearchPath=list(testthat::test_path("testData", "global")),
-    chapters=list(
-      "index.qmd",
-      testthat::test_path("testData", "testParams", "introParams.qmd")
-    )
-  ), 
-  outFile="testParamsOutput", 
-  workDir=testthat::test_path("testData", "_work"),
-  params=params
-)
-}
-\dontrun{
-publish(
-  QuartoDocument(testthat::test_path("testData", "testParams", "introParams.qmd")), 
-  outFile="testParamsOutputDocument", 
-  workDir=testthat::test_path("testData", "_work"),
-  params=list(
-    dataName="mtcars",
-    rowCount=10,
-    x="wt",
-    y="mpg",
-    g="cyl",
-    plotTitle="A title for the plot"
-  )
-)
-}
 }

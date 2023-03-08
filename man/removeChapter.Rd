@@ -3,13 +3,9 @@
 \docType{methods}
 \name{removeChapter}
 \alias{removeChapter}
-\alias{removeChapter,QuartoWebsite-method}
-\alias{removeChapter-QuartoWebsite}
 \title{Remove an Entry from the Chapter list}
 \usage{
 removeChapter(x, file = NA, pos = NA)
-
-\S4method{removeChapter}{QuartoWebsite}(x, file = NA, pos = NA)
 }
 \arguments{
 \item{x}{a QuartoObject object}
@@ -20,14 +16,7 @@ removeChapter(x, file = NA, pos = NA)
 }
 \description{
 Remove an Entry from the Chapter list
-
-Remove a chapter from the chapter list
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{removeChapter(QuartoWebsite)}: 
-
-}}
 \section{Usage Notes}{
 
 Either \code{path} or \code{pos} must be provided, but not both

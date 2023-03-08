@@ -3,13 +3,9 @@
 \docType{methods}
 \name{locateTemplate}
 \alias{locateTemplate}
-\alias{locateTemplate,QuartoObject-method}
-\alias{locateTemplate-QuartoObject}
 \title{Search the \code{templateSearchPath} for the First Matching Template File}
 \usage{
 locateTemplate(x, fileName = NA, ...)
-
-\S4method{locateTemplate}{QuartoObject}(x, fileName, strict = TRUE, allowedExtensions = c("qmd"))
 }
 \arguments{
 \item{x}{a QuartoObject object}
@@ -18,23 +14,10 @@ locateTemplate(x, fileName = NA, ...)
 \code{templateSearchPath} defined by \code{x}.}
 
 \item{...}{passed to class methods}
-
-\item{strict}{Boolean.  Default: TRUE.  Check that the file found (a) exists
-(b) is readable and (c) has one of the \code{allowedExtensions}}
-
-\item{allowedExtensions}{Default: \code{"qmd"}.  A vector of permitted extensions.
-Ignored if \code{strict} is \code{FALSE}}
 }
 \description{
 Search the \code{templateSearchPath} for the First Matching Template File
-
-Search the \code{templateSearchPath} for the First Matching Template File
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{locateTemplate(QuartoObject)}: 
-
-}}
 \section{Usage Notes}{
 
 If \code{basename(fileName) == fileName} then \code{x@templateSearchPath} is searched, in order, for

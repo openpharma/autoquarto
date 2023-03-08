@@ -3,13 +3,9 @@
 \docType{methods}
 \name{addTemplatePath}
 \alias{addTemplatePath}
-\alias{addTemplatePath,QuartoObject-method}
-\alias{addTemplatePath-QuartoObject}
 \title{Add an Entry to the Template Search Path list}
 \usage{
 addTemplatePath(x, path, mustExist = FALSE, .after = NA)
-
-\S4method{addTemplatePath}{QuartoObject}(x, path, mustExist = FALSE, .after = NA)
 }
 \arguments{
 \item{x}{a QuartoObject object}
@@ -22,11 +18,4 @@ addTemplatePath(x, path, mustExist = FALSE, .after = NA)
 }
 \description{
 Add an Entry to the Template Search Path list
-
-Add a path to the template search path
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{addTemplatePath(QuartoObject)}: 
-
-}}

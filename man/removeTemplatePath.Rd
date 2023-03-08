@@ -3,13 +3,9 @@
 \docType{methods}
 \name{removeTemplatePath}
 \alias{removeTemplatePath}
-\alias{removeTemplatePath,QuartoObject-method}
-\alias{removeTemplatePath-QuartoWebsite}
 \title{Remove an Entry from the Template Search Path list}
 \usage{
 removeTemplatePath(x, path = NA, pos = NA)
-
-\S4method{removeTemplatePath}{QuartoObject}(x, path = NA, pos = NA)
 }
 \arguments{
 \item{x}{a QuartoObject object}
@@ -20,14 +16,7 @@ removeTemplatePath(x, path = NA, pos = NA)
 }
 \description{
 Remove an Entry from the Template Search Path list
-
-Remove a path from the template search path
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{removeTemplatePath(QuartoObject)}: 
-
-}}
 \section{Usage Notes}{
 
 Either \code{path} or \code{pos} must be provided, but not both
