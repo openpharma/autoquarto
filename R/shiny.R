@@ -4,15 +4,13 @@
 #' if it has a YAML header.  If it does, parse the YAML header to identify what,
 #' if any, parameters are required.  Display a GUI to obtain the required information
 #' from the user and then update the Quarto object with the information provided.
-#' @param ... Parameters passed to the app via `.GlobalEnv$askForParamsInbput`.
+#' @param ... Parameters passed to the app via `.GlobalEnv$askForParamsInput`.
 #' See Usage Notes below. 
 #' @section Usage notes:
 #' If the function is called from an R session that is not interactive, an error 
 #' is thrown. (TODO: Does this affect validation?)
-#' @section Usage Notes:
 #' Currently, the only parameter supported, and which is required, is `path`. 
 #' This should define the path to the Quarto document, website or book
-#' @example askForParams(path=testthat::test_path("testData", "global", "intro.qmd"))
 #' @export
 askForParams <- function(...) {
   # Validate
@@ -58,12 +56,12 @@ parameterEditorPanelServer <- function(id, path) {
       ns <- session$ns
 
       v <- shiny::reactiveValues(
-                    path = path, 
-                    pendingChanges = FALSE,
-                    rv=list(file=NA, params=NA, update=FALSE)
-                  )
+             path = path, 
+             pendingChanges = FALSE,
+             rv=list(file=NA, params=NA, update=FALSE)
+           )
       
-      observeEvent(v$pendingChanges, {
+      shiny::observeEvent(v$pendingChanges, {
         if (v$pendingChanges) {
           shinyjs::enable("save")
         } else {
@@ -71,20 +69,25 @@ parameterEditorPanelServer <- function(id, path) {
         }
       })
       
-      
       output$fileSelection <- shiny::renderUI({
+        print(v$path)
         if (isQuartoBook(v$path)) {
+          print("It's a book")
           yml <- yaml::read_yaml(file.path(v$path, "_quarto.yml"))
+          print(yml)
           v$chapters <- ymlthis::yml_pluck(yml, "book", "chapters")
           DiagrammeR::grVizOutput(ns("tree"))
-        } else if (isQuartoBook(v$path)) {
+          v$selectedFile <- v$path
+        } else if (isQuartoWebsite(v$path)) {
+          print("It's a website")
           shiny::tags$p("Quarto websites are not yet supported.")
         } else {
-          v$selectedFile <- v$path
+          print("It's not a book or website")
         }
       })
       
       output$tree <- DiagrammeR::renderGrViz({
+        print("output$tree")
         root <- data.tree::Node$new("Chapters")
         for(c in v$chapters) root$AddChild(tools::file_path_sans_ext(c))
         data.tree::SetNodeStyle(root, fontcolor = "black", shape="box", fontname = "helvetica", fontsize=10)
@@ -196,7 +199,7 @@ parameterEditorPanelServer <- function(id, path) {
         v$pendingChanges <- FALSE
       })
       
-      return(reactive({ v$rv }))
+      return(shiny::reactive({ v$rv }))
     }
   )
 }

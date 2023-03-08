@@ -1,5 +1,39 @@
-#' An Object Representing a Quarto Object
+#' Base Class for All Quarto Objects
 #' 
+#' @slot variables a list containing the names (and values) of the variables required to
+#' create the book
+#' @export
+setClass(
+  "QuartoObject",
+  slots=c(
+    variables = "list"
+  ),
+  prototype = list(
+    variables = list()
+  )
+)
+
+#' Constructor for the `QuartoObject` class
+#' 
+#' @param variables the initial value of the `variables` slot
+#' @export
+QuartoObject <- function(variables=list()) {
+  methods::new("QuartoObject", variables)
+}
+
+setMethod(
+  "initialize", 
+  "QuartoObject",
+  function(.Object, variables=list(), ...) {
+    .Object <- methods::callNextMethod(.Object, ...)
+    .Object@variables <- variables
+    .Object
+  }
+)
+
+#' Base Class for Compound Quarto Objects
+#' 
+#' Compound Quarto objects are books and websites: they contain chapters
 #' @slot templateSearchPath a `list` containing the paths to be searched for the 
 #' template files that define the `chapters` of this object.
 #' @slot variables a list containing the names (and values) of the variables required to
@@ -8,38 +42,36 @@
 #' @slot type the type of the object (currently book or website, depending on subclass)
 #' @export
 setClass(
-  "QuartoObject",
+  "QuartoCompoundObject",
+  contains="QuartoObject",
   slots=c(
     templateSearchPath = "list",
-    variables = "list",
     chapters = "list",
-    type = "character"
+    type="character"
   ),
   prototype = list(
     templateSearchPath = list("."),
-    variables = list(),
     chapters = list(),
     type = NA_character_
   )
 )
 
-#' Constructor for the `QuartoObject` class
+#' Constructor for the `QuartoCompoundObject` class
 #' 
 #' @param templateSearchPath the initial value of the `templateSearchPath` slot
-#' @param variables the initial value of the `variables` slot
 #' @param chapters the initial value of the `chapters` slot
+#' @inheritParams QuartoObject
 #' @export
-QuartoObject <- function(templateSearchPath=list("."), variables=list(), chapters=list()) {
-  methods::new("QuartoWebsite", templateSearchPath, variables, chapters)
+QuartoCompoundObject <- function(templateSearchPath=list("."), variables=list(), chapters=list()) {
+  methods::new("QuartoCompoundObject", templateSearchPath, variables, chapters)
 }
 
 setMethod(
   "initialize", 
-  "QuartoObject",
+  "QuartoCompoundObject",
   function(.Object, templateSearchPath=list("."), variables=list(), chapters=list(), ...) {
     .Object <- methods::callNextMethod(.Object, ...)
     .Object@templateSearchPath <- templateSearchPath
-    .Object@variables <- variables
     .Object@chapters <- chapters
     .Object
   }
@@ -51,14 +83,12 @@ setMethod(
 #' @export
 setClass(
   "QuartoBook",
-  contains = "QuartoObject"
+  contains = "QuartoCompoundObject"
 )
 
 #' Constructor for the `QuartoBook` class
 #' 
-#' @param templateSearchPath the initial value of the `templateSearchPath` slot
-#' @param variables the initial value of the `variables` slot
-#' @param chapters the initial value of the `chapters` slot
+#' @inheritParams QuartoCompoundObject
 #' @export
 QuartoBook <- function(templateSearchPath=list("."), variables=list(), chapters=list()) {
   methods::new("QuartoBook", templateSearchPath, variables, chapters)
@@ -67,8 +97,8 @@ QuartoBook <- function(templateSearchPath=list("."), variables=list(), chapters=
 setMethod(
   "initialize",
   "QuartoBook",
-  function(.Object, ...) {
-    .Object <- methods::callNextMethod(.Object, ...)
+  function(.Object, templateSearchPath=list("."), variables=list(), chapters=list(), ...) {
+    .Object <- methods::callNextMethod(.Object, templateSearchPath, variables, chapters, ...)
     .Object@type <- "book"
     .Object
   }
@@ -76,35 +106,16 @@ setMethod(
 
 #' An Object Representing a Quarto Website
 #' 
-#' @slot templateSearchPath a `list` containing the paths to be searched for the 
-#' template files that define the `chapters` of this object.
-#' @slot variables a list containing the names (and values) of the variables required to
-#' create the book
-#' @slot chapters a list containing the names of the quarto documents that comprise the book
 #' @include quartoobject-class.R
 #' @export
 setClass(
   "QuartoWebsite",
-  contains="QuartoObject",
-  slots=c(
-    templateSearchPath = "list",
-    variables = "list",
-    chapters = "list",
-    type = "character"
-  ),
-  prototype = list(
-    templateSearchPath = list("."),
-    variables = list(),
-    chapters = list(),
-    type = "website"
-  )
+  contains="QuartoCompoundObject",
 )
 
 #' Constructor for the `QuartoWebsite` class
 #' 
-#' @param templateSearchPath the initial value of the `templateSearchPath` slot
-#' @param variables the initial value of the `variables` slot
-#' @param chapters the initial value of the `chapters` slot
+#' @inheritParams QuartoCompoundObject
 #' @export
 QuartoWebsite <- function(templateSearchPath=list("."), variables=list(), chapters=list()) {
   methods::new("QuartoWebsite", templateSearchPath, variables, chapters)
@@ -114,11 +125,42 @@ setMethod(
   "initialize", 
   "QuartoWebsite",
   function(.Object, templateSearchPath=list("."), variables=list(), chapters=list(), ...) {
-    .Object <- methods::callNextMethod(.Object, ...)
-    .Object@templateSearchPath <- templateSearchPath
-    .Object@variables <- variables
-    .Object@chapters <- chapters
+    .Object <- methods::callNextMethod(.Object, templateSearchPath, variables, chapters, ...)
     .Object@type <- "website"
+    .Object
+  }
+)
+
+
+#' An Object Representing a Quarto Document
+#' 
+#' @include quartoobject-class.R
+#' @export
+setClass(
+  "QuartoDocument",
+  contains="QuartoObject",
+  slots=c(
+    fileName = "character"
+  ),
+  prototype = list(
+    fileName = NA_character_
+  )
+)
+
+#' Constructor for the `QuartoDocument` class
+#' 
+#' @inheritParams QuartoObject
+#' @export
+QuartoDocument <- function(fileName, variables=list()) {
+  methods::new("QuartoDocument", fileName, variables)
+}
+
+setMethod(
+  "initialize", 
+  "QuartoDocument",
+  function(.Object, fileName, variables=list(), ...) {
+    .Object <- methods::callNextMethod(.Object, ...)
+    .Object@fileName <- fileName
     .Object
   }
 )
