@@ -3,21 +3,14 @@
 \docType{class}
 \name{QuartoObject-class}
 \alias{QuartoObject-class}
-\title{An Object Representing a Quarto Object}
+\title{Base Class for All Quarto Objects}
 \description{
-An Object Representing a Quarto Object
+Base Class for All Quarto Objects
 }
 \section{Slots}{
 
 \describe{
-\item{\code{templateSearchPath}}{a \code{list} containing the paths to be searched for the
-template files that define the \code{chapters} of this object.}
-
 \item{\code{variables}}{a list containing the names (and values) of the variables required to
 create the book}
-
-\item{\code{chapters}}{a list containing the names of the quarto documents that comprise the book}
-
-\item{\code{type}}{the type of the object (currently book or website, depending on subclass)}
 }}
 

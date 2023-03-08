@@ -4,11 +4,10 @@ project:
 book:
   title: What is the title?
   author: Who Is The Author
-  date: '`r format(Sys.Date())` at `r format(Sys.Time())` on `r Sys.info()[[''nodename'']]`'
+  date: 07Mar2023
   chapters:
   - index.qmd
   - introParams.qmd
-  output-file: introParamsOutput
 format:
   html:
     theme: cosmo
