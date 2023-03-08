@@ -26,3 +26,11 @@ test_that("isQuartoWebsite works", {
   expect_false(isQuartoWebsite(doc))
   expect_true(isQuartoWebsite(website))
 })
+
+test_that("isQuartoObject works", {
+  expect_false(isQuartoObject(99))
+  expect_false(isQuartoObject(bad))
+  expect_true(isQuartoObject(book))
+  expect_true(isQuartoObject(doc))
+  expect_true(isQuartoObject(website))
+})
