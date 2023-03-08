@@ -90,8 +90,9 @@
 #' Render a QuartoCompoundObject
 #'
 #' @param workDir The working directory containing the _quarto.yaml file
-.renderQuartoCompoundObject <- function(workDir) {
+#' @param ... passed to `quarto::quarto_render`
+.renderQuartoCompoundObject <- function(workDir, ...) {
   futile.logger::flog.info("Rendering report...")
-  quarto::quarto_render(workDir, as_job = FALSE)
+  quarto::quarto_render(workDir, ...)
   futile.logger::flog.info("Done")
 }
