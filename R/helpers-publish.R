@@ -9,6 +9,11 @@
   if (!is.null(workDir)) {
     checkmate::assertCharacter(workDir, len = 1)
     checkmate::assertDirectoryExists(workDir, access = "rwx")
+    checkmate::assertCharacter(outFile, len = 1)
+    if (any(!is.na(logFile))) {
+      checkmate::assertCharacter(logFile, len = 1)
+      checkmate::assertPathForOutput(logFile)
+    }
   }
   if (is.na(logFile)) {
     logFile <- file.path(
@@ -20,18 +25,19 @@
         ".log"
       )
     )
-    print(paste0("logFile is ", logFile))
+    message(paste0("logFile is ", logFile))
   }
   futile.logger::flog.layout(futile.logger::layout.format("~t ~l [~n:~f]: ~m"))
   futile.logger::flog.appender(futile.logger::appender.file(logFile))
   if (is.null(workDir)) {
     workDir <- tempdir()
-    # futile.logger::flog.info(paste0("Using `", workDir, "' as a working folder"))
     checkmate::assertDirectoryExists(workDir, access = "rwx")
   }
   workFiles <- list.files(workDir, full.names = TRUE)
   if (length(workFiles) > 0) {
-    futile.logger::flog.info(paste0("workDir [", workDir, "] is not empty.  Deleting current contents..."))
+    msg <- paste0("workDir [", workDir, "] is not empty.  Deleting current contents...")
+    futile.logger::flog.info(msg)
+    message(msg)
     file.remove(workFiles)
   }
   workDir
@@ -39,11 +45,22 @@
 
 #' Process a project YAML
 #'
+#' Create the _quarto.yml for a QuartCompondObject
 #' @param x The QuartoObject that defines the project YAML
 #' @param workDir The working directory
 #' @param outFile The path to the output file
 #' @param params A list of parameters to write to the project YAML
-.processProjectYAML <- function(x, workDir, outFile, params) {
+#' @returns the text written to `_quarto.yml`, invisibly
+.processProjectYAML <- function(x, workDir, outFile, params = list()) {
+  # Validate
+  checkmate::assertClass(x, "QuartoCompoundObject")
+  if (!is.null(workDir)) {
+    checkmate::assertCharacter(workDir, len = 1)
+    checkmate::assertDirectoryExists(workDir, access = "rwx")
+    checkmate::assertCharacter(outFile, len = 1)
+  }
+  checkmate::assertList(params, names = "unique")
+  # Execute
   futile.logger::flog.info("Processing _quarto.yml...")
   # Define output file
   qYML <- quartoYML(x)
@@ -73,8 +90,9 @@
 #' Render a QuartoCompoundObject
 #'
 #' @param workDir The working directory containing the _quarto.yaml file
-.renderQuartoCompoundObject <- function(workDir) {
+#' @param ... passed to `quarto::quarto_render`
+.renderQuartoCompoundObject <- function(workDir, ...) {
   futile.logger::flog.info("Rendering report...")
-  quarto::quarto_render(workDir, as_job = FALSE)
+  quarto::quarto_render(workDir, ...)
   futile.logger::flog.info("Done")
 }
