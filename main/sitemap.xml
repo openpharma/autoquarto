@@ -19,6 +19,18 @@
     <loc>/reference/QuartoBook.html</loc>
   </url>
   <url>
+    <loc>/reference/QuartoCompoundObject-class.html</loc>
+  </url>
+  <url>
+    <loc>/reference/QuartoCompoundObject.html</loc>
+  </url>
+  <url>
+    <loc>/reference/QuartoDocument-class.html</loc>
+  </url>
+  <url>
+    <loc>/reference/QuartoDocument.html</loc>
+  </url>
+  <url>
     <loc>/reference/QuartoObject-class.html</loc>
   </url>
   <url>
@@ -41,6 +53,15 @@
   </url>
   <url>
     <loc>/reference/autoquarto-package.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dot-prepareToPublish.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dot-processProjectYAML.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dot-renderQuartoCompoundObject.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
