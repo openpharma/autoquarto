@@ -6,9 +6,10 @@
 #' @param ... other arguments defining the objects to be added as children of `.yml`
 #' @returns a `yml` object
 #' @export
-yml_project <- function (.yml, ..., validNames=c("part")){
-  checkmate::assertSubset(names(...), validNames)
-  .yml %>% ymlthis::yml_toplevel(.yml, "project"=list(...))
+yml_project <- function (.yml, ..., validNames=c("output-dir", "type")){
+  checkmate::assertClass(.yml, "yml")
+  checkmate::assertSubset(names(list(...)), validNames)
+  .yml %>% ymlthis::yml_toplevel(.yml, list(project=list(...)))
 }
 
 #' Create a YAML book Element
@@ -78,7 +79,7 @@ parameterTibbleToYAML <- function(d) {
             } 
           )
   names(rv) <- d %>% dplyr::pull(Parameter)
-  rv
+  ymlthis::as_yml(rv)
 }
 
 #' Read the YAML Front Matter From a File
