@@ -4,9 +4,11 @@
 \alias{QuartoDocument}
 \title{Constructor for the \code{QuartoDocument} class}
 \usage{
-QuartoDocument(variables = list())
+QuartoDocument(fileName, variables = list())
 }
 \arguments{
+\item{fileName}{Path the qmd file that this object represents}
+
 \item{variables}{the initial value of the \code{variables} slot}
 }
 \description{

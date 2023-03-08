@@ -322,7 +322,7 @@ setMethod(
 #' located in the folder returned by `here::here()` at the time the function was called.
 #' If `NULL`, no log file is produced.  
 #' @param tidyUp Boolean.  Should the workDir be deleted on successful publication?
-#' @param ... pased to `quarto::quarto_render`
+#' @param ... passed to `quarto::quarto_render`
 #' @examples 
 #' \dontrun{
 #' publish(

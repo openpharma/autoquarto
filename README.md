@@ -242,7 +242,7 @@ and the content of a typical log file could be similar to
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]: book:
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   title: What is the title?
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   author: Who Is The Author
-    2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   date: '2023-03-08 at 2023-03-08 09:44:05 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
+    2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   date: '2023-03-08 at 2023-03-08 10:35:41 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   chapters:
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   - index.qmd
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   - introParams.qmd
@@ -334,7 +334,7 @@ header quite lengthy.
 
 `autoquarto` includes an app that allows users to provide definitions
 for parameters in the YAML header of a Quarto document (or in the
-headers of invidiual chapters of a Quarto book or website). The easiest
+headers of indvidiual chapters of a Quarto book or website). The easiest
 way to access the website is by calling the `askForparams` function:
 
     askForParams <- function(path="path/to/myDocument.qmd")

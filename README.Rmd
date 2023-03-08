@@ -298,7 +298,7 @@ Obviously, if the data frame is large, this approach will make the YAML header q
 * `output-file` affects only single-file destinations such as PDF.  It is ignored for multi-file destinations such as html.  For multi-file destinations, the project main file is always (eg) index.html.
 
 ## Interactively querying YAML parameters
-`autoquarto` includes an app that allows users to provide definitions for parameters in the YAML header of a Quarto document (or in the headers of invidiual chapters of a Quarto book or website).  The easiest way to access the website is by calling the `askForparams` function:
+`autoquarto` includes an app that allows users to provide definitions for parameters in the YAML header of a Quarto document (or in the headers of indvidiual chapters of a Quarto book or website).  The easiest way to access the website is by calling the `askForparams` function:
 
 ```
 askForParams <- function(path="path/to/myDocument.qmd")

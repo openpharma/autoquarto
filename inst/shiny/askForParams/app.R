@@ -28,7 +28,7 @@ server <- function(input, output) {
     params <- parameterEditorPanelServer("askForParams", path)
     
     shiny::observeEvent(params(), {
-      print(params())
+      .GlobalEnv$askForParamsOutput <- params()
     })
 }
 

@@ -28,7 +28,8 @@ publish(x, outFile, ...)
   params = list(),
   workDir = NULL,
   tidyUp = FALSE,
-  logFile = NA
+  logFile = NA,
+  ...
 )
 
 \S4method{quartoYML}{QuartoObject}(x)
@@ -38,7 +39,7 @@ publish(x, outFile, ...)
 
 \item{outFile}{the name of the file containing the published Quarto object}
 
-\item{...}{passed to class methods}
+\item{...}{passed to \code{quarto::quarto_render}}
 
 \item{params}{Default \code{list()}.  A list containing the parameters to use when
 publishing the QuartoDocument}
@@ -84,6 +85,21 @@ publish(
   outFile="testParamsOutput", 
   workDir=testthat::test_path("testData", "_work"),
   params=params
+)
+}
+\dontrun{
+publish(
+  QuartoDocument(testthat::test_path("testData", "testParams", "introParams.qmd")), 
+  outFile="testParamsOutputDocument", 
+  workDir=testthat::test_path("testData", "_work"),
+  params=list(
+    dataName="mtcars",
+    rowCount=10,
+    x="wt",
+    y="mpg",
+    g="cyl",
+    plotTitle="A title for the plot"
+  )
 )
 }
 }

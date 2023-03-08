@@ -7,8 +7,14 @@
 askForParams(...)
 }
 \arguments{
-\item{...}{Parameters passed to the app via \code{.GlobalEnv$askForParamsInbput}.
+\item{...}{Parameters passed to the app via \code{.GlobalEnv$askForParamsInput}.
 See Usage Notes below.}
+}
+\value{
+A list with three elements: \code{file} The most recent quarto document
+for which parameters have been updated; \code{params} a tibble containing
+infprmation about the parameters of \code{file} and \code{update}: used internally by
+the app and can be ignored.
 }
 \description{
 When given a Quarto document, website or book, interrogate the input to determine
@@ -20,10 +26,6 @@ from the user and then update the Quarto object with the information provided.
 
 If the function is called from an R session that is not interactive, an error
 is thrown. (TODO: Does this affect validation?)
-}
-
-\section{Usage Notes}{
-
 Currently, the only parameter supported, and which is required, is \code{path}.
 This should define the path to the Quarto document, website or book
 }
