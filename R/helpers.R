@@ -23,10 +23,16 @@ isQuartoBook <- function(path) {
     return(FALSE)
   }
   exists <- checkmate::checkDirectoryExists(path)
-  if (!is.logical(exists)) return(FALSE)
-  if (!exists) return(FALSE)
+  if (!is.logical(exists)) {
+    return(FALSE)
+  }
+  if (!exists) {
+    return(FALSE)
+  }
   f <- file.path(path, "_quarto.yml")
-  if (!checkmate::checkFile(f, "r")) return(FALSE)
+  if (!checkmate::checkFile(f, "r")) {
+    return(FALSE)
+  }
   yml <- yaml::read_yaml(f)
   ymlthis::yml_pluck(yml, "project", "type") == "book"
 }

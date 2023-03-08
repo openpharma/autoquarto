@@ -45,13 +45,13 @@
 
 #' Process a project YAML
 #'
-#' Create the _quarto.yml for a QuartCompondObject 
+#' Create the _quarto.yml for a QuartCompondObject
 #' @param x The QuartoObject that defines the project YAML
 #' @param workDir The working directory
 #' @param outFile The path to the output file
 #' @param params A list of parameters to write to the project YAML
 #' @returns the text written to `_quarto.yml`, invisibly
-.processProjectYAML <- function(x, workDir, outFile, params=list()) {
+.processProjectYAML <- function(x, workDir, outFile, params = list()) {
   # Validate
   checkmate::assertClass(x, "QuartoCompoundObject")
   if (!is.null(workDir)) {
@@ -59,7 +59,7 @@
     checkmate::assertDirectoryExists(workDir, access = "rwx")
     checkmate::assertCharacter(outFile, len = 1)
   }
-  checkmate::assertList(params, names="unique")
+  checkmate::assertList(params, names = "unique")
   # Execute
   futile.logger::flog.info("Processing _quarto.yml...")
   # Define output file

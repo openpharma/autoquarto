@@ -1,19 +1,21 @@
 test_that(".prepareToPublish fails gracefully with bad input", {
   file.remove(list.files(tempdir(), full.names = TRUE, recursive = TRUE))
   expect_error(
-    .prepareToPublish(1), 
+    .prepareToPublish(1),
     "Assertion on 'workDir' failed: Must be of type 'character', not 'double'."
   )
-  expect_error(.prepareToPublish(
-    c(tempdir(), tempdir())), 
+  expect_error(
+    .prepareToPublish(
+      c(tempdir(), tempdir())
+    ),
     "Assertion on 'workDir' failed: Must have length 1, but has length 2."
   )
   expect_error(
-    .prepareToPublish(tempdir(), 14), 
+    .prepareToPublish(tempdir(), 14),
     "Assertion on 'outFile' failed: Must be of type 'character', not 'double'."
   )
   expect_error(
-    .prepareToPublish(tempdir(), c("outFile", "outFile")), 
+    .prepareToPublish(tempdir(), c("outFile", "outFile")),
     "Assertion on 'outFile' failed: Must have length 1, but has length 2."
   )
   expect_error(
@@ -21,56 +23,56 @@ test_that(".prepareToPublish fails gracefully with bad input", {
     "Assertion on 'logFile' failed: Must be of type 'character', not 'double'."
   )
   expect_error(
-    .prepareToPublish(tempdir(), "outFile", c("logFle", "logFile")), 
+    .prepareToPublish(tempdir(), "outFile", c("logFle", "logFile")),
     "Assertion on 'logFile' failed: Must have length 1, but has length 2."
   )
   expect_error(
-    .prepareToPublish(tempdir(), "outFile", "/badPath"), 
+    .prepareToPublish(tempdir(), "outFile", "/badPath"),
     stringr::fixed("Assertion on 'logFile' failed: '/' not writeable.")
   )
 })
 
 test_that(".prepareToPublish works", {
   expect_message(
-    .prepareToPublish(tempdir(), "outFile", NA), 
+    .prepareToPublish(tempdir(), "outFile", NA),
     "logFile is .+\\/outFile_\\d{4,4}_\\d{2,2}[A-Z][a-z]{2,2}_\\d{2,2}_\\d{6,6}\\.log"
   )
   expect_no_message(
     .prepareToPublish(tempdir(), "outFile", file.path(tempdir(), "myLogFile.log"))
   )
   expect_equal(.prepareToPublish(tempdir(), "outFile", NA), tempdir())
-  
-  writeLines(c("Hello","World"), file(file.path(tempdir(), "temp.txt")))
+
+  writeLines(c("Hello", "World"), file(file.path(tempdir(), "temp.txt")))
   expect_message(.prepareToPublish(tempdir(), "outFile", file.path(tempdir(), "myLogFile.log")))
 })
 
 test_that("processProjectYAML fails gracefully with bad input", {
   expect_error(
-    .processProjectYAML(QuartoDocument("myFile.qmd")), 
+    .processProjectYAML(QuartoDocument("myFile.qmd")),
     "Assertion on 'x' failed: Must inherit from class 'QuartoCompoundObject', but has class 'QuartoDocument'."
   )
   expect_error(
-    .processProjectYAML(QuartoBook(), 5), 
+    .processProjectYAML(QuartoBook(), 5),
     "Assertion on 'workDir' failed: Must be of type 'character', not 'double'."
   )
   expect_error(
-    .processProjectYAML(QuartoBook(), c("myFolder", "myFolder")), 
+    .processProjectYAML(QuartoBook(), c("myFolder", "myFolder")),
     "Assertion on 'workDir' failed: Must have length 1, but has length 2."
   )
   expect_error(
-    .processProjectYAML(QuartoBook(), tempdir(), 5), 
+    .processProjectYAML(QuartoBook(), tempdir(), 5),
     "Assertion on 'outFile' failed: Must be of type 'character', not 'double'."
   )
   expect_error(
-    .processProjectYAML(QuartoBook(), tempdir(), c("myLog", "myLog")), 
+    .processProjectYAML(QuartoBook(), tempdir(), c("myLog", "myLog")),
     "Assertion on 'outFile' failed: Must have length 1, but has length 2."
   )
   expect_error(
-    .processProjectYAML(QuartoBook(), tempdir(), file.path(tempdir(), "myLogFile.log"), 5), 
+    .processProjectYAML(QuartoBook(), tempdir(), file.path(tempdir(), "myLogFile.log"), 5),
     "Assertion on 'params' failed: Must be of type 'list', not 'double'."
   )
   expect_error(
-    .processProjectYAML(QuartoBook(), tempdir(), file.path(tempdir(), "myLogFile.log"), list(1)), 
+    .processProjectYAML(QuartoBook(), tempdir(), file.path(tempdir(), "myLogFile.log"), list(1)),
     "Assertion on 'params' failed: Must have names."
   )
 })
