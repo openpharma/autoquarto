@@ -242,7 +242,7 @@ and the content of a typical log file could be similar to
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]: book:
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   title: What is the title?
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   author: Who Is The Author
-    2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   date: '2023-03-07 at 2023-03-07 16:11:17 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
+    2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   date: '2023-03-08 at 2023-03-08 09:44:05 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   chapters:
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   - index.qmd
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   - introParams.qmd
@@ -280,15 +280,45 @@ parameters needs a little thought. There are two ways of doing it.
 First, as in the examples above, the name of object can be passed as a
 parameter to the file. For example:
 
+``` r
+myData <- tibble(x=1:2, z=LETTERS[x])
+```
+
     ---
     params:
-      dataName: NA
+      df: myData
     ---
 
 In which case, the data frame can be accessed within the template file
 using
 
-    df <- get(params$dataName)
+    df <- get(params$df)
+
+Alternatively, you can convert the data frame to a list, and then to
+YAML:
+
+``` r
+ymlthis::yml_empty()%>% ymlthis::yml_params(df=ymlthis::as_yml(myData))
+#> ---
+#> params:
+#>   df:
+#>     x:
+#>     - 1
+#>     - 2
+#>     z:
+#>     - A
+#>     - B
+#> ---
+```
+
+In this case, the data frame can be accessed directly within the
+template file, (though it may need to be cast back into a data frame for
+some functions to work as expected).
+
+    df <- as.data.frame(params$df)
+
+Obviously, if the data frame is large, this approach will make the YAML
+header quite lengthy.
 
 ### Notes
 
@@ -313,8 +343,12 @@ or
 
     askForParams <- function(path="path/to/myBook")
 
+The GUI looks like this
+
+![askForParamsGUI](./man/figures/README-askForParams.png)
+
 `autoquarto` exposes the GUI and server functions of the app as a module
-that can be incorporated into your own application if needed. Simple
+that can be incorporated into your own application if needed. Simply
 reference `autoquarto::parameterEditorPanelUI` and
 `autoquarto::parameterEditorServer` in your app. A vignette
 demonstrating a simple example of how to do this is being written.

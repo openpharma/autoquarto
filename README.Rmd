@@ -42,6 +42,7 @@ devtools::install_github("openpharma/autoquarto")
 
 ```{r, echo=FALSE}
 library(autoquarto)
+library(tibble)
 ```
 The fundamental class used by `autoquarto` is the S4 `QuartoObject` class, together with its sub-classes, `QuartoDocument`, `QuartoCompoundObject`, `QuartoBook` and `QuartoWebsite`.  The class hierarchy looks like this:
 
@@ -263,17 +264,34 @@ Finally, another issue is that each chapter file is rendered in its own environm
 
 Passing data frames and other complex R objects to a Quarto file as YAML parameters needs a little thought.  There are two ways of doing it.  First, as in the examples above, the name of object can be passed as a parameter to the file.  For example:
 
+```{r}
+myData <- tibble(x=1:2, z=LETTERS[x])
+```
 ```
 ---
 params:
-  dataName: NA
+  df: myData
 ---
 ```
 
 In which case, the data frame can be accessed within the template file using
 ```
-df <- get(params$dataName)
+df <- get(params$df)
 ```
+
+Alternatively, you can convert the data frame to a list, and then to YAML:
+
+```{r}
+ymlthis::yml_empty()%>% ymlthis::yml_params(df=ymlthis::as_yml(myData))
+```
+
+In this case, the data frame can be accessed directly within the template file, (though it may need to be cast back into a data frame for some functions to work as expected).  
+
+```
+df <- as.data.frame(params$df)
+```
+
+Obviously, if the data frame is large, this approach will make the YAML header quite lengthy.
 
 ### Notes
 * Quarto books and Quarto websites *must* include an `index.qmd` file.  This is a limitation of Quarto.  See [here](https://github.com/quarto-dev/quarto-cli/discussions/4024) for more information.
@@ -290,7 +308,11 @@ or
 askForParams <- function(path="path/to/myBook")
 ```
 
-`autoquarto` exposes the GUI and server functions of the app as a module that can be incorporated into your own application if needed.  Simple reference `autoquarto::parameterEditorPanelUI` and `autoquarto::parameterEditorServer` in your app.  A vignette demonstrating a simple example of how to do this is being written.
+The GUI looks like this
+
+![askForParamsGUI](./man/figures/README-askForParams.png)
+
+`autoquarto` exposes the GUI and server functions of the app as a module that can be incorporated into your own application if needed.  Simply reference `autoquarto::parameterEditorPanelUI` and `autoquarto::parameterEditorServer` in your app.  A vignette demonstrating a simple example of how to do this is being written.
 
 
 ## To do

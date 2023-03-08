@@ -56,10 +56,10 @@ parameterEditorPanelServer <- function(id, path) {
       ns <- session$ns
 
       v <- shiny::reactiveValues(
-                    path = path, 
-                    pendingChanges = FALSE,
-                    rv=list(file=NA, params=NA, update=FALSE)
-                  )
+             path = path, 
+             pendingChanges = FALSE,
+             rv=list(file=NA, params=NA, update=FALSE)
+           )
       
       shiny::observeEvent(v$pendingChanges, {
         if (v$pendingChanges) {
@@ -70,18 +70,24 @@ parameterEditorPanelServer <- function(id, path) {
       })
       
       output$fileSelection <- shiny::renderUI({
+        print(v$path)
         if (isQuartoBook(v$path)) {
+          print("It's a book")
           yml <- yaml::read_yaml(file.path(v$path, "_quarto.yml"))
+          print(yml)
           v$chapters <- ymlthis::yml_pluck(yml, "book", "chapters")
           DiagrammeR::grVizOutput(ns("tree"))
-        } else if (isQuartoBook(v$path)) {
+          v$selectedFile <- v$path
+        } else if (isQuartoWebsite(v$path)) {
+          print("It's a website")
           shiny::tags$p("Quarto websites are not yet supported.")
         } else {
-          v$selectedFile <- v$path
+          print("It's not a book or website")
         }
       })
       
       output$tree <- DiagrammeR::renderGrViz({
+        print("output$tree")
         root <- data.tree::Node$new("Chapters")
         for(c in v$chapters) root$AddChild(tools::file_path_sans_ext(c))
         data.tree::SetNodeStyle(root, fontcolor = "black", shape="box", fontname = "helvetica", fontsize=10)
