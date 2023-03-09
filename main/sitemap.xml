@@ -61,6 +61,9 @@
     <loc>/reference/dot-processProjectYAML.html</loc>
   </url>
   <url>
+    <loc>/reference/dot-readYamlFrontMatter.html</loc>
+  </url>
+  <url>
     <loc>/reference/dot-renderQuartoCompoundObject.html</loc>
   </url>
   <url>
@@ -97,10 +100,10 @@
     <loc>/reference/publish.html</loc>
   </url>
   <url>
-    <loc>/reference/quartoYML.html</loc>
+    <loc>/reference/quartoYAML.html</loc>
   </url>
   <url>
-    <loc>/reference/readYamlFrontMatter.html</loc>
+    <loc>/reference/quartoYML.html</loc>
   </url>
   <url>
     <loc>/reference/removeChapter.html</loc>
