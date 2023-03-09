@@ -25,8 +25,3 @@ Add an Entry to the Template Search Path list
 
 Add a path to the template search path
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{addTemplatePath(QuartoObject)}: 
-
-}}

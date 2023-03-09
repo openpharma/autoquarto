@@ -15,8 +15,8 @@ setGeneric("addTemplatePath", function(x, path, mustExist = FALSE, .after = NA) 
 ## QuartoObject
 
 #' Add a path to the template search path
-#' @describeIn addTemplatePath
 #' @aliases addTemplatePath-QuartoObject
+#' @rdname addTemplatePath
 #' @export
 setMethod(
   "addTemplatePath",
@@ -56,8 +56,8 @@ setGeneric("removeTemplatePath", function(x, path = NA, pos = NA) standardGeneri
 ## QuartoObject
 
 #' Remove a path from the template search path
-#' @describeIn removeTemplatePath
 #' @aliases removeTemplatePath-QuartoWebsite
+#' @rdname removeTemplatePath
 #' @export
 setMethod(
   "removeTemplatePath",
@@ -105,8 +105,8 @@ setGeneric("addChapter", function(x, file, .after = NA) standardGeneric("addChap
 ## QuartoObject
 
 #' Add a path to the template search path
-#' @describeIn addChapter
 #' @aliases addChapter-QuartoObject
+#' @rdname addChapter
 #' @export
 setMethod(
   "addChapter",
@@ -141,8 +141,8 @@ setGeneric("removeChapter", function(x, file = NA, pos = NA) standardGeneric("re
 ## QuartoObject
 
 #' Remove a chapter from the chapter list
-#' @describeIn removeChapter
 #' @aliases removeChapter-QuartoWebsite
+#' @rdname removeChapter
 #' @export
 setMethod(
   "removeChapter",
@@ -193,8 +193,8 @@ setGeneric("locateTemplate", function(x, fileName = NA, ...) standardGeneric("lo
 #' (b) is readable and (c) has one of the `allowedExtensions`
 #' @param allowedExtensions Default: `"qmd"`.  A vector of permitted extensions.
 #' Ignored if `strict` is `FALSE`
-#' @describeIn locateTemplate
 #' @aliases locateTemplate-QuartoObject
+#' @rdname locateTemplate
 #' @export
 setMethod(
   "locateTemplate",
@@ -242,7 +242,6 @@ setGeneric("publish", function(x, outFile, ...) standardGeneric("publish"))
 ## QuartoCompoundObject
 
 #' Publish a QuartoCompoundObject object
-#' @describeIn publish
 #' @aliases publish-QuartoCompoundObject
 #' @param params Default `list()`.  A list containing the parameters to use when
 #' publishing the QuartoCompoundObject
@@ -253,6 +252,7 @@ setGeneric("publish", function(x, outFile, ...) standardGeneric("publish"))
 #' located in the folder returned by `here::here()` at the time the function was called.
 #' If `NULL`, no log file is produced.
 #' @param tidyUp Boolean.  Should the workDir be deleted on successful publication?
+#' @rdname publish
 #' @examples
 #' \dontrun{
 #' publish(
@@ -311,7 +311,6 @@ setMethod(
 ## QuartoDocument
 
 #' Publish a QuartoDocument object
-#' @describeIn publish
 #' @aliases publish-QuartoDocument
 #' @param params Default `list()`.  A list containing the parameters to use when
 #' publishing the QuartoDocument
@@ -322,7 +321,8 @@ setMethod(
 #' located in the folder returned by `here::here()` at the time the function was called.
 #' If `NULL`, no log file is produced.
 #' @param tidyUp Boolean.  Should the workDir be deleted on successful publication?
-#' @param ... pased to `quarto::quarto_render`
+#' @param ... passed to `quarto::quarto_render`
+#' @rdname publish
 #' @examples
 #' \dontrun{
 #' publish(
@@ -373,8 +373,9 @@ setGeneric("quartoYML", function(x, ...) standardGeneric("quartoYML"))
 ## QuartoObject
 
 #' Obtain the _quarto.yml Component of the Quarto Object
-#' @describeIn publish
+#' @param x a QuartoObject object
 #' @aliases quartoYML-QuartoObject
+#' @rdname quartoYAML
 #' @export
 setMethod(
   "quartoYML",

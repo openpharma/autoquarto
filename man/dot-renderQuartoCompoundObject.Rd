@@ -4,10 +4,12 @@
 \alias{.renderQuartoCompoundObject}
 \title{Render a QuartoCompoundObject}
 \usage{
-.renderQuartoCompoundObject(workDir)
+.renderQuartoCompoundObject(workDir, ...)
 }
 \arguments{
 \item{workDir}{The working directory containing the _quarto.yaml file}
+
+\item{...}{passed to \code{quarto::quarto_render}}
 }
 \description{
 Render a QuartoCompoundObject

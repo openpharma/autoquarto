@@ -40,3 +40,80 @@ test_that("parameterTibbleToYAML works", {
   )
   expect_equal(parameterTibbleToYAML(t), ymlthis::yml_empty() %>% ymlthis::yml_replace(d = "mtcars", x = "1", y = "This is a string"))
 })
+
+test_that(".readYamlFrontMatter fails gracefully with bad input", {
+  expect_error(.readYamlFrontMatter(5), "Assertion on 'path' failed: No file provided.")
+  expect_error(.readYamlFrontMatter(
+    test_path("testData", "testBook", "intro.qmd"), 5), 
+    "Assertion on 'item' failed: Must be of type 'character', not 'double'."
+  )
+})
+
+test_that(".readYamlFrontMatter works", {
+  expect_equal(
+    .readYamlFrontMatter(test_path("testData", "testBook", "intro.qmd"), "params"), 
+    list(dataName="mtcars", rowCount=10, x="wt", y="mpg", g="cyl", plotTitle="This is a title for the plot")
+  )
+})
+
+test_that("replaceYamlParams fails gracefully with bad input", {
+  yaml <- c("---", "title: Global intro", "format: html", "editor: visual",
+            "params:", "    dataName: mtcars", "    rowCount: 10",
+            "    x: wt", "    y: mpg", "    g: cyl",
+            "    plotTitle: This is a title for the plot",
+            "---"
+  )
+  
+  expect_error(replaceYamlParams(5), "Assertion on 'path' failed: No file provided.")
+  expect_error(
+    replaceYamlParams(test_path("testData", "testBook", "intro.qmd"), 5), 
+    "Assertion on 'params' failed: Must be of type 'list', not 'double'."
+  )
+  expect_error(replaceYamlParams(test_path("testData", "testBook", "intro.qmd"), list(), "badReplace"))
+  expect_error(replaceYamlParams(test_path("testData", "testBook", "intro.qmd"), list(), "both"), "Not yet implemented")
+  expect_error(replaceYamlParams(test_path("testData", "testBook", "intro.qmd"), list(), "file"), "Not yet implemented")
+  expect_error(replaceYamlParams(test_path("testData", "testBook", "intro.qmd"), list(), "list"), "Not yet implemented")
+  withr::with_file("tmp.yml", {
+    writeLines(yaml[2:length(yaml)], "tmp.yml")
+    expect_error(replaceYamlParams("tmp.yml", list()), "tmp.yml is malformed: front matter not found")
+  })
+  withr::with_file("tmp.yml", {
+    writeLines(yaml[1:(length(yaml)-1)], "tmp.yml")
+    expect_error(replaceYamlParams("tmp.yml", list()), "tmp.yml is malformed: front matter has no end")
+  })
+})
+
+test_that("replaceYamlParams works", {
+  yamlIn <- c("---", "title: Global intro", "format: html", "editor: visual",
+            "params:", "    dataName: NA", "    rowCount: NA",
+            "    x: NA", "    y: NA", "    g: NA",
+            "    plotTitle: NA",
+            "---",
+            "Blah blah blah"
+  )
+  yamlOut <- c("---", "title: Global intro", "format: html", "editor: visual",
+            "params:", "  dataName: mtcars", "  rowCount: 10.0",
+            "  x: wt", "  'y': mpg", "  g: cyl",
+            "  plotTitle: This is a title for the plot",
+            "---",
+            "Blah blah blah"
+  )
+
+  withr::with_file("tmp.yml", {
+    writeLines(yamlIn, "tmp.yml")
+    replaceYamlParams(
+      "tmp.yml",
+      list(
+        dataName="mtcars",
+        rowCount=10,
+        x="wt",
+        y="mpg",
+        g="cyl",
+        plotTitle="This is a title for the plot"
+      )
+    )
+    expect_equal(readLines("tmp.yml"), yamlOut)
+  })
+})
+  
+

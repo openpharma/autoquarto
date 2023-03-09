@@ -38,15 +38,15 @@
     msg <- paste0("workDir [", workDir, "] is not empty.  Deleting current contents...")
     futile.logger::flog.info(msg)
     message(msg)
-    file.remove(workFiles)
+    unlink(workFiles)
   }
   workDir
 }
 
 #' Process a project YAML
 #'
-#' Create the _quarto.yml for a QuartCompondObject
-#' @param x The QuartoObject that defines the project YAML
+#' Create the _quarto.yml for a QuartoCompoundObject
+#' @param x The QuartoCompoundObject that defines the project YAML
 #' @param workDir The working directory
 #' @param outFile The path to the output file
 #' @param params A list of parameters to write to the project YAML

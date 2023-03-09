@@ -7,7 +7,7 @@
 askForParams(...)
 }
 \arguments{
-\item{...}{Parameters passed to the app via \code{.GlobalEnv$askForParamsInbput}.
+\item{...}{Parameters passed to the app via \code{.GlobalEnv$askForParamsInput}.
 See Usage Notes below.}
 }
 \description{
@@ -20,10 +20,6 @@ from the user and then update the Quarto object with the information provided.
 
 If the function is called from an R session that is not interactive, an error
 is thrown. (TODO: Does this affect validation?)
-}
-
-\section{Usage Notes}{
-
 Currently, the only parameter supported, and which is required, is \code{path}.
 This should define the path to the Quarto document, website or book
 }

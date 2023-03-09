@@ -23,11 +23,6 @@ Remove an Entry from the Template Search Path list
 
 Remove a path from the template search path
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{removeTemplatePath(QuartoObject)}: 
-
-}}
 \section{Usage Notes}{
 
 Either \code{path} or \code{pos} must be provided, but not both

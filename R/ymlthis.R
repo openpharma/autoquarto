@@ -68,7 +68,7 @@ parameterTibbleToYAML <- function(d) {
             if (exists(.x$Value)) {
               rv <- as.list(get(.x$Value))
             } else {
-              futile.logger::flog.warn(paste0("Unable to find object '", .x$Value, "'.  Returning a literal..."))
+              # futile.logger::flog.warn(paste0("Unable to find object '", .x$Value, "'.  Returning a literal..."))
               rv <- .x$Value
             }
           }
@@ -94,9 +94,9 @@ parameterTibbleToYAML <- function(d) {
 #' @param path The path to the file whose front matter is to be read
 #' @param item If not NA, the element of the front matter to be returned
 #' @return a list containing the YAML front matter
-readYamlFrontMatter <- function(path, item = NA) {
+.readYamlFrontMatter <- function(path, item = NA) {
   # Validate
-  checkmate::assertFileExists(path, access = "rw")
+  checkmate::assertFileExists(path, access = "r")
   if (!is.na(item)) {
     checkmate::assertCharacter(item, max.len = 1)
   }
@@ -135,39 +135,34 @@ replaceYamlParams <- function(path, params, restrict = c("none", "both", "file",
   restrict <- match.arg(restrict)
   checkmate::assertSubset(restrict, c("none", "both", "file", "list"))
   # Execute
-  frontMatter <- readYamlFrontMatter(path)
-  # print("Before...")
-  # ymlthis::draw_yml_tree(frontMatter)
-  currentParams <- ymlthis::yml_pluck("params")
+  frontMatter <- .readYamlFrontMatter(path)
   if (restrict == "none") {
-    frontMatter <- ymlthis::yml_replace(frontMatter, params = params)
+    newFrontMatter <- ymlthis::yml_replace(frontMatter, params = params)
   } else {
     stop("Not yet implemented")
   }
-  # print("After...")
-  # ymlthis::draw_yml_tree(frontMatter)
   lines <- readLines(path)
   if (lines[1] != "---") {
     stop(paste0(path, " is malformed: front matter not found"))
   }
   endFrontMatter <- 2
   found <- FALSE
-  while (!found & endFrontMatter < length(lines)) {
+  while (!found & endFrontMatter <= length(lines)) {
     if (lines[endFrontMatter] == "---") {
       found <- TRUE
     } else {
       endFrontMatter <- endFrontMatter + 1
     }
   }
-  if (!endFrontMatter) {
+  if (!found) {
     stop(paste0(path, " is malformed: front matter has no end"))
   }
-  newFrontMatter <- stringr::str_split(yaml::as.yaml(frontMatter), "\\n")[[1]]
-  newFrontMatter <- newFrontMatter[which(newFrontMatter != "\n")]
+  newFrontMatterText <- stringr::str_split(yaml::as.yaml(newFrontMatter), "\\n")[[1]]
+  newFrontMatterText <- newFrontMatterText[-length(newFrontMatterText)]
   writeLines(
     c(
       "---",
-      newFrontMatter,
+      newFrontMatterText,
       "---",
       lines[(endFrontMatter + 1):length(lines)]
     ),

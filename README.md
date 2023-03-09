@@ -242,7 +242,7 @@ and the content of a typical log file could be similar to
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]: book:
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   title: What is the title?
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   author: Who Is The Author
-    2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   date: '2023-03-08 at 2023-03-08 09:44:05 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
+    2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   date: '2023-03-08 at 2023-03-08 15:34:23 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   chapters:
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   - index.qmd
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   - introParams.qmd
@@ -281,7 +281,7 @@ First, as in the examples above, the name of object can be passed as a
 parameter to the file. For example:
 
 ``` r
-myData <- tibble(x=1:2, z=LETTERS[x])
+myData <- tibble(x = 1:2, z = LETTERS[x])
 ```
 
     ---
@@ -298,7 +298,7 @@ Alternatively, you can convert the data frame to a list, and then to
 YAML:
 
 ``` r
-ymlthis::yml_empty()%>% ymlthis::yml_params(df=ymlthis::as_yml(myData))
+ymlthis::yml_empty() %>% ymlthis::yml_params(df = ymlthis::as_yml(myData))
 #> ---
 #> params:
 #>   df:
@@ -334,7 +334,7 @@ header quite lengthy.
 
 `autoquarto` includes an app that allows users to provide definitions
 for parameters in the YAML header of a Quarto document (or in the
-headers of invidiual chapters of a Quarto book or website). The easiest
+headers of individual chapters of a Quarto book or website). The easiest
 way to access the website is by calling the `askForparams` function:
 
     askForParams <- function(path="path/to/myDocument.qmd")

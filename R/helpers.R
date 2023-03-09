@@ -26,9 +26,9 @@ isQuartoBook <- function(path) {
   if (!is.logical(exists)) {
     return(FALSE)
   }
-  if (!exists) {
-    return(FALSE)
-  }
+  # if (!exists) {
+  #   return(FALSE)
+  # }
   f <- file.path(path, "_quarto.yml")
   if (!checkmate::checkFile(f, "r")) {
     return(FALSE)
@@ -54,9 +54,9 @@ isQuartoWebsite <- function(path) {
   if (!is.logical(exists)) {
     return(FALSE)
   }
-  if (!exists) {
-    return(FALSE)
-  }
+  # if (!exists) {
+  #   return(FALSE)
+  # }
   f <- file.path(path, "_quarto.yml")
   if (!checkmate::checkFile(f, "r")) {
     return(FALSE)
@@ -80,8 +80,8 @@ isQuartoDocument <- function(path) {
   if (!is.logical(exists)) {
     return(FALSE)
   }
-  if (!exists) {
-    return(FALSE)
-  }
+  # if (!exists) {
+  #   return(FALSE)
+  # }
   checkmate::checkFile(path, "r", "qmd")
 }

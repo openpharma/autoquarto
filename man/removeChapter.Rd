@@ -23,11 +23,6 @@ Remove an Entry from the Chapter list
 
 Remove a chapter from the chapter list
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{removeChapter(QuartoWebsite)}: 
-
-}}
 \section{Usage Notes}{
 
 Either \code{path} or \code{pos} must be provided, but not both
