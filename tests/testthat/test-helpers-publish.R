@@ -41,6 +41,7 @@ test_that(".prepareToPublish works", {
     .prepareToPublish(tempdir(), "outFile", file.path(tempdir(), "myLogFile.log"))
   )
   expect_equal(.prepareToPublish(tempdir(), "outFile", NA), tempdir())
+
   withr::local_file("temp.txt", {
     con <- file(file.path(tempdir(), "temp.txt"))
     writeLines(c("Hello","World"), con)
@@ -57,7 +58,6 @@ test_that(".prepareToPublish works", {
       tempdir()
     )
   })
-  
 })
 
 test_that("processProjectYAML fails gracefully with bad input", {
