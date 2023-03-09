@@ -4,9 +4,11 @@
 \alias{QuartoDocument}
 \title{Constructor for the \code{QuartoDocument} class}
 \usage{
-QuartoDocument(variables = list())
+QuartoDocument(fileName, variables = list())
 }
 \arguments{
+\item{fileName}{the Quarto file represented by this object}
+
 \item{variables}{the initial value of the \code{variables} slot}
 }
 \description{

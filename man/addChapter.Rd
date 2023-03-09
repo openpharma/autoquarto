@@ -23,11 +23,6 @@ Add an Entry from the Chapter list
 
 Add a path to the template search path
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{addChapter(QuartoObject)}: 
-
-}}
 \section{Usage Notes}{
 
 The locations that are searched to locate \code{file} at the time the \code{QuartoObject}

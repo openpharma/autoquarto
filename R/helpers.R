@@ -20,28 +20,20 @@ isQuartoObject <- function(path) {
 #' @export
 isQuartoBook <- function(path) {
   if (!is.character(path)) {
-    print("path is a character")
     return(FALSE)
   }
   exists <- checkmate::checkDirectoryExists(path)
   if (!is.logical(exists)) {
-    print("checkDirectoryExists did not return a logical")
-    print(path)
-    print(checkmate::checkDirectoryExists(path))
     return(FALSE)
   }
-  if (!exists) {
-    print("Directory does not exist")
-    return(FALSE)
-  }
+  # if (!exists) {
+  #   return(FALSE)
+  # }
   f <- file.path(path, "_quarto.yml")
   if (!checkmate::checkFile(f, "r")) {
-    print("_quarto.yml does not exist")
     return(FALSE)
   }
   yml <- yaml::read_yaml(f)
-  print(yml)
-  print(ymlthis::yml_pluck(yml, "project", "type") == "book")
   ymlthis::yml_pluck(yml, "project", "type") == "book"
 }
 
@@ -62,9 +54,9 @@ isQuartoWebsite <- function(path) {
   if (!is.logical(exists)) {
     return(FALSE)
   }
-  if (!exists) {
-    return(FALSE)
-  }
+  # if (!exists) {
+  #   return(FALSE)
+  # }
   f <- file.path(path, "_quarto.yml")
   if (!checkmate::checkFile(f, "r")) {
     return(FALSE)
@@ -88,8 +80,8 @@ isQuartoDocument <- function(path) {
   if (!is.logical(exists)) {
     return(FALSE)
   }
-  if (!exists) {
-    return(FALSE)
-  }
+  # if (!exists) {
+  #   return(FALSE)
+  # }
   checkmate::checkFile(path, "r", "qmd")
 }

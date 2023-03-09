@@ -30,11 +30,6 @@ Search the \code{templateSearchPath} for the First Matching Template File
 
 Search the \code{templateSearchPath} for the First Matching Template File
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{locateTemplate(QuartoObject)}: 
-
-}}
 \section{Usage Notes}{
 
 If \code{basename(fileName) == fileName} then \code{x@templateSearchPath} is searched, in order, for
