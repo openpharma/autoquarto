@@ -1,0 +1,18 @@
+2023-03-09 16:15:33 INFO [autoquarto:.processProjectYAML]: Processing _quarto.yml...
+2023-03-09 16:15:33 INFO [autoquarto:.processProjectYAML]: Writing _quarto.yml
+2023-03-09 16:15:33 DEBUG [autoquarto:.processProjectYAML]: _quarto.yml is:
+2023-03-09 16:15:33 DEBUG [autoquarto:.processProjectYAML]: project:
+2023-03-09 16:15:33 DEBUG [autoquarto:.processProjectYAML]:   type: book
+2023-03-09 16:15:33 DEBUG [autoquarto:.processProjectYAML]:   output-dir: /home/kirkpatj/Packages/autoquarto
+2023-03-09 16:15:33 DEBUG [autoquarto:.processProjectYAML]: book:
+2023-03-09 16:15:33 DEBUG [autoquarto:.processProjectYAML]:   title: What is the title?
+2023-03-09 16:15:33 DEBUG [autoquarto:.processProjectYAML]:   author: Who Is The Author
+2023-03-09 16:15:33 DEBUG [autoquarto:.processProjectYAML]:   date: '`r format(Sys.Date())` at `r format(Sys.Time())` on `r Sys.info()[[''nodename'']]`'
+2023-03-09 16:15:33 DEBUG [autoquarto:.processProjectYAML]:   chapters:
+2023-03-09 16:15:33 DEBUG [autoquarto:.processProjectYAML]:   - index.qmd
+2023-03-09 16:15:33 DEBUG [autoquarto:.processProjectYAML]:   - body.qmd
+2023-03-09 16:15:34 DEBUG [autoquarto:.processProjectYAML]: format:
+2023-03-09 16:15:34 DEBUG [autoquarto:.processProjectYAML]:   html:
+2023-03-09 16:15:34 DEBUG [autoquarto:.processProjectYAML]:     theme: cosmo
+2023-03-09 16:15:34 DEBUG [autoquarto:.processProjectYAML]:   pdf: default
+2023-03-09 16:15:34 DEBUG [autoquarto:.processProjectYAML]: 

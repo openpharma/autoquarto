@@ -4,7 +4,7 @@
 \alias{.prepareToPublish}
 \title{Prepare to Publish a Quarto Object}
 \usage{
-.prepareToPublish(workDir, outFile, logFile, tidyUp)
+.prepareToPublish(workDir, outFile, logFile)
 }
 \arguments{
 \item{workDir}{The working folder}
@@ -12,8 +12,6 @@
 \item{outFile}{The name of the output file}
 
 \item{logFile}{The requested log file}
-
-\item{tidyUp}{delete the contents of workDir when done?}
 }
 \value{
 The path to the working directory

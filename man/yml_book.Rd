@@ -24,16 +24,16 @@ a \code{yml} object
 Create a YAML book Element
 }
 \examples{
-ymlthis::yml_empty() \%>\% 
+ymlthis::yml_empty() \%>\%
   yml_book(
-      title="mybook", 
-      author="Jane Doe",
-      date="5/9/2021",
-      chapters=list(
-        "index.qmd",
-        "intro.qmd",
-        "summary.qmd",
-        "references.qmd"
-      )
+    title = "mybook",
+    author = "Jane Doe",
+    date = "5/9/2021",
+    chapters = list(
+      "index.qmd",
+      "intro.qmd",
+      "summary.qmd",
+      "references.qmd"
+    )
   )
 }

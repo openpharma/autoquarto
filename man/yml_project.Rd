@@ -4,7 +4,7 @@
 \alias{yml_project}
 \title{Create a YAML project Element}
 \usage{
-yml_project(.yml, ..., validNames = c("part"))
+yml_project(.yml, ..., validNames = c("output-dir", "type"))
 }
 \arguments{
 \item{.yml}{the YAML object to amend}

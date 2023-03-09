@@ -1,8 +1,8 @@
 ---
-title: "Global intro"
+title: Global intro
 format: html
 editor: visual
-params:
+params: 
   dataName: mtcars
   rowCount: 10
   x: wt
@@ -51,8 +51,8 @@ data %>%
   ggplot() +
     geom_point(
       aes(
-        x=get(params$xVar),
-        y=get(params$yVar),
+        x=get(params$x),
+        y=get(params$y),
         group=!! {{ params$g }}
       )
     ) +

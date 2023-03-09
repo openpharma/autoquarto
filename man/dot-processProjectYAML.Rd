@@ -4,10 +4,10 @@
 \alias{.processProjectYAML}
 \title{Process a project YAML}
 \usage{
-.processProjectYAML(x, workDir, outFile, params)
+.processProjectYAML(x, workDir, outFile, params = list())
 }
 \arguments{
-\item{x}{The QuartoObject that defines the project YAML}
+\item{x}{The QuartoCompoundObject that defines the project YAML}
 
 \item{workDir}{The working directory}
 
@@ -15,6 +15,9 @@
 
 \item{params}{A list of parameters to write to the project YAML}
 }
+\value{
+the text written to \verb{_quarto.yml}, invisibly
+}
 \description{
-Process a project YAML
+Create the _quarto.yml for a QuartoCompoundObject
 }
