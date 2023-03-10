@@ -3,16 +3,16 @@
 \docType{methods}
 \name{addChapter}
 \alias{addChapter}
-\alias{addChapter,QuartoObject-method}
-\alias{addChapter-QuartoObject}
+\alias{addChapter,QuartoCompoundObject-method}
+\alias{addChapter-QuartoCompoundObject}
 \title{Add an Entry from the Chapter list}
 \usage{
 addChapter(x, file, .after = NA)
 
-\S4method{addChapter}{QuartoObject}(x, file, .after = NA)
+\S4method{addChapter}{QuartoCompoundObject}(x, file, .after = NA)
 }
 \arguments{
-\item{x}{a QuartoObject object}
+\item{x}{a QuartoCompoundObject object}
 
 \item{file}{the file to be added.  See Usage Notes below.}
 
@@ -21,11 +21,11 @@ addChapter(x, file, .after = NA)
 \description{
 Add an Entry from the Chapter list
 
-Add a path to the template search path
+Add a chapter to a QuartoCompoundObject
 }
 \section{Usage Notes}{
 
-The locations that are searched to locate \code{file} at the time the \code{QuartoObject}
+The locations that are searched to locate \code{file} at the time the \code{QuartoCompoundObject}
 is \code{publish}ed depend on the way in which \code{file} is defined.  If \code{file} is a path,
 whether relative or absolute, then only that location is searched.  If the file
 is specified using only a base name, then the elements of \code{templateSearchPath}

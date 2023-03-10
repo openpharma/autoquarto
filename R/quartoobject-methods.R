@@ -4,7 +4,7 @@
 
 #' Add an Entry to the Template Search Path list
 #'
-#' @param x a QuartoObject object
+#' @param x a QuartoCompoundObject object
 #' @param path the path to be added
 #' @param mustExist Boolean must the specified path exist?
 #' @param .after At what position should the new path be added?  The default value, `NA`, adds the new path at the end of the existing list
@@ -12,15 +12,15 @@
 #' @export
 setGeneric("addTemplatePath", function(x, path, mustExist = FALSE, .after = NA) standardGeneric("addTemplatePath"))
 
-## QuartoObject
+## QuartoCompoundObject
 
 #' Add a path to the template search path
-#' @aliases addTemplatePath-QuartoObject
+#' @aliases addTemplatePath-QuartoCompoundObject
 #' @rdname addTemplatePath
 #' @export
 setMethod(
   "addTemplatePath",
-  "QuartoObject",
+  "QuartoCompoundObject",
   function(x, path, mustExist, .after) {
     checkmate::assertCharacter(path)
     checkmate::assertLogical(mustExist)
@@ -44,7 +44,7 @@ setMethod(
 
 #' Remove an Entry from the Template Search Path list
 #'
-#' @param x a QuartoObject object
+#' @param x a QuartoCompoundObject object
 #' @param path the path to be removed
 #' @param pos the position of the path to be removed
 #' @section Usage Notes:
@@ -53,15 +53,15 @@ setMethod(
 #' @export
 setGeneric("removeTemplatePath", function(x, path = NA, pos = NA) standardGeneric("removeTemplatePath"))
 
-## QuartoObject
+## QuartoCompoundObject
 
 #' Remove a path from the template search path
-#' @aliases removeTemplatePath-QuartoWebsite
+#' @aliases removeTemplatePath-QuartoCompoundObject
 #' @rdname removeTemplatePath
 #' @export
 setMethod(
   "removeTemplatePath",
-  "QuartoObject",
+  "QuartoCompoundObject",
   function(x, path, pos) {
     if (!is.na(path) & !is.na(pos)) stop("Only one of `path` and `pos` should be given")
     if (!is.na(path)) {
@@ -88,11 +88,11 @@ setMethod(
 
 #' Add an Entry from the Chapter list
 #'
-#' @param x a QuartoObject object
+#' @param x a QuartoCompoundObject object
 #' @param file the file to be added.  See Usage Notes below.
 #' @param .after At what position should the new file be added?  The default value, `NA`, adds the new file at the end of the existing list
 #' @section Usage Notes:
-#' The locations that are searched to locate `file` at the time the `QuartoObject`
+#' The locations that are searched to locate `file` at the time the `QuartoCompoundObject`
 #' is `publish`ed depend on the way in which `file` is defined.  If `file` is a path,
 #' whether relative or absolute, then only that location is searched.  If the file
 #' is specified using only a base name, then the elements of `templateSearchPath`
@@ -102,17 +102,17 @@ setMethod(
 #' @export
 setGeneric("addChapter", function(x, file, .after = NA) standardGeneric("addChapter"))
 
-## QuartoObject
+## QuartoCompoundObject
 
-#' Add a path to the template search path
-#' @aliases addChapter-QuartoObject
+#' Add a chapter to a QuartoCompoundObject
+#' @aliases addChapter-QuartoCompoundObject
 #' @rdname addChapter
 #' @export
 setMethod(
   "addChapter",
-  "QuartoObject",
+  "QuartoCompoundObject",
   function(x, file, .after) {
-    checkmate::assertCharacter(file)
+    checkmate::assertCharacter(file, min.len = 1, max.len = 1)
     if (all(is.na(.after))) {
       .after <- length(x@chapters)
     } else {
@@ -129,7 +129,7 @@ setMethod(
 
 #' Remove an Entry from the Chapter list
 #'
-#' @param x a QuartoObject object
+#' @param x a QuartoCompoundObject object
 #' @param file the file to be removed
 #' @param pos the position of the file to be removed
 #' @section Usage Notes:
@@ -138,19 +138,19 @@ setMethod(
 #' @export
 setGeneric("removeChapter", function(x, file = NA, pos = NA) standardGeneric("removeChapter"))
 
-## QuartoObject
+## QuartoCompundObject
 
 #' Remove a chapter from the chapter list
-#' @aliases removeChapter-QuartoWebsite
+#' @aliases removeChapter-QuartoCompoundObject
 #' @rdname removeChapter
 #' @export
 setMethod(
   "removeChapter",
-  "QuartoWebsite",
+  "QuartoCompoundObject",
   function(x, file, pos) {
-    if (!is.na(file) & !is.na(pos)) stop("Only one of `path` and `pos` should be given")
-    if (!is.na(file)) {
-      checkmate::assertCharacter(file)
+    if (all(!is.na(c(file, pos)))) stop("Only one of `path` and `pos` should be given")
+    if (any(!is.na(file))) {
+      checkmate::assertCharacter(file, max.len = 1)
       if (length(x@chapters) == 1 & x@chapters[[1]] == file) {
         x@chapters <- list()
       } else {
@@ -159,9 +159,15 @@ setMethod(
         }
       }
     }
-    if (!is.na(pos)) {
+    if (any(!is.na(pos))) {
       checkmate::assertNumber(pos, lower = 1, upper = length(x@chapters))
-      x@chapters <- as.list(x@chapters[[-pos]])
+      if (length(x@chapters) == 1) {
+        x@chapters <- list()
+      } else {
+        x@chapters[[which(x@chapters == x@chapters[[pos]])]] <- NULL
+        # Why does this not work?
+        # x@chapters <- as.list(x@chapters[[-pos]])
+      }
     }
     x
   }
@@ -173,7 +179,7 @@ setMethod(
 
 #' Search the `templateSearchPath` for the First Matching Template File
 #'
-#' @param x a QuartoObject object
+#' @param x a QuartoCompoundObject object
 #' @param fileName the (base) name of the file to be searched for along the
 #' `templateSearchPath` defined by `x`.
 #' @param ... passed to class methods
@@ -186,19 +192,19 @@ setMethod(
 #' @export
 setGeneric("locateTemplate", function(x, fileName = NA, ...) standardGeneric("locateTemplate"))
 
-## QuartoObject
+## QuartoCompoundObject
 
 #' Search the `templateSearchPath` for the First Matching Template File
 #' @param strict Boolean.  Default: TRUE.  Check that the file found (a) exists
 #' (b) is readable and (c) has one of the `allowedExtensions`
 #' @param allowedExtensions Default: `"qmd"`.  A vector of permitted extensions.
 #' Ignored if `strict` is `FALSE`
-#' @aliases locateTemplate-QuartoObject
+#' @aliases locateTemplate-QuartoCompoundObject
 #' @rdname locateTemplate
 #' @export
 setMethod(
   "locateTemplate",
-  "QuartoObject",
+  "QuartoCompoundObject",
   function(x, fileName, strict = TRUE, allowedExtensions = c("qmd")) {
     # Validate
     checkmate::assertCharacter(fileName)
@@ -276,6 +282,9 @@ setMethod(
     futile.logger::flog.debug("Entry - QuartoCompoundObject")
     # Validate
     checkmate::assertPathForOutput(outFile)
+    checkmate::assertList(params, names = "unique")
+    checkmate::assertCharacter(workDir, len = 1)
+    if (!is.null(workDir)) checkmate::assertDirectoryExists(workDir, access = "rw")
     checkmate::assertLogical(tidyUp)
     workDir <- .prepareToPublish(workDir, outFile, logFile)
     # Execute

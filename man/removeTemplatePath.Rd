@@ -3,16 +3,16 @@
 \docType{methods}
 \name{removeTemplatePath}
 \alias{removeTemplatePath}
-\alias{removeTemplatePath,QuartoObject-method}
-\alias{removeTemplatePath-QuartoWebsite}
+\alias{removeTemplatePath,QuartoCompoundObject-method}
+\alias{removeTemplatePath-QuartoCompoundObject}
 \title{Remove an Entry from the Template Search Path list}
 \usage{
 removeTemplatePath(x, path = NA, pos = NA)
 
-\S4method{removeTemplatePath}{QuartoObject}(x, path = NA, pos = NA)
+\S4method{removeTemplatePath}{QuartoCompoundObject}(x, path = NA, pos = NA)
 }
 \arguments{
-\item{x}{a QuartoObject object}
+\item{x}{a QuartoCompoundObject object}
 
 \item{path}{the path to be removed}
 

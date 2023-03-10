@@ -242,7 +242,7 @@ and the content of a typical log file could be similar to
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]: book:
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   title: What is the title?
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   author: Who Is The Author
-    2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   date: '2023-03-08 at 2023-03-08 15:34:23 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
+    2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   date: '2023-03-10 at 2023-03-10 15:58:33 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   chapters:
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   - index.qmd
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   - introParams.qmd
@@ -315,7 +315,7 @@ In this case, the data frame can be accessed directly within the
 template file, (though it may need to be cast back into a data frame for
 some functions to work as expected).
 
-    df <- as.data.frame(params$df)
+    df <- as.data.frame(params$df) 
 
 Obviously, if the data frame is large, this approach will make the YAML
 header quite lengthy.

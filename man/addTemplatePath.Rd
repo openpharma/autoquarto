@@ -3,16 +3,16 @@
 \docType{methods}
 \name{addTemplatePath}
 \alias{addTemplatePath}
-\alias{addTemplatePath,QuartoObject-method}
-\alias{addTemplatePath-QuartoObject}
+\alias{addTemplatePath,QuartoCompoundObject-method}
+\alias{addTemplatePath-QuartoCompoundObject}
 \title{Add an Entry to the Template Search Path list}
 \usage{
 addTemplatePath(x, path, mustExist = FALSE, .after = NA)
 
-\S4method{addTemplatePath}{QuartoObject}(x, path, mustExist = FALSE, .after = NA)
+\S4method{addTemplatePath}{QuartoCompoundObject}(x, path, mustExist = FALSE, .after = NA)
 }
 \arguments{
-\item{x}{a QuartoObject object}
+\item{x}{a QuartoCompoundObject object}
 
 \item{path}{the path to be added}
 
