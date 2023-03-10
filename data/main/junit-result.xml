@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="checkmate" timestamp="2023-03-09T16:37:53Z" hostname="1786abd5b555" tests="1" skipped="0" failures="0" errors="0" time="0.1">
-    <testcase time="0.1" classname="checkmate" name="multiplication_works"/>
+  <testsuite name="checkmate" timestamp="2023-03-10T16:08:44Z" hostname="eae8fbcf683d" tests="1" skipped="0" failures="0" errors="0" time="0.101">
+    <testcase time="0.101" classname="checkmate" name="multiplication_works"/>
   </testsuite>
-  <testsuite name="helpers-publish" timestamp="2023-03-09T16:37:53Z" hostname="1786abd5b555" tests="22" skipped="1" failures="1" errors="0" time="0.947">
-    <testcase time="0.079" classname="helpers_publish" name=".prepareToPublish_fails_gracefully_with_bad_input"/>
+  <testsuite name="helpers-publish" timestamp="2023-03-10T16:08:44Z" hostname="eae8fbcf683d" tests="22" skipped="1" failures="1" errors="0" time="0.969">
+    <testcase time="0.0790000000000001" classname="helpers_publish" name=".prepareToPublish_fails_gracefully_with_bad_input"/>
     <testcase time="0.00600000000000001" classname="helpers_publish" name=".prepareToPublish_fails_gracefully_with_bad_input"/>
     <testcase time="0.013" classname="helpers_publish" name=".prepareToPublish_fails_gracefully_with_bad_input"/>
+    <testcase time="0.00600000000000001" classname="helpers_publish" name=".prepareToPublish_fails_gracefully_with_bad_input"/>
+    <testcase time="0.00600000000000001" classname="helpers_publish" name=".prepareToPublish_fails_gracefully_with_bad_input"/>
     <testcase time="0.005" classname="helpers_publish" name=".prepareToPublish_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00600000000000001" classname="helpers_publish" name=".prepareToPublish_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00600000000000001" classname="helpers_publish" name=".prepareToPublish_fails_gracefully_with_bad_input"/>
-    <testcase time="0.0519999999999999" classname="helpers_publish" name=".prepareToPublish_fails_gracefully_with_bad_input">
+    <testcase time="0.0539999999999999" classname="helpers_publish" name=".prepareToPublish_fails_gracefully_with_bad_input">
       <failure type="failure" message="`.prepareToPublish(tempdir(), &quot;outFile&quot;, &quot;/badPath&quot;)` did not throw the expected error. ('test-helpers-publish.R:29')">`.prepareToPublish(tempdir(), "outFile", "/badPath")` did not throw the expected error.</failure>
     </testcase>
-    <testcase time="0.191" classname="helpers_publish" name=".prepareToPublish_works"/>
-    <testcase time="0.00900000000000001" classname="helpers_publish" name=".prepareToPublish_works"/>
+    <testcase time="0.202" classname="helpers_publish" name=".prepareToPublish_works"/>
+    <testcase time="0.00499999999999989" classname="helpers_publish" name=".prepareToPublish_works"/>
     <testcase time="0.00700000000000001" classname="helpers_publish" name=".prepareToPublish_works"/>
-    <testcase time="0.0169999999999999" classname="helpers_publish" name=".prepareToPublish_works"/>
-    <testcase time="0.01" classname="helpers_publish" name=".prepareToPublish_works"/>
-    <testcase time="0.017" classname="helpers_publish" name="processProjectYAML_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00900000000000001" classname="helpers_publish" name="processProjectYAML_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00800000000000012" classname="helpers_publish" name="processProjectYAML_fails_gracefully_with_bad_input"/>
+    <testcase time="0.017" classname="helpers_publish" name=".prepareToPublish_works"/>
+    <testcase time="0.011" classname="helpers_publish" name=".prepareToPublish_works"/>
+    <testcase time="0.0160000000000001" classname="helpers_publish" name="processProjectYAML_fails_gracefully_with_bad_input"/>
+    <testcase time="0.0089999999999999" classname="helpers_publish" name="processProjectYAML_fails_gracefully_with_bad_input"/>
+    <testcase time="0.0089999999999999" classname="helpers_publish" name="processProjectYAML_fails_gracefully_with_bad_input"/>
     <testcase time="0.012" classname="helpers_publish" name="processProjectYAML_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00799999999999979" classname="helpers_publish" name="processProjectYAML_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00900000000000012" classname="helpers_publish" name="processProjectYAML_fails_gracefully_with_bad_input"/>
     <testcase time="0.00800000000000001" classname="helpers_publish" name="processProjectYAML_fails_gracefully_with_bad_input"/>
-    <testcase time="0.465" classname="helpers_publish" name="processProjectYAML_works"/>
+    <testcase time="0.00800000000000001" classname="helpers_publish" name="processProjectYAML_fails_gracefully_with_bad_input"/>
+    <testcase time="0.00800000000000001" classname="helpers_publish" name="processProjectYAML_fails_gracefully_with_bad_input"/>
+    <testcase time="0.478" classname="helpers_publish" name="processProjectYAML_works"/>
     <testcase time="0.00499999999999989" classname="helpers_publish" name="processProjectYAML_works"/>
     <testcase time="0.00500000000000012" classname="helpers_publish" name=".renderQuartoCompoundObject_works">
       <skipped message="Reason: empty test ('test-helpers-publish.R:113')"/>
     </testcase>
   </testsuite>
-  <testsuite name="helpers" timestamp="2023-03-09T16:37:54Z" hostname="1786abd5b555" tests="20" skipped="0" failures="0" errors="0" time="0.161">
-    <testcase time="0.0409999999999999" classname="helpers" name="isQuartoBook_works"/>
-    <testcase time="0.00299999999999989" classname="helpers" name="isQuartoBook_works"/>
+  <testsuite name="helpers" timestamp="2023-03-10T16:08:45Z" hostname="eae8fbcf683d" tests="20" skipped="0" failures="0" errors="0" time="0.169">
+    <testcase time="0.0429999999999999" classname="helpers" name="isQuartoBook_works"/>
+    <testcase time="0.00300000000000011" classname="helpers" name="isQuartoBook_works"/>
     <testcase time="0.004" classname="helpers" name="isQuartoBook_works"/>
     <testcase time="0.004" classname="helpers" name="isQuartoBook_works"/>
     <testcase time="0.004" classname="helpers" name="isQuartoBook_works"/>
-    <testcase time="0.00600000000000001" classname="helpers" name="isQuartoDocument_works"/>
-    <testcase time="0.00800000000000001" classname="helpers" name="isQuartoDocument_works"/>
+    <testcase time="0.0109999999999999" classname="helpers" name="isQuartoDocument_works"/>
     <testcase time="0.00300000000000011" classname="helpers" name="isQuartoDocument_works"/>
+    <testcase time="0.004" classname="helpers" name="isQuartoDocument_works"/>
     <testcase time="0.004" classname="helpers" name="isQuartoDocument_works"/>
     <testcase time="0.004" classname="helpers" name="isQuartoDocument_works"/>
     <testcase time="0.00600000000000001" classname="helpers" name="isQuartoWebsite_works"/>
@@ -47,75 +47,195 @@
     <testcase time="0.004" classname="helpers" name="isQuartoWebsite_works"/>
     <testcase time="0.00299999999999989" classname="helpers" name="isQuartoWebsite_works"/>
     <testcase time="0.004" classname="helpers" name="isQuartoWebsite_works"/>
-    <testcase time="0.00700000000000012" classname="helpers" name="isQuartoObject_works"/>
-    <testcase time="0.038" classname="helpers" name="isQuartoObject_works"/>
+    <testcase time="0.0069999999999999" classname="helpers" name="isQuartoObject_works"/>
+    <testcase time="0.0430000000000001" classname="helpers" name="isQuartoObject_works"/>
     <testcase time="0.00499999999999989" classname="helpers" name="isQuartoObject_works"/>
     <testcase time="0.004" classname="helpers" name="isQuartoObject_works"/>
-    <testcase time="0.00499999999999989" classname="helpers" name="isQuartoObject_works"/>
+    <testcase time="0.00500000000000012" classname="helpers" name="isQuartoObject_works"/>
   </testsuite>
-  <testsuite name="quartobook-class" timestamp="2023-03-09T16:37:54Z" hostname="1786abd5b555" tests="1" skipped="0" failures="0" errors="0" time="0.009">
-    <testcase time="0.00900000000000012" classname="quartobook_class" name="multiplication_works"/>
+  <testsuite name="quartoobject-class" timestamp="2023-03-10T16:08:45Z" hostname="eae8fbcf683d" tests="1" skipped="0" failures="0" errors="0" time="0.01">
+    <testcase time="0.01" classname="quartoobject_class" name="multiplication_works"/>
   </testsuite>
-  <testsuite name="quartobook-methods" timestamp="2023-03-09T16:37:54Z" hostname="1786abd5b555" tests="1" skipped="0" failures="0" errors="0" time="0.009">
-    <testcase time="0.0089999999999999" classname="quartobook_methods" name="multiplication_works"/>
+  <testsuite name="quartoobject-methods" timestamp="2023-03-10T16:08:45Z" hostname="eae8fbcf683d" tests="153" skipped="0" failures="0" errors="0" time="1.353">
+    <testcase time="0.0149999999999999" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.012" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00100000000000011" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0089999999999999" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00100000000000011" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0109999999999999" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0089999999999999" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00500000000000012" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00099999999999989" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0110000000000001" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0109999999999999" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00900000000000012" classname="quartoobject_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.01" classname="quartoobject_methods" name="addTemplatePath_works_correctly"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="addTemplatePath_works_correctly"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="addTemplatePath_works_correctly"/>
+    <testcase time="0.0109999999999999" classname="quartoobject_methods" name="addTemplatePath_works_correctly"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="addTemplatePath_works_correctly"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="addTemplatePath_works_correctly"/>
+    <testcase time="0.01" classname="quartoobject_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartoobject_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.014" classname="quartoobject_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0069999999999999" classname="quartoobject_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartoobject_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00800000000000001" classname="quartoobject_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00600000000000001" classname="quartoobject_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0159999999999998" classname="quartoobject_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00900000000000034" classname="quartoobject_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0109999999999997" classname="quartoobject_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00600000000000023" classname="quartoobject_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.0109999999999997" classname="quartoobject_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00599999999999978" classname="quartoobject_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00600000000000023" classname="quartoobject_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00699999999999967" classname="quartoobject_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00600000000000023" classname="quartoobject_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.0129999999999999" classname="quartoobject_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.00600000000000023" classname="quartoobject_methods" name="removeTemplatePath_works_correctly"/>
+    <testcase time="0.0109999999999997" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0170000000000003" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0129999999999999" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0089999999999999" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00699999999999967" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.012" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0089999999999999" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0149999999999997" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00900000000000034" classname="quartoobject_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.012" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00699999999999967" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.0100000000000002" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.012" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00999999999999979" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00599999999999978" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00900000000000034" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.0389999999999997" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00800000000000001" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00900000000000034" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.0129999999999999" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00999999999999979" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00800000000000001" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00600000000000023" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00800000000000001" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.0149999999999997" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00800000000000001" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00900000000000034" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00800000000000001" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00999999999999979" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.012" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.0089999999999999" classname="quartoobject_methods" name="locateTemplate_works"/>
+    <testcase time="0.0110000000000001" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0129999999999999" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00699999999999967" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00800000000000001" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.012" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00699999999999967" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00800000000000001" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.012" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00999999999999979" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0150000000000001" classname="quartoobject_methods" name="addChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0089999999999999" classname="quartoobject_methods" name="addChapter_works"/>
+    <testcase time="0.00600000000000023" classname="quartoobject_methods" name="addChapter_works"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="addChapter_works"/>
+    <testcase time="0.00599999999999978" classname="quartoobject_methods" name="addChapter_works"/>
+    <testcase time="0.0140000000000002" classname="quartoobject_methods" name="addChapter_works"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="addChapter_works"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="addChapter_works"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="addChapter_works"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="addChapter_works"/>
+    <testcase time="0.016" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00800000000000001" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00800000000000001" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0149999999999997" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00699999999999967" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0140000000000002" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00699999999999967" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.012" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0110000000000001" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.00999999999999979" classname="quartoobject_methods" name="removeChapter_fails_elegantly_with_bad_inputs"/>
+    <testcase time="0.0100000000000002" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00999999999999979" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00600000000000023" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00599999999999978" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00500000000000034" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.0229999999999997" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00500000000000034" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00599999999999978" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.0100000000000002" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00700000000000012" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00599999999999978" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00600000000000023" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.00499999999999989" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.0100000000000002" classname="quartoobject_methods" name="removeChapter_works"/>
+    <testcase time="0.0139999999999998" classname="quartoobject_methods" name="publish_fails_gracefully_with_bad_input"/>
+    <testcase time="0.032" classname="quartoobject_methods" name="publish_fails_gracefully_with_bad_input"/>
+    <testcase time="0.012" classname="quartoobject_methods" name="publish_fails_gracefully_with_bad_input"/>
+    <testcase time="0.0110000000000001" classname="quartoobject_methods" name="publish_fails_gracefully_with_bad_input"/>
+    <testcase time="0.0149999999999997" classname="quartoobject_methods" name="publish_fails_gracefully_with_bad_input"/>
   </testsuite>
-  <testsuite name="quartowebsite-class" timestamp="2023-03-09T16:37:54Z" hostname="1786abd5b555" tests="1" skipped="0" failures="0" errors="0" time="0.009">
-    <testcase time="0.00900000000000012" classname="quartowebsite_class" name="multiplication_works"/>
-  </testsuite>
-  <testsuite name="quartowebsite-methods" timestamp="2023-03-09T16:37:54Z" hostname="1786abd5b555" tests="27" skipped="0" failures="0" errors="0" time="0.235">
-    <testcase time="0.0189999999999999" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
-    <testcase time="0.00500000000000012" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
-    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
-    <testcase time="0.00099999999999989" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
-    <testcase time="0.00500000000000012" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
-    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="addTemplatePath_fails_elegantly_with_bad_inputs"/>
-    <testcase time="0.0109999999999999" classname="quartowebsite_methods" name="addTemplatePath_works_correctly"/>
-    <testcase time="0.00900000000000012" classname="quartowebsite_methods" name="addTemplatePath_works_correctly"/>
-    <testcase time="0.0109999999999999" classname="quartowebsite_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
-    <testcase time="0.00500000000000012" classname="quartowebsite_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
-    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="removeTemplatePath_fails_elegantly_with_bad_inputs"/>
-    <testcase time="0.0109999999999999" classname="quartowebsite_methods" name="removeTemplatePath_works_correctly"/>
-    <testcase time="0.0129999999999999" classname="quartowebsite_methods" name="removeTemplatePath_works_correctly"/>
-    <testcase time="0.00800000000000001" classname="quartowebsite_methods" name="removeTemplatePath_works_correctly"/>
-    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="removeTemplatePath_works_correctly"/>
-    <testcase time="0.0110000000000001" classname="quartowebsite_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
-    <testcase time="0.014" classname="quartowebsite_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
-    <testcase time="0.0110000000000001" classname="quartowebsite_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
-    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="locateTemplate_fails_elegantly_with_bad_inputs"/>
-    <testcase time="0.0129999999999999" classname="quartowebsite_methods" name="locateTemplate_works"/>
-    <testcase time="0.00700000000000012" classname="quartowebsite_methods" name="locateTemplate_works"/>
-    <testcase time="0.01" classname="quartowebsite_methods" name="locateTemplate_works"/>
-    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="locateTemplate_works"/>
-    <testcase time="0.014" classname="quartowebsite_methods" name="locateTemplate_works"/>
-    <testcase time="0.0069999999999999" classname="quartowebsite_methods" name="locateTemplate_works"/>
-    <testcase time="0.00600000000000001" classname="quartowebsite_methods" name="locateTemplate_works"/>
-    <testcase time="0.00800000000000001" classname="quartowebsite_methods" name="locateTemplate_works"/>
-  </testsuite>
-  <testsuite name="ymlthis" timestamp="2023-03-09T16:37:55Z" hostname="1786abd5b555" tests="25" skipped="0" failures="0" errors="0" time="0.434">
-    <testcase time="0.0130000000000001" classname="ymlthis" name="yml_book_works"/>
-    <testcase time="0.00299999999999989" classname="ymlthis" name="yml_book_works"/>
-    <testcase time="0.00900000000000012" classname="ymlthis" name="yml_book_works"/>
+  <testsuite name="ymlthis" timestamp="2023-03-10T16:08:47Z" hostname="eae8fbcf683d" tests="25" skipped="0" failures="0" errors="0" time="0.461">
+    <testcase time="0.0150000000000001" classname="ymlthis" name="yml_book_works"/>
+    <testcase time="0.004" classname="ymlthis" name="yml_book_works"/>
+    <testcase time="0.00499999999999989" classname="ymlthis" name="yml_book_works"/>
     <testcase time="0.00800000000000001" classname="ymlthis" name="yml_project_works"/>
-    <testcase time="0.00600000000000001" classname="ymlthis" name="yml_project_works"/>
-    <testcase time="0.014" classname="ymlthis" name="yml_project_works"/>
-    <testcase time="0.00700000000000012" classname="ymlthis" name="yml_project_works"/>
+    <testcase time="0.0110000000000001" classname="ymlthis" name="yml_project_works"/>
+    <testcase time="0.0140000000000002" classname="ymlthis" name="yml_project_works"/>
+    <testcase time="0.00800000000000001" classname="ymlthis" name="yml_project_works"/>
     <testcase time="0.00699999999999967" classname="ymlthis" name="yml_project_works"/>
     <testcase time="0.004" classname="ymlthis" name="yml_project_works"/>
-    <testcase time="0.00800000000000001" classname="ymlthis" name="yml_project_works"/>
+    <testcase time="0.004" classname="ymlthis" name="yml_project_works"/>
     <testcase time="0.00900000000000034" classname="ymlthis" name="parameterTibbleToYAML_works"/>
-    <testcase time="0.00800000000000001" classname="ymlthis" name="parameterTibbleToYAML_works"/>
-    <testcase time="0.101" classname="ymlthis" name="parameterTibbleToYAML_works"/>
+    <testcase time="0.0139999999999998" classname="ymlthis" name="parameterTibbleToYAML_works"/>
+    <testcase time="0.198" classname="ymlthis" name="parameterTibbleToYAML_works"/>
     <testcase time="0.0089999999999999" classname="ymlthis" name=".readYamlFrontMatter_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00599999999999978" classname="ymlthis" name=".readYamlFrontMatter_fails_gracefully_with_bad_input"/>
-    <testcase time="0.0740000000000003" classname="ymlthis" name=".readYamlFrontMatter_works"/>
-    <testcase time="0.0089999999999999" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00599999999999978" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00600000000000023" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
-    <testcase time="0.093" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00599999999999978" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00600000000000023" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00599999999999978" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00600000000000023" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
-    <testcase time="0.00999999999999979" classname="ymlthis" name="replaceYamlParams_works"/>
+    <testcase time="0.00600000000000023" classname="ymlthis" name=".readYamlFrontMatter_fails_gracefully_with_bad_input"/>
+    <testcase time="0.0699999999999998" classname="ymlthis" name=".readYamlFrontMatter_works"/>
+    <testcase time="0.0110000000000001" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
+    <testcase time="0.00800000000000001" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
+    <testcase time="0.00700000000000012" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
+    <testcase time="0.00699999999999967" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
+    <testcase time="0.00800000000000001" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
+    <testcase time="0.00700000000000012" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
+    <testcase time="0.00800000000000001" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
+    <testcase time="0.00700000000000012" classname="ymlthis" name="replaceYamlParams_fails_gracefully_with_bad_input"/>
+    <testcase time="0.012" classname="ymlthis" name="replaceYamlParams_works"/>
   </testsuite>
 </testsuites>
