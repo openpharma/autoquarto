@@ -288,7 +288,7 @@ ymlthis::yml_empty() %>% ymlthis::yml_params(df = ymlthis::as_yml(myData))
 In this case, the data frame can be accessed directly within the template file, (though it may need to be cast back into a data frame for some functions to work as expected).  
 
 ```
-df <- as.data.frame(params$df)
+df <- as.data.frame(params$df) 
 ```
 
 Obviously, if the data frame is large, this approach will make the YAML header quite lengthy.
