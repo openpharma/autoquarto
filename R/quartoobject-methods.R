@@ -150,7 +150,7 @@ setMethod(
   function(x, file, pos) {
     if (all(!is.na(c(file, pos)))) stop("Only one of `path` and `pos` should be given")
     if (any(!is.na(file))) {
-      checkmate::assertCharacter(file, max.len=1)
+      checkmate::assertCharacter(file, max.len = 1)
       if (length(x@chapters) == 1 & x@chapters[[1]] == file) {
         x@chapters <- list()
       } else {
