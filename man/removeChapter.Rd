@@ -3,16 +3,16 @@
 \docType{methods}
 \name{removeChapter}
 \alias{removeChapter}
-\alias{removeChapter,QuartoWebsite-method}
-\alias{removeChapter-QuartoWebsite}
+\alias{removeChapter,QuartoCompoundObject-method}
+\alias{removeChapter-QuartoCompoundObject}
 \title{Remove an Entry from the Chapter list}
 \usage{
 removeChapter(x, file = NA, pos = NA)
 
-\S4method{removeChapter}{QuartoWebsite}(x, file = NA, pos = NA)
+\S4method{removeChapter}{QuartoCompoundObject}(x, file = NA, pos = NA)
 }
 \arguments{
-\item{x}{a QuartoObject object}
+\item{x}{a QuartoCompoundObject object}
 
 \item{file}{the file to be removed}
 
