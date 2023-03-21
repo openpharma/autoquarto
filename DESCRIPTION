@@ -11,24 +11,33 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3.9000
 Imports: 
     checkmate,
+    data.tree,
     DiagrammeR,
+    dplyr,
     futile.logger,
+    here,
     lifecycle,
     lubridate,
     magrittr,
     methods,
+    quarto,
+    readr,
     rhandsontable,
     rmarkdown,
     shiny,
     shinyjs,
+    stringr,
+    tibble,
     tools,
+    yaml,
     ymlthis
 Suggests: 
     covr,
     R.utils,
     shinytest,
     spelling,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    withr
 Config/testthat/edition: 3
 Collate: 
     'autoquarto-package.R'

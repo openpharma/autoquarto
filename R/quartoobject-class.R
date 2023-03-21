@@ -151,6 +151,7 @@ setClass(
 #'
 #' @inheritParams QuartoObject
 #' @param fileName  Path the qmd file that this object represents
+
 #' @export
 QuartoDocument <- function(fileName, variables = list()) {
   methods::new("QuartoDocument", fileName, variables)

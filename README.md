@@ -315,7 +315,7 @@ In this case, the data frame can be accessed directly within the
 template file, (though it may need to be cast back into a data frame for
 some functions to work as expected).
 
-    df <- as.data.frame(params$df)
+    df <- as.data.frame(params$df) 
 
 Obviously, if the data frame is large, this approach will make the YAML
 header quite lengthy.
@@ -334,8 +334,8 @@ header quite lengthy.
 
 `autoquarto` includes an app that allows users to provide definitions
 for parameters in the YAML header of a Quarto document (or in the
-headers of indvidiual chapters of a Quarto book or website). The easiest
-way to access the website is by calling the `askForparams` function:
+headers of individual chapters of a Quarto book or website). The easiest
+way to access the website is by calling the `askForParams` function:
 
     askForParams <- function(path="path/to/myDocument.qmd")
 

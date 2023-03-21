@@ -115,7 +115,7 @@ parameterEditorPanelServer <- function(id, path) {
         )
         if (!is.na(v$currentFile)) {
           fName <- file.path(v$path, v$currentFile)
-          y <- readYamlFrontMatter(fName, "params")
+          y <- .readYamlFrontMatter(fName, "params")
           v$currentParameters <- tibble::tibble(Parameter = names(y), Value = unlist(y))
           if (v$currentParameters %>% nrow() == 0) {
             return()

@@ -3,12 +3,16 @@
 \docType{methods}
 \name{locateTemplate}
 \alias{locateTemplate}
+\alias{locateTemplate,QuartoCompoundObject-method}
+\alias{locateTemplate-QuartoCompoundObject}
 \title{Search the \code{templateSearchPath} for the First Matching Template File}
 \usage{
 locateTemplate(x, fileName = NA, ...)
+
+\S4method{locateTemplate}{QuartoCompoundObject}(x, fileName, strict = TRUE, allowedExtensions = c("qmd"))
 }
 \arguments{
-\item{x}{a QuartoObject object}
+\item{x}{a QuartoCompoundObject object}
 
 \item{fileName}{the (base) name of the file to be searched for along the
 \code{templateSearchPath} defined by \code{x}.}
