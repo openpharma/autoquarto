@@ -3,6 +3,7 @@
 \docType{methods}
 \name{addTemplatePath}
 \alias{addTemplatePath}
+
 \alias{addTemplatePath,QuartoCompoundObject-method}
 \alias{addTemplatePath-QuartoCompoundObject}
 \title{Add an Entry to the Template Search Path list}
@@ -22,6 +23,4 @@ addTemplatePath(x, path, mustExist = FALSE, .after = NA)
 }
 \description{
 Add an Entry to the Template Search Path list
-
-Add a path to the template search path
 }

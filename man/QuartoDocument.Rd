@@ -7,7 +7,7 @@
 QuartoDocument(fileName, variables = list())
 }
 \arguments{
-\item{fileName}{the Quarto file represented by this object}
+\item{fileName}{Path the qmd file that this object represents}
 
 \item{variables}{the initial value of the \code{variables} slot}
 }

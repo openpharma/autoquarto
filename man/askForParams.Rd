@@ -10,6 +10,12 @@ askForParams(...)
 \item{...}{Parameters passed to the app via \code{.GlobalEnv$askForParamsInput}.
 See Usage Notes below.}
 }
+\value{
+A list with three elements: \code{file} The most recent quarto document
+for which parameters have been updated; \code{params} a tibble containing
+infprmation about the parameters of \code{file} and \code{update}: used internally by
+the app and can be ignored.
+}
 \description{
 When given a Quarto document, website or book, interrogate the input to determine
 if it has a YAML header.  If it does, parse the YAML header to identify what,

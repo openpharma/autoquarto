@@ -150,7 +150,8 @@ setClass(
 #' Constructor for the `QuartoDocument` class
 #'
 #' @inheritParams QuartoObject
-#' @param fileName the Quarto file represented by this object
+#' @param fileName  Path the qmd file that this object represents
+
 #' @export
 QuartoDocument <- function(fileName, variables = list()) {
   methods::new("QuartoDocument", fileName, variables)
