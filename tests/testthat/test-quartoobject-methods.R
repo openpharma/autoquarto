@@ -199,7 +199,7 @@ test_that("publish fails gracefully with bad input", {
     outFile <- withr::local_file(test_path("testData", "_work", "outFile"))
     workDir <- test_path("testData", "_work")
 
-    expect_error(publish(x, 5), "Assertion on 'outFile' failed: No path provided.") 
+    expect_error(publish(x, 5), "Assertion on 'outFile' failed: No path provided.")
     # expect_error(
     #   publish(x, test_path("badFolder", "outputFile")),
     #   "Assertion on 'outFile' failed: Path to file \\(dirname\\) does not exist: .+"
