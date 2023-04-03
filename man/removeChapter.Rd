@@ -3,6 +3,7 @@
 \docType{methods}
 \name{removeChapter}
 \alias{removeChapter}
+
 \alias{removeChapter,QuartoCompoundObject-method}
 \alias{removeChapter-QuartoCompoundObject}
 \title{Remove an Entry from the Chapter list}
@@ -20,8 +21,6 @@ removeChapter(x, file = NA, pos = NA)
 }
 \description{
 Remove an Entry from the Chapter list
-
-Remove a chapter from the chapter list
 }
 \section{Usage Notes}{
 

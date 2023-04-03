@@ -3,6 +3,7 @@
 \docType{methods}
 \name{removeTemplatePath}
 \alias{removeTemplatePath}
+
 \alias{removeTemplatePath,QuartoCompoundObject-method}
 \alias{removeTemplatePath-QuartoCompoundObject}
 \title{Remove an Entry from the Template Search Path list}
@@ -20,8 +21,6 @@ removeTemplatePath(x, path = NA, pos = NA)
 }
 \description{
 Remove an Entry from the Template Search Path list
-
-Remove a path from the template search path
 }
 \section{Usage Notes}{
 

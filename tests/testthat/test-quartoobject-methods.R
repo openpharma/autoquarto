@@ -201,7 +201,7 @@ test_that("publish fails gracefully with bad input", {
     fs::dir_create(workDir)
     withr::defer(fs::dir_delete(workDir))
 
-    expect_error(publish(x, 5), "Assertion on 'outFile' failed: No path provided.") 
+    expect_error(publish(x, 5), "Assertion on 'outFile' failed: No path provided.")
     expect_error(
       publish(x, test_path("badFolder", "outputFile")),
       "Assertion on 'outFile' failed: Path to file \\(dirname\\) does not exist: .+"

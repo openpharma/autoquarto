@@ -331,8 +331,8 @@ setMethod(
 #' If `NULL`, no log file is produced.
 #' @param tidyUp Boolean.  Should the workDir be deleted on successful publication?
 #' @param ... passed to `quarto::quarto_render`
-#' @rdname publish
-#' @examples
+#' @examples 
+
 #' \dontrun{
 #' publish(
 #'   QuartoDocument(testthat::test_path("testData", "testParams", "introParams.qmd")),

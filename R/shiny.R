@@ -11,6 +11,10 @@
 #' is thrown. (TODO: Does this affect validation?)
 #' Currently, the only parameter supported, and which is required, is `path`.
 #' This should define the path to the Quarto document, website or book
+#' @returns A list with three elements: `file` The most recent quarto document 
+#' for which parameters have been updated; `params` a tibble containing 
+#' infprmation about the parameters of `file` and `update`: used internally by 
+#' the app and can be ignored.
 #' @export
 askForParams <- function(...) {
   # Validate
@@ -23,7 +27,9 @@ askForParams <- function(...) {
 
   .GlobalEnv$askForParamsInput <- list(...)
   shiny::runApp(appDir, display.mode = "normal")
-  rm(.GlobalEnv$askForParamsInput)
+  rv <- .GlobalEnv$askForParamsOutput
+  rm(c(.GlobalEnv$askForParamsInput, .GlobalEnv$askForParamsOutput))
+  rv
 }
 
 # askForParams(path=normalizePath(testthat::test_path("testData", "testBook")))
