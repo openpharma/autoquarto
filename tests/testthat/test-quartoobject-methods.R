@@ -196,7 +196,7 @@ test_that("removeChapter works", {
 
 test_that("publish fails gracefully with bad input", {
   checkBadInputs <- function(x) {
-    workDir <- test_path("testData", paste0("_work", floor(runif(1, max=10000))))
+    workDir <- test_path("testData", paste0("_work", floor(runif(1, max = 10000))))
     outFile <- withr::local_file(test_path(workDir, "outFile"))
     fs::dir_create(workDir)
     withr::defer(fs::dir_delete(workDir))
@@ -224,13 +224,13 @@ test_that("publish fails gracefully with bad input", {
   checkBadInputs(QuartoCompoundObject())
   checkBadInputs(QuartoBook())
   checkBadInputs(QuartoWebsite())
-  
+
   expect_error(publish(QuartoObject(), "someFile.qmd"))
   expect_error(publish(QuartoDocument(), "someFile.qmd"))
 })
 
 test_that("publish works", {
-  workDir <- test_path("testData", paste0("_work", floor(runif(1, max=10000))))
+  workDir <- test_path("testData", paste0("_work", floor(runif(1, max = 10000))))
   fs::dir_create(workDir)
   withr::defer(fs::dir_delete(workDir))
   correctFunctionality <- function(x, ...) {
@@ -244,7 +244,7 @@ test_that("publish works", {
       publish(
         x,
         outFile,
-        workDir=workDir,
+        workDir = workDir,
         ...
       )
     })
@@ -264,7 +264,7 @@ test_that("publish works", {
   # correctFunctionality(QuartoCompoundObject())
   # correctFunctionality(QuartoBook())
   # correctFunctionality(QuartoWebsite())
-  
+
   # correctFunctionality(QuartoObject(), "someFile.qmd")
   # correctFunctionality(QuartoDocument(), "someFile.qmd")
 })
