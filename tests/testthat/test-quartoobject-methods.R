@@ -196,66 +196,75 @@ test_that("removeChapter works", {
 
 test_that("publish fails gracefully with bad input", {
   checkBadInputs <- function(x) {
-    outFile <- withr::local_file(test_path("testData", "_work", "outFile"))
-    workDir <- test_path("testData", "_work")
+    workDir <- test_path("testData", paste0("_work", floor(runif(1, max=10000))))
+    outFile <- withr::local_file(test_path(workDir, "outFile"))
+    fs::dir_create(workDir)
+    withr::defer(fs::dir_delete(workDir))
 
     expect_error(publish(x, 5), "Assertion on 'outFile' failed: No path provided.")
-    # expect_error(
-    #   publish(x, test_path("badFolder", "outputFile")),
-    #   "Assertion on 'outFile' failed: Path to file \\(dirname\\) does not exist: .+"
-    # )
-    # expect_error(publish(x, outFile, 5))
-    # expect_error(
-    #   publish(x, outFile, list("a", "b")),
-    #   "Assertion on 'params' failed: Must have names."
-    # )
-    # expect_error(
-    #   publish(x, outFile, list(), 5),
-    #   "Assertion on 'workDir' failed: Must be of type 'character', not 'double'."
-    # )
-    # expect_error(
-    #   publish(x, outFile, list(), workDir, "false"),
-    #   "Assertion on 'tidyUp' failed: Must be of type 'logical', not 'character'."
-    # )
+    expect_error(
+      publish(x, test_path("badFolder", "outputFile")),
+      "Assertion on 'outFile' failed: Path to file \\(dirname\\) does not exist: .+"
+    )
+    expect_error(publish(x, outFile, 5))
+    expect_error(
+      publish(x, outFile, list("a", "b")),
+      "Assertion on 'params' failed: Must have names."
+    )
+    expect_error(
+      publish(x, outFile, list(), 5),
+      "Assertion on 'workDir' failed: Must be of type 'character', not 'double'."
+    )
+    expect_error(
+      publish(x, outFile, list(), workDir, "false"),
+      "Assertion on 'tidyUp' failed: Must be of type 'logical', not 'character'."
+    )
   }
 
   checkBadInputs(QuartoCompoundObject())
   checkBadInputs(QuartoBook())
   checkBadInputs(QuartoWebsite())
-
+  
   expect_error(publish(QuartoObject(), "someFile.qmd"))
   expect_error(publish(QuartoDocument(), "someFile.qmd"))
 })
 
-# test_that("publish works", {
-#   correctFunctionality <- function(x, ...) {
-#     outFile <- test_path("testDir", "_work", "outFile")
-#     withr::local_file("outputFile", {
-#       publish(
-#         x,
-#         outFile,
-#         ...
-#       )
-#     })
-#
-#     QuartoBook(
-#       templateSearchPath = list(testthat::test_path("testData", "global")),
-#       chapters = list(
-#         "index.qmd",
-#         testthat::test_path("testData", "testParams", "introParams.qmd")
-#       )
-#     )
-#     params <- list(
-#       dataName = "mtcars",
-#       rowCount = 10,
-#       x = "wt",
-#       y = "mpg",
-#       g = "cyl",
-#       plotTitle = "A title for the plot"
-#     )
-#
-#     expect_no_error(publish(book, params))
-#     expect_output_file()
-#   }
-#
-# })
+test_that("publish works", {
+  workDir <- test_path("testData", paste0("_work", floor(runif(1, max=10000))))
+  fs::dir_create(workDir)
+  withr::defer(fs::dir_delete(workDir))
+  correctFunctionality <- function(x, ...) {
+    outFile <- test_path(workDir, "outFile")
+    x@templateSearchPath <- list(testthat::test_path("testData", "global"))
+    x@chapters <- list(
+      "index.qmd",
+      testthat::test_path("testData", "testParams", "introParams.qmd")
+    )
+    withr::local_file("outputFile", {
+      publish(
+        x,
+        outFile,
+        workDir=workDir,
+        ...
+      )
+    })
+
+    params <- list(
+      dataName = "mtcars",
+      rowCount = 10,
+      x = "wt",
+      y = "mpg",
+      g = "cyl",
+      plotTitle = "A title for the plot"
+    )
+
+    expect_no_error(publish(x, params))
+    # expect_output_file()
+  }
+  # correctFunctionality(QuartoCompoundObject())
+  # correctFunctionality(QuartoBook())
+  # correctFunctionality(QuartoWebsite())
+  
+  # correctFunctionality(QuartoObject(), "someFile.qmd")
+  # correctFunctionality(QuartoDocument(), "someFile.qmd")
+})

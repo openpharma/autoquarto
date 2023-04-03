@@ -33,6 +33,7 @@ Imports:
     ymlthis
 Suggests: 
     covr,
+    fs,
     R.utils,
     shinytest,
     spelling,
