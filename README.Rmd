@@ -18,12 +18,11 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/autoquarto)](https://CRAN.R-project.org/package=autoquarto)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![experimental](https://github.com/openpharma/autoquarto/actions/workflows/experimental.yaml/badge.svg)](https://github.com/openpharma/autoquarto/actions/workflows/experimental.yaml)
 [![Test Coverage](https://raw.githubusercontent.com/openpharma/autoquarto/_xml_coverage_reports/data/main/badge.svg)](https://github.com/openpharma/autoquarto/blob/_xml_coverage_reports/data/main/coverage.xml)<!-- badges: end -->
 
 The goal of autoquarto is to provide tools to allow the programmatic, incremental definition and publication of Quarto reports. 
 
-`autoquarto` is very much a work in progress, and is being developed in parallel with the [`rbqmR`](https://openpharma.github.io/rbqmR/main/) package.  As `rbqmR` evolves, so will `autoquarto`.
+`autoquarto` is very much a work in progress, and is being developed in parallel with the [`rbqmR`](https://openpharma.github.io/rbqmR/main/) package.  It is also being used in shinyCrmPack, a Shiny front-end to the [crmPack](https://github.com/Roche/crmPack) package.  As `rbqmR` and `shinyCrmPack` evolve, so will `autoquarto`.
 
 
 ## Installation

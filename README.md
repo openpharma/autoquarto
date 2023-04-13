@@ -9,7 +9,6 @@
 status](https://www.r-pkg.org/badges/version/autoquarto)](https://CRAN.R-project.org/package=autoquarto)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![experimental](https://github.com/openpharma/autoquarto/actions/workflows/experimental.yaml/badge.svg)](https://github.com/openpharma/autoquarto/actions/workflows/experimental.yaml)
 [![Test
 Coverage](https://raw.githubusercontent.com/openpharma/autoquarto/_xml_coverage_reports/data/main/badge.svg)](https://github.com/openpharma/autoquarto/blob/_xml_coverage_reports/data/main/coverage.xml)<!-- badges: end -->
 
@@ -18,7 +17,9 @@ incremental definition and publication of Quarto reports.
 
 `autoquarto` is very much a work in progress, and is being developed in
 parallel with the [`rbqmR`](https://openpharma.github.io/rbqmR/main/)
-package. As `rbqmR` evolves, so will `autoquarto`.
+package. It is also being used in shinyCrmPack, a Shiny front-end to the
+[crmPack](https://github.com/Roche/crmPack) package. As `rbqmR` and
+`shinyCrmPack` evolve, so will `autoquarto`.
 
 ## Installation
 
@@ -242,7 +243,7 @@ and the content of a typical log file could be similar to
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]: book:
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   title: What is the title?
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   author: Who Is The Author
-    2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   date: '2023-03-08 at 2023-03-08 10:38:53 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-hlwxw'
+    2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   date: '2023-04-13 at 2023-04-13 13:07:16 on rstudio-deployment-kirkpatj-9wpryn-fbfcdcc7-ftxf9'
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   chapters:
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   - index.qmd
     2023-03-07 14:19:00 DEBUG [autoquarto:publish]:   - introParams.qmd
