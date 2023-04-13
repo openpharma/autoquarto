@@ -43,13 +43,7 @@
     <loc>/reference/QuartoWebsite.html</loc>
   </url>
   <url>
-    <loc>/reference/addChapter-QuartoObject-method.html</loc>
-  </url>
-  <url>
     <loc>/reference/addChapter.html</loc>
-  </url>
-  <url>
-    <loc>/reference/addTemplatePath-QuartoObject-method.html</loc>
   </url>
   <url>
     <loc>/reference/addTemplatePath.html</loc>
@@ -88,9 +82,6 @@
     <loc>/reference/isQuartoWebsite.html</loc>
   </url>
   <url>
-    <loc>/reference/locateTemplate-QuartoObject-method.html</loc>
-  </url>
-  <url>
     <loc>/reference/locateTemplate.html</loc>
   </url>
   <url>
@@ -106,31 +97,13 @@
     <loc>/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>/reference/publish-QuartoCompoundObject-method.html</loc>
-  </url>
-  <url>
-    <loc>/reference/publish-QuartoDocument-method.html</loc>
-  </url>
-  <url>
     <loc>/reference/publish.html</loc>
   </url>
   <url>
     <loc>/reference/quartoYAML.html</loc>
   </url>
   <url>
-    <loc>/reference/quartoYML-QuartoObject-method.html</loc>
-  </url>
-  <url>
-    <loc>/reference/quartoYML.html</loc>
-  </url>
-  <url>
-    <loc>/reference/removeChapter-QuartoWebsite-method.html</loc>
-  </url>
-  <url>
     <loc>/reference/removeChapter.html</loc>
-  </url>
-  <url>
-    <loc>/reference/removeTemplatePath-QuartoObject-method.html</loc>
   </url>
   <url>
     <loc>/reference/removeTemplatePath.html</loc>
