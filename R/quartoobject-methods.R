@@ -8,6 +8,7 @@
 #' @param path the path to be added
 #' @param mustExist Boolean must the specified path exist?
 #' @param .after At what position should the new path be added?  The default value, `NA`, adds the new path at the end of the existing list
+#' @rdname addTemplatePath
 #' @docType methods
 #' @export
 setGeneric("addTemplatePath", function(x, path, mustExist = FALSE, .after = NA) standardGeneric("addTemplatePath"))
@@ -50,6 +51,7 @@ setMethod(
 #' @section Usage Notes:
 #' Either `path` or `pos` must be provided, but not both
 #' @docType methods
+#' @rdname removeTemplatePath
 #' @export
 setGeneric("removeTemplatePath", function(x, path = NA, pos = NA) standardGeneric("removeTemplatePath"))
 
@@ -99,6 +101,7 @@ setMethod(
 #' are searched, in order, to locate a file with that base name.  Only the first
 #' match is returned.
 #' @docType methods
+#' @rdname addChapter
 #' @export
 setGeneric("addChapter", function(x, file, .after = NA) standardGeneric("addChapter"))
 
@@ -135,6 +138,7 @@ setMethod(
 #' @section Usage Notes:
 #' Either `path` or `pos` must be provided, but not both
 #' @docType methods
+#' @rdname removeChapter
 #' @export
 setGeneric("removeChapter", function(x, file = NA, pos = NA) standardGeneric("removeChapter"))
 
@@ -189,6 +193,7 @@ setMethod(
 #' the absolute path to the given file is returned.  This process allows (say) global,
 #' project and study level templates to be obtained.
 #' @docType methods
+#' @rdname locateTemplate
 #' @export
 setGeneric("locateTemplate", function(x, fileName = NA, ...) standardGeneric("locateTemplate"))
 
@@ -242,6 +247,7 @@ setMethod(
 #' @param outFile the name of the file containing the published Quarto object
 #' @param ... passed to class methods
 #' @docType methods
+#' @rdname publish
 #' @export
 setGeneric("publish", function(x, outFile, ...) standardGeneric("publish"))
 
@@ -331,6 +337,7 @@ setMethod(
 #' If `NULL`, no log file is produced.
 #' @param tidyUp Boolean.  Should the workDir be deleted on successful publication?
 #' @param ... passed to `quarto::quarto_render`
+#' @rdname publish
 #' @examples 
 
 #' \dontrun{
@@ -376,6 +383,7 @@ setMethod(
 #' @param x a QuartoObject object
 #' @param ... passed to class methods
 #' @docType methods
+#' @rdname quartoYAML
 #' @export
 setGeneric("quartoYML", function(x, ...) standardGeneric("quartoYML"))
 

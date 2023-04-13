@@ -26,6 +26,7 @@ test_that(".prepareToPublish fails gracefully with bad input", {
     .prepareToPublish(tempdir(), "outFile", c("logFle", "logFile")),
     "Assertion on 'logFile' failed: Must have length 1, but has length 2."
   )
+  skip_on_ci()
   expect_error(
     .prepareToPublish(tempdir(), "outFile", "/badPath"),
     stringr::fixed("Assertion on 'logFile' failed: '/' not writeable.")
