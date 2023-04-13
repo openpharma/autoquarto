@@ -3,7 +3,7 @@
 \docType{methods}
 \name{addTemplatePath}
 \alias{addTemplatePath}
-
+\alias{addTemplatePath-generic}
 \alias{addTemplatePath,QuartoCompoundObject-method}
 \alias{addTemplatePath-QuartoCompoundObject}
 \title{Add an Entry to the Template Search Path list}
@@ -22,5 +22,5 @@ addTemplatePath(x, path, mustExist = FALSE, .after = NA)
 \item{.after}{At what position should the new path be added?  The default value, \code{NA}, adds the new path at the end of the existing list}
 }
 \description{
-Add an Entry to the Template Search Path list
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }

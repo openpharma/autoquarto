@@ -3,7 +3,6 @@
 \docType{methods}
 \name{addChapter}
 \alias{addChapter}
-
 \alias{addChapter,QuartoCompoundObject-method}
 \alias{addChapter-QuartoCompoundObject}
 \title{Add an Entry from the Chapter list}
@@ -21,6 +20,7 @@ addChapter(x, file, .after = NA)
 }
 \description{
 Add an Entry from the Chapter list
+
 Add a chapter to a QuartoCompoundObject
 }
 \section{Usage Notes}{

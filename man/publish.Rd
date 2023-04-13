@@ -3,6 +3,7 @@
 \docType{methods}
 \name{publish}
 \alias{publish}
+\alias{publish-generic}
 \alias{publish,QuartoCompoundObject-method}
 \alias{publish-QuartoCompoundObject}
 \alias{publish,QuartoDocument-method}

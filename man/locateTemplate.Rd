@@ -18,8 +18,16 @@ locateTemplate(x, fileName = NA, ...)
 \code{templateSearchPath} defined by \code{x}.}
 
 \item{...}{passed to class methods}
+
+\item{strict}{Boolean.  Default: TRUE.  Check that the file found (a) exists
+(b) is readable and (c) has one of the \code{allowedExtensions}}
+
+\item{allowedExtensions}{Default: \code{"qmd"}.  A vector of permitted extensions.
+Ignored if \code{strict} is \code{FALSE}}
 }
 \description{
+Search the \code{templateSearchPath} for the First Matching Template File
+
 Search the \code{templateSearchPath} for the First Matching Template File
 }
 \section{Usage Notes}{

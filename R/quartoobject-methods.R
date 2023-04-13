@@ -4,16 +4,19 @@
 
 #' Add an Entry to the Template Search Path list
 #'
+#' @description `r lifecycle::badge("experimental")`
+#'
 #' @param x a QuartoCompoundObject object
 #' @param path the path to be added
 #' @param mustExist Boolean must the specified path exist?
 #' @param .after At what position should the new path be added?  The default value, `NA`, adds the new path at the end of the existing list
 #' @rdname addTemplatePath
+#' @aliases addTemplatePath-generic
 #' @docType methods
 #' @export
 setGeneric("addTemplatePath", function(x, path, mustExist = FALSE, .after = NA) standardGeneric("addTemplatePath"))
 
-## QuartoCompoundObject
+## QuartoCompoundObject ----
 
 #' Add a path to the template search path
 #' @aliases addTemplatePath-QuartoCompoundObject
@@ -248,23 +251,27 @@ setMethod(
 #' @param ... passed to class methods
 #' @docType methods
 #' @rdname publish
+#' @aliases publish-generic
 #' @export
 setGeneric("publish", function(x, outFile, ...) standardGeneric("publish"))
 
-## QuartoCompoundObject
+## QuartoCompoundObject ----
 
 #' Publish a QuartoCompoundObject object
 #' @aliases publish-QuartoCompoundObject
+#' @param x a QuartoObject object
+#' @param outFile the name of the file containing the published Quarto object
 #' @param params Default `list()`.  A list containing the parameters to use when
 #' publishing the QuartoCompoundObject
 #' @param workDir Default: `NULL`.  The temporary work folder used to generate the report.
 #' If `NULL` a temporary work folder with a random name, is used.
+#' @param tidyUp Boolean.  Should the workDir be deleted on successful publication?
 #' @param logFile Default: NA.  The name of the log file that documents the publishing process.
 #' If `NA`, the name is based on `basename(outFile)`, with the start date/time appended and
 #' located in the folder returned by `here::here()` at the time the function was called.
 #' If `NULL`, no log file is produced.
-#' @param tidyUp Boolean.  Should the workDir be deleted on successful publication?
 #' @rdname publish
+#' @aliases publish-QuartoCompoundObject
 #' @examples
 #' \dontrun{
 #' publish(
